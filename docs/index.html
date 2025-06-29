@@ -195,28 +195,23 @@
 
   <script src="app.js"></script>
   <script>
-    const hotpayUrl = 'https://pay.hotpay.com/checkout/XXXXX';
-    const servicePassword = 'clthubadmin';
+   const hotpayUrl = 'https://pay.hotpay.com/checkout/XXXXX';
+const servicePassword = 'clthubadmin';
 
-    function handleAccess() {
-      if (localStorage.getItem('serviceAccess') === 'granted') return;
-      if (localStorage.getItem('freeUsed') === 'true') {
-        const pass = prompt('Podaj hasło serwisowe lub OK, żeby zapłacić');
-        if (pass === servicePassword) {
-          localStorage.setItem('serviceAccess', 'granted');
-          return;
-        }
-        window.location.href = hotpayUrl;
-        return;
-      }
-      sessionStorage.setItem('trialActive', '1');
+function handleAccess() {
+  // Teraz hasło serwisowe działa tylko do końca sesji
+  if (sessionStorage.getItem('serviceAccess') === 'granted') return;
+  if (localStorage.getItem('freeUsed') === 'true') {
+    const pass = prompt('Podaj hasło serwisowe lub OK, żeby zapłacić');
+    if (pass === servicePassword) {
+      sessionStorage.setItem('serviceAccess', 'granted');
+      return;
     }
-
-    function markTrialUsed() {
-      if (sessionStorage.getItem('trialActive') === '1') {
-        localStorage.setItem('freeUsed', 'true');
-      }
-    }
+    window.location.href = hotpayUrl;
+    return;
+  }
+  sessionStorage.setItem('trialActive', '1');
+}
 
     function initCalculator() {
       document.getElementById('welcome').style.display = 'none';
