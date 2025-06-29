@@ -1,1 +1,213 @@
-<h1>Kalkulator</h1><script src="app.js"></script>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CLT HUB</title>
+  <style>
+    /* Ogólne tło i font */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      color: #333;
+    }
+    h1 {
+      margin-top: 1rem;
+      font-size: 2rem;
+      color: #222;
+    }
+
+    /* Połączony kontener powitalny + info */
+    #welcome {
+      background: #14281d;
+      padding: 0.5cm;
+      margin: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      max-width: 656px; /* +40% szerokości */
+      width: 100%;
+      color: #fff;
+      position: relative;
+      text-align: justify;
+    }
+    /* Nagłówek trial wyśrodkowany */
+    #welcome p.title {
+      text-align: center;
+      font-size: 1.25rem;
+      margin: 0 0 0.5rem;
+    }
+    #welcome p.title span.small {
+      display: block;
+      font-size: 0.7em; /* 30% mniejszy */
+      margin-top: 0.25rem;
+    }
+
+    /* Przycisk */
+    #startBtn {
+      background: #218838;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 1rem;
+    }
+    #startBtn:hover {
+      background: #1e7e34;
+    }
+
+    /* Logo przesunięte absolutnie */
+    .promo-container {
+      position: absolute;
+      top: 4mm;
+      left: 4mm;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+    }
+    .promo-image {
+      width: auto;
+      height: auto;
+      max-width: none; /* zachowaj oryginalny rozmiar */
+      box-shadow: none;
+      border-radius: 0;
+    }
+
+    /* Kalkulator */
+    #app {
+      display: none;
+      background: #333;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+      max-width: 468px;
+      width: 100%;
+      margin: 2rem 0;
+    }
+    .display {
+      background: #000;
+      color: #0f0;
+      font-size: 2rem;
+      text-align: right;
+      padding: 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+      height: 2.5rem;
+      line-height: 2.5rem;
+      font-family: 'Digital-7 Mono', monospace;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+    }
+    .buttons button {
+      background: #f0f0f0;
+      border: 1px solid #999;
+      padding: 0.75rem;
+      font-size: 1.25rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .buttons button:hover {
+      background: #e0e0e0;
+    }
+    .buttons button.operator {
+      background: #ff9500;
+      color: #fff;
+    }
+    .buttons button.operator:hover {
+      background: #cc7a00;
+    }
+
+    @media (max-width: 700px) {
+      #welcome {
+        max-width: 100%;
+        margin: 0.5rem;
+      }
+      #app {
+        max-width: 100%;
+        margin: 1rem 0;
+      }
+      h1 { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <h1>CLT HUB</h1>
+
+  <div id="welcome">
+    <p class="title">
+      CLT level up!<br>
+      <span class="small">(jedna sesja bezpłatnie)</span>
+    </p>
+    <button id="startBtn">Rozpocznij sesję</button>
+
+    <div class="promo-container">
+      <img
+              src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/7QCEUGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAGgcAigAYkZCTUQwYTAwMGE4NzAxMDAwMGUyMDEwMDAwODgwMjAwMDBhNjAyMDAwMGRjMDIwMDAwZDkwMzAwMDBjZDA0MDAwMGU3MDQwMDAwMTAwNTAwMDA0MDA1MDAwMDI1MDYwMDAwAP/bAIQABQYGCwgLCwsLCw0LCwsNDg4NDQ4ODw0ODg4NDxAQEBEREBAQEA8TEhMPEBETFBQTERMWFhYTFhUVFhkWGRYWEgEFBQUKBwoICQkICwgKCAsKCgkJCgoMCQoJCgkMDQsKCwsKCw0MCwsICwsMDAwNDQwMDQoLCg0MDQ0MExQTExOc/8IAEQgAPAA8AwEiAAIRAQMRAf/EAFIAAAEEAwAAAAAAAAAAAAAAAAACAwUHAQQGEAABAgQDAwcLBAMAAAAAAAABABECAyExBBBBElFhBRMgM3GBkRQiNHKSocHS4vDxFTKx0UJiwv/aAAwDAQACAAMAAAABuQIhJEddSdhGZ6NhBpHcgOqKgt+pDMZqyTjSNPta465lFpGts7TpzvRVxjEjERYw30uxyQZtTdiJfYcKttJCcUmXWNppQusCJmsZeX//2gAIAQEAAQUCyw3KHOz1Pmc3BgcV5TBnPxkqQsHi5cvFfq2GWK5RkRyuROpznSYZ2PweDlzMTg8JBGsJhYJmH5E6nOOZDL5QweIly8VycXUgz+Z5LxsqTKlTYZsOWJ5OlYg/oshYLBTJS5MwsUMn9GkKRJEmHLGytqb5OF5OF5OF5OFg4dmVlj5mGE3ncEudwS53BLncEsCYDKy2QtkLZC2QtkZ//9oACAEDAAE/AcnrmYlDpkSu5dyCIdbHZ4LY7PDL/9oACAECAAE/Actrzgx0zimWAO91LIcaU8coom+2T67PvCe3mu3EIKKF/wAOua7PZXNdnsoL/9oACAEBAAY/AspkrZbYer7i2UUV9kE+C222akb+g0cYhJU6ZFE0EW0xrrEus90X9KZCI6mEgUP9I+ufh0NiMPC1uyBTpcUPmQ7TBzpEsRtD9gJhrZnU2YR50LsX4Oj65+HQ2ojshrn1FOjiiaGLaY3d4livUi/6Uex1Vdu26vGy2Y42O0TrwQihLwnPajFd4LL/AC9pYh4W2oSIbVuo4JkJh2j7mCtF7SEENhnEfKubt5r2p2r04eJ+ZenDxPzL04eJ+ZenDxPzKEbfOf7b65xc5LjMdHIPDtXVTPH6l1Uzx+pdVM8fqXVTPH6lBzYIgqwPbnZWCsFYKwz/AP/aAAgBAQABPyHIhkQ387djcd+VH7Es7HRylSaA6G4Df0CwCBwKktvYAlaUE4nYIoA9lwqgwZHl0kUT7Tu6AhcQO4jUFq3TnCzhmAKgvYo3UX4DibY1sLolo38DMIUtdfad3QGIYaiMKtFe1DWlXwMCLA3AQCMWJB2EoOEaqjbq48CyPAKcYqEMsDuVQNGNRYtrW+YqS0M4IjjoVwPG/pNQ4VWW5sdzXTo4wRq4Wjr8wTlFdnLmpJv2nMbB40LHDe9uiVKlSukW973OJta+YO0FAGhtOnDo1VVVFZhODkVPqdX1zJLge5fiAvxAX4gL8QEA1sv/2gAMAwEAAgADAAAAEOdgvfmjt6b3vO8snf/aAAgBAwABPxDKsAC4Y52gOLq7RTJjR+9lxo7wvG3EKwaLhO8PmAF//9oACAECAAE/EEVWABDnatchkACJwLpi4D94/kmPZXoKdoo1BTcmrUvr/Ac2wYBf/9oACAEBAAE/EMqM1IGV4NgPVdkQG8NfcGOxZ2uyCDJ1oUm7nuDdB82A9zEDiUMB2gycVjqEEZZRoGdwFWdHf4nowWYi2UA3ncW1jlP+oQTvTZhOH1ajo7wiKUD98EASh0ScoKy544gE8d3BFFDMlvXApkCDoWHHCoAoAiozbQY3JsGWNKOgNAG1E8uh7RoJ8+UkAj1ibNclQ2heatrlU1Mywfj3fA6OAiRIEAAAApkDy3Je8WzavLgNUcH0WeeeZiqoUr48WuzMuS3kCf4X318F99fBffXwX318EMWAADQBhl//2Q=="
+      alt="Promocja"
+      class="promo-image"
+    />
+    </div>
+
+    <p>
+      Link odsyła na stronę z materiałami o podniesionym stopniu zaawansowania od poziomu ogólnego, ale nie zastępuje konstruktora z uprawnieniami i specjalistów branżystów; ma charakter wyłącznie informacyjny. Istnieje możliwość symulowania stanów granicznych, sprawdzania założeń i może stanowić wsparcie dla użytkowników niezajmujących się profesjonalnie w dopracowaniu własnej koncepcji obiektu przed przekazaniem do architekta. Autor nie ponosi odpowiedzialności za ewentualne szkody wynikające z wdrożeń wykonanych na podstawie analiz i symulacji narzędzi z CLTHUB. Lista dostępnych opracowań będzie uzupełniana sukcesywnie (można także składać własne propozycje dla przyszłych wdrożeń). ©® Wszelkie prawa zastrzeżone (All rights reserved). Autor strony: Piotr Baltyn <a href="mailto:cltplhub@gmail.com" style="color:#fff; text-decoration:underline;">cltplhub@gmail.com</a>
+    </p>
+  </div>
+
+  <div id="app">
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+      <!-- przyciski kalkulatora -->
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    const hotpayUrl = 'https://pay.hotpay.com/checkout/XXXXX';
+    const servicePassword = 'clthubadmin';
+
+    function handleAccess() {
+      if (localStorage.getItem('serviceAccess') === 'granted') return;
+      if (localStorage.getItem('freeUsed') === 'true') {
+        const pass = prompt('Podaj hasło serwisowe lub OK, żeby zapłacić');
+        if (pass === servicePassword) {
+          localStorage.setItem('serviceAccess', 'granted');
+          return;
+        }
+        window.location.href = hotpayUrl;
+        return;
+      }
+      sessionStorage.setItem('trialActive', '1');
+    }
+
+    function markTrialUsed() {
+      if (sessionStorage.getItem('trialActive') === '1') {
+        localStorage.setItem('freeUsed', 'true');
+      }
+    }
+
+    function initCalculator() {
+      document.getElementById('welcome').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      if (typeof startCalculator === 'function') {
+        startCalculator(document.getElementById('display'));
+      }
+    }
+
+    window.addEventListener('load', handleAccess);
+    window.addEventListener('beforeunload', markTrialUsed);
+    document.getElementById('startBtn').addEventListener('click', initCalculator);
+  </script>
+</body>
+</html>
