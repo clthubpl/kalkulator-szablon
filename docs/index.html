@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kalkulator</title>
+  <title>CLT HUB</title>
   <style>
-    /* Ogólne tło i font */
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: #e0e0e0;
-      color: #333;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
+      color: #333;
     }
     h1 {
       margin-top: 1rem;
@@ -23,37 +22,89 @@
       color: #222;
     }
 
-    /* Strona powitalna */
-    #welcome {
+    #lang-select-container {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1000;
+    }
+    #lang-select {
+      font-size: 1rem;
+      padding: 0.15em 0.6em;
+      border-radius: 6px;
+      border: 1px solid #999;
       background: #fff;
-      padding: 1.5rem;
+      color: #14281d;
+    }
+
+    #welcome {
+      background: #14281d;
+      padding: 0.5cm;
       margin: 1rem;
       border-radius: 8px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      max-width: 360px;
+      max-width: 656px;
       width: 100%;
+      color: #fff;
+      position: relative;
+      text-align: justify;
+    }
+    #welcome p.title {
       text-align: center;
+      font-size: 1.25rem;
+      margin: 0 0 0.5rem;
     }
-    #welcome p {
-      margin: 0.5rem 0 1rem;
+    #welcome p.title .headline {
+      display: block;
+      font-size: 1em;
+      margin-bottom: 0.25rem;
     }
+    #welcome p.title .subtitle {
+      display: block;
+      font-size: 0.7em;
+      margin-top: 0.25rem;
+    }
+
     #startBtn {
-  background: #28a745;      /* zielony */
-  /* ... pozostałe właściwości bez zmian ... */
-}
-#startBtn:hover {
-  background: #218838;      /* ciemniejszy zielony przy hover */
-}
-    /* Kontener kalkulatora */
+      background: #218838;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 1rem;
+    }
+    #startBtn:hover {
+      background: #1e7e34;
+    }
+
+    .promo-container {
+      position: absolute;
+      top: 4mm;
+      left: 4mm;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+    }
+    .promo-image {
+      width: auto;
+      height: auto;
+      max-width: none;
+      box-shadow: none;
+      border-radius: 0;
+    }
+
     #app {
       display: none;
       background: #333;
       padding: 1rem;
       border-radius: 8px;
       box-shadow: 0 6px 10px rgba(0,0,0,0.2);
-      max-width: 360px;
+      max-width: 468px;
       width: 100%;
-      margin-bottom: 2rem;
+      margin: 2rem 0;
     }
     .display {
       background: #000;
@@ -92,66 +143,60 @@
       background: #cc7a00;
     }
 
-    /* Promo image styles */
-    .promo-container {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      margin-top: 1cm;
-      margin-bottom: 2rem;
-    }
-    .promo-image {
-      max-width: 80%;
-      height: auto;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      border-radius: 4px;
+    @media (max-width: 700px) {
+      #welcome {
+        max-width: 100%;
+        margin: 0.5rem;
+      }
+      #app {
+        max-width: 100%;
+        margin: 1rem 0;
+      }
+      h1 { font-size: 6rem; }
     }
   </style>
 </head>
 <body>
-  <h1>Kalkulator</h1>
+  <h1>CLT HUB</h1>
+  <div id="lang-select-container">
+    <select id="lang-select" aria-label="Wybierz język">
+      <option value="pl">PL</option>
+      <option value="en">ENG</option>
+      <option value="de">GER</option>
+    </select>
+  </div>
 
   <div id="welcome">
- <p>Przetestuj na jednej bezpłatnej sesji<br>dostępne funkcje kalkulatorów.</p>
-    <button id="startBtn">Rozpocznij darmową sesję</button>
+    <p class="title">
+      <span class="headline">CLT level up!</span>
+      <span class="small subtitle">(jedna sesja bezpłatnie)</span>
+    </p>
+    <button id="startBtn">Rozpocznij sesję</button>
+
+    <div class="promo-container">
+      <img
+        src="data:image/png;base64,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"
+        alt="Promocja"
+        class="promo-image"
+      />
+    </div>
+
+    <p class="desc">
+      Link odsyła na stronę z materiałami o podniesionym stopniu zaawansowania od poziomu ogólnego, ale nie zastępuje konstruktora z uprawnieniami i specjalistów branżystów; ma charakter wyłącznie informacyjny. Istnieje możliwość symulowania stanów granicznych, sprawdzania założeń i może stanowić wsparcie dla użytkowników niezajmujących się profesjonalnie w dopracowaniu własnej koncepcji obiektu przed przekazaniem do architekta. Autor nie ponosi odpowiedzialności za ewentualne szkody wynikające z wdrożeń wykonanych na podstawie analiz i symulacji narzędzi z CLTHUB. Lista dostępnych opracowań będzie uzupełniana sukcesywnie (można także składać własne propozycje dla przyszłych wdrożeń). ©® Wszelkie prawa zastrzeżone (All rights reserved). Autor strony: Piotr Baltyn <a href="mailto:cltplhub@gmail.com" style="color:#fff; text-decoration:underline;">cltplhub@gmail.com</a>
+    </p>
   </div>
 
   <div id="app">
     <div class="display" id="display">0</div>
     <div class="buttons">
-      <button class="operator" data-op="C">C</button>
-      <button data-num="7">7</button>
-      <button data-num="8">8</button>
-      <button data-num="9">9</button>
-      <button class="operator" data-op="/">÷</button>
-      <button data-num="4">4</button>
-      <button data-num="5">5</button>
-      <button data-num="6">6</button>
-      <button class="operator" data-op="*">×</button>
-      <button data-num="1">1</button>
-      <button data-num="2">2</button>
-      <button data-num="3">3</button>
-      <button class="operator" data-op="-">−</button>
-      <button data-num="0">0</button>
-      <button data-num=".">.</button>
-      <button class="operator" data-op="=">=</button>
-      <button class="operator" data-op="+">+</button>
+      <!-- przyciski kalkulatora -->
     </div>
-  </div>
-
-  <!-- Promo Grafik -->
-  <div class="promo-container">
-    <img
-      src="data:image/png;base64,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"
-      alt="Promocja"
-      class="promo-image"
-    />
   </div>
 
   <script src="app.js"></script>
   <script>
     const hotpayUrl = 'https://pay.hotpay.com/checkout/XXXXX';
-    const servicePassword = 'serwis';
+    const servicePassword = 'clthubadmin';
 
     function handleAccess() {
       if (localStorage.getItem('serviceAccess') === 'granted') return;
@@ -166,11 +211,13 @@
       }
       sessionStorage.setItem('trialActive', '1');
     }
+
     function markTrialUsed() {
       if (sessionStorage.getItem('trialActive') === '1') {
         localStorage.setItem('freeUsed', 'true');
       }
     }
+
     function initCalculator() {
       document.getElementById('welcome').style.display = 'none';
       document.getElementById('app').style.display = 'block';
@@ -181,7 +228,48 @@
 
     window.addEventListener('load', handleAccess);
     window.addEventListener('beforeunload', markTrialUsed);
-    document.getElementById('startBtn').addEventListener('click', initCalculator);
+document.getElementById('startBtn').addEventListener('click', function() {
+    // Wykryj język (żeby go przekazać dalej)
+    const lang = localStorage.getItem('clthub_lang') || 'pl';
+    window.location.href = 'https://clthubpl.github.io/kalkulator-szablon/HUBCLT.html?free=1&lang=' + lang;
+});
+  </script>
+  <script>
+    const translations = {
+      pl: {
+        subtitle: '(jedna sesja bezpłatnie)',
+        startBtn: 'Wejdź',
+        desc: `Link odsyła na stronę z materiałami o podniesionym stopniu zaawansowania od poziomu ogólnego, ale nie zastępuje konstruktora z uprawnieniami i specjalistów branżystów; ma charakter wyłącznie informacyjny. Istnieje możliwość symulowania stanów granicznych, sprawdzania założeń i może stanowić wsparcie dla użytkowników niezajmujących się profesjonalnie w dopracowaniu własnej koncepcji obiektu przed przekazaniem do architekta. Autor nie ponosi odpowiedzialności za ewentualne szkody wynikające z wdrożeń wykonanych na podstawie analiz i symulacji narzędzi z CLTHUB. Lista dostępnych opracowań będzie uzupełniana sukcesywnie (można także składać własne propozycje dla przyszłych wdrożeń). ©® Wszelkie prawa zastrzeżone (All rights reserved). Autor strony: Piotr Baltyn <a href="mailto:cltplhub@gmail.com" style="color:#fff; text-decoration:underline;">cltplhub@gmail.com</a>`
+      },
+      en: {
+        subtitle: '(one free session)',
+        startBtn: 'Start session',
+        desc: `The link directs you to materials with a higher level of advancement than the general level but does not replace a certified structural engineer or specialist; it is for informational purposes only. You can simulate limit states and check assumptions, which may support non-professional users in developing their own building concept before handing it over to an architect. The author is not responsible for any damages resulting from implementations based on analyses and simulations from CLTHUB. The list of available studies will be updated successively (you can also submit your own suggestions for future features). ©® All rights reserved. Website author: Piotr Baltyn <a href="mailto:cltplhub@gmail.com" style="color:#fff; text-decoration:underline;">cltplhub@gmail.com</a>`
+      },
+      de: {
+        subtitle: '(eine Sitzung kostenlos)',
+        startBtn: 'Sitzung starten',
+        desc: `Der Link führt zu Materialien mit einem höheren Schwierigkeitsgrad als dem allgemeinen Niveau, ersetzt jedoch keinen zugelassenen Tragwerksplaner oder Fachingenieur und dient ausschließlich Informationszwecken. Es besteht die Möglichkeit, Grenzzustände zu simulieren und Annahmen zu überprüfen, was Laien bei der Entwicklung ihres eigenen Gebäudeentwurfs unterstützen kann, bevor dieser an den Architekten übergeben wird. Der Autor übernimmt keine Haftung für Schäden, die durch die Umsetzung auf Grundlage von Analysen und Simulationen von CLTHUB entstehen. Die Liste der verfügbaren Studien wird laufend ergänzt (eigene Vorschläge für zukünftige Entwicklungen sind willkommen). ©® Alle Rechte vorbehalten. Autor der Seite: Piotr Baltyn <a href="mailto:cltplhub@gmail.com" style="color:#fff; text-decoration:underline;">cltplhub@gmail.com</a>`
+      }
+    };
+
+    function applyLang(lang) {
+      document.querySelector('#welcome .headline').textContent = 'CLT level up!';
+      document.querySelector('#welcome .subtitle').textContent = translations[lang].subtitle;
+      document.getElementById('startBtn').textContent = translations[lang].startBtn;
+      document.querySelector('#welcome .desc').innerHTML = translations[lang].desc;
+    }
+
+    document.getElementById('lang-select').addEventListener('change', function() {
+      applyLang(this.value);
+      localStorage.setItem('clthub_lang', this.value);
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('clthub_lang') || 'pl';
+      document.getElementById('lang-select').value = saved;
+      applyLang(saved);
+    });
   </script>
 </body>
 </html>
