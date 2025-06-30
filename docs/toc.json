@@ -1,0 +1,161 @@
+{
+  "Kalkulatory": {
+    "pl": "Kalkulatory",
+    "en": "Calculators",
+    "de": "Rechner",
+    "items": [
+      {
+        "pl": "Kalkulator masy",
+        "en": "Mass calculator",
+        "de": "Massenrechner"
+      },
+      {
+        "pl": "Kalkulator statyki",
+        "en": "Statics calculator",
+        "de": "Statikrechner"
+      }
+    ]
+  },
+  "Budowa": {
+    "pl": "Budowa",
+    "en": "Construction",
+    "de": "Bau",
+    "items": [
+      {
+        "pl": "Rodzaje budowli w technologii CLT",
+        "en": "Types of structures in CLT technology",
+        "de": "Bauarten in CLT-Technologie"
+      },
+      {
+        "pl": "Cross-Laminated Timber (CLT) Drewno Klejone Krzyżowo",
+        "en": "Cross-Laminated Timber (CLT)",
+        "de": "Cross-Laminated Timber (CLT) Brettsperrholz"
+      },
+      {
+        "pl": "Główne certyfikaty i zaświadczenia związane z CLT",
+        "en": "Main certificates and attestations for CLT",
+        "de": "Wesentliche Zertifikate und Bescheinigungen für CLT"
+      },
+      {
+        "pl": "Główne wymagania ETA dla CLT",
+        "en": "Main ETA requirements for CLT",
+        "de": "Wesentliche ETA-Anforderungen für CLT"
+      },
+      {
+        "pl": "Software",
+        "en": "Software",
+        "de": "Software"
+      },
+      {
+        "pl": "Proces projektowy dla Biura projektowego/ Architekta",
+        "en": "Design process for Design Office / Architect",
+        "de": "Planungsprozess für Planungsbüro/Architekt"
+      },
+      {
+        "pl": "Współpraca z producentem płyty CLT",
+        "en": "Cooperation with CLT panel manufacturer",
+        "de": "Zusammenarbeit mit dem CLT-Plattenhersteller"
+      },
+      {
+        "pl": "Przegrody CLT i rodzaje",
+        "en": "CLT partitions and types",
+        "de": "CLT-Trennwände und Arten"
+      },
+      {
+        "pl": "Lista czynności dla typowego obiektu CLT",
+        "en": "List of activities for a typical CLT project",
+        "de": "Ablaufplan für ein typisches CLT-Projekt"
+      },
+      {
+        "pl": "Zagadnienia dotyczące drewna",
+        "en": "Wood-related issues",
+        "de": "Holzbezogene Themen"
+      },
+      {
+        "pl": "Zalecenia",
+        "en": "Recommendations",
+        "de": "Empfehlungen"
+      },
+      {
+        "pl": "Parametry płyty",
+        "en": "Panel parameters",
+        "de": "Plattenparameter"
+      },
+      {
+        "pl": "Akustyka",
+        "en": "Acoustics",
+        "de": "Akustik"
+      },
+      {
+        "pl": "Błędy",
+        "en": "Errors",
+        "de": "Fehler"
+      },
+      {
+        "pl": "Akumulacja",
+        "en": "Thermal mass",
+        "de": "Speicherfähigkeit"
+      },
+      {
+        "pl": "Farby i zabezpieczenia",
+        "en": "Paints and protections",
+        "de": "Farben und Schutz"
+      },
+      {
+        "pl": "Izolacje",
+        "en": "Insulations",
+        "de": "Dämmungen"
+      },
+      {
+        "pl": "Palność",
+        "en": "Fire resistance",
+        "de": "Brandschutz"
+      },
+      {
+        "pl": "Statyka",
+        "en": "Statics",
+        "de": "Statik"
+      },
+      {
+        "pl": "Zastosowania nietypowe",
+        "en": "Non-standard applications",
+        "de": "Ungewöhnliche Anwendungen"
+      },
+      {
+        "pl": "Dyfuzja, Przenikanie pary przez przegrody, punkt rosy",
+        "en": "Diffusion, Vapor permeability, dew point",
+        "de": "Diffusion, Dampfdurchgang, Taupunkt"
+      },
+      {
+        "pl": "Złącza i elementy uzupełniające",
+        "en": "Joints and complementary elements",
+        "de": "Verbindungen und ergänzende Elemente"
+      },
+      {
+        "pl": "Przegrody",
+        "en": "Partitions",
+        "de": "Trennwände"
+      },
+      {
+        "pl": "Podwalina",
+        "en": "Sill plate",
+        "de": "Schwelle"
+      },
+      {
+        "pl": "Fundamenty",
+        "en": "Foundations",
+        "de": "Fundamente"
+      },
+      {
+        "pl": "Właściwości zdrowotne",
+        "en": "Health properties",
+        "de": "Gesundheitliche Eigenschaften"
+      },
+      {
+        "pl": "Korzyści",
+        "en": "Benefits",
+        "de": "Vorteile"
+      }
+    ]
+  }
+}
