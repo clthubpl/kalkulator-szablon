@@ -10,16 +10,22 @@
       padding: 0;
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: #e0e0e0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
       color: #333;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1rem 3rem 1rem;
     }
     h1 {
-      margin-top: 1rem;
+      margin-top: 4mm;
+      margin-bottom: 4mm;
       font-size: 2rem;
       color: #222;
+      text-align: center;
+      font-weight: 400;
+      letter-spacing: 0.02em;
     }
     #lang-select-container {
       position: absolute;
@@ -35,173 +41,132 @@
       background: #fff;
       color: #14281d;
     }
-    #welcome {
-      background: #14281d;
-      padding: 0.5cm;
-      margin: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      max-width: 656px;
-      width: 100%;
-      color: #fff;
-      position: relative;
-      text-align: justify;
-    }
-    #welcome p.title {
-      text-align: center;
-      font-size: 1.25rem;
-      margin: 0 0 0.5rem;
-    }
-    #welcome p.title .headline {
-      display: block;
-      font-size: 1em;
-      margin-bottom: 0.25rem;
-    }
-    #welcome p.title .subtitle {
-      display: block;
-      font-size: 0.7em;
-      margin-top: 0.25rem;
-    }
     .button-row {
       display: flex;
       justify-content: center;
-      gap: 1rem;
-      margin: 1rem 0 1rem 0;
+      gap: 1.2rem;
+      margin: 1.3em 0 1.3em 0;
     }
-    #startBtn, #adminBtn {
+    .btn-main {
+      font-size: 1.08em;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      padding: 0.35em 1.2em;
+      border: none;
+      border-radius: 7px;
       background: #218838;
       color: #fff;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      border-radius: 6px;
       cursor: pointer;
-      min-width: 180px;
-      text-align: center;
-      transition: background 0.2s;
-      display: inline-block;
-    }
-    #startBtn:hover, #adminBtn:hover {
-      background: #1e7e34;
-    }
-    #admin-login-area {
+      transition: background 0.15s;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 1rem;
-      width: 100%;
     }
-    #adminPassword {
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
-      padding: 0.5rem;
-      border-radius: 6px;
-      border: 1px solid #999;
-      font-size: 1rem;
-      width: 180px;
-      box-sizing: border-box;
+    .btn-main .sub {
+      font-size: 0.95em;
+      color: #f4f4f4;
+      margin-top: 2px;
+      font-weight: 400;
+      opacity: 0.92;
+    }
+    .btn-main .session-note {
+      font-size: 0.92em;
+      color: #ededed;
+      margin-top: 1px;
+      opacity: 0.75;
+      font-weight: 400;
+    }
+    .btn-main:hover {
+      background: #1e7e34;
+    }
+    /* LOGOWANIE ADMIN */
+    #adminBtn {
+      font-size: 1.08em;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      padding: 0.35em 1.2em;
+      border: none;
+      border-radius: 7px;
+      background: #1F3D2C !important;
+      color: #14281D !important;
+      cursor: pointer;
+      transition: background 0.13s;
+      margin-left: 1.5rem;
+      margin-right: 1.5rem;
+    }
+    #adminBtn:hover {
+      background: #25462e !important;
+      color: #14281D !important;
+    }
+    #adminLogin {
       display: none;
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+    #adminPass {
+      margin-right: 0.5rem;
+      font-size: 1.08em;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+      padding: 0.3em 0.8em;
     }
     #adminSubmit {
-      background: #444;
+      font-size: 1.08em;
+      padding: 0.3em 1.1em;
+      background: #14281d;
       color: #fff;
       border: none;
       border-radius: 6px;
-      padding: 0.5rem 1.5rem;
-      font-size: 1rem;
+      margin-left: 0.7em;
       cursor: pointer;
-      margin-bottom: 0.5rem;
-      width: 180px;
-      display: none;
-      transition: background 0.2s;
-    }
-    #adminSubmit:hover {
-      background: #222;
     }
     #adminError {
-      color: #ff5b5b;
-      font-size: 0.98rem;
+      color: #ff4c4c;
+      margin-left: 0.5em;
+      font-size: 0.97em;
       display: none;
-      margin-bottom: 0.5rem;
     }
-    .promo-container {
-      position: absolute;
-      top: 4mm;
-      left: 4mm;
-      margin: 0;
-      padding: 0;
-      background: transparent;
-    }
-    .promo-image {
+    .logo {
+      height: 38px;
       width: auto;
-      height: auto;
-      max-width: none;
-      box-shadow: none;
-      border-radius: 0;
+      border-radius: 7px;
+      margin-left: 2rem;
+      margin-right: 1rem;
+      vertical-align: middle;
     }
-    #app {
-      display: none;
-      background: #333;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 6px 10px rgba(0,0,0,0.2);
-      max-width: 468px;
-      width: 100%;
-      margin: 2rem 0;
+    #toc {
+      background:#fff;
+      border-radius:8px;
+      margin-top:2rem;
+      padding:1rem;
+      min-height: 120px;
     }
-    .display {
-      background: #000;
-      color: #0f0;
-      font-size: 2rem;
-      text-align: right;
-      padding: 0.5rem;
-      border-radius: 4px;
-      margin-bottom: 0.75rem;
-      height: 2.5rem;
-      line-height: 2.5rem;
-      font-family: 'Digital-7 Mono', monospace;
+    /* Regulamin */
+    #purchase-terms {
+      max-width:600px;
+      margin:1.5rem auto 0 auto;
+      font-size:10pt;
+      text-align:justify;
+      border-radius:8px;
+      background:#f4faf6;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      padding: 0.7em 1em 0.8em 1em;
     }
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.5rem;
-    }
-    .buttons button {
-      background: #f0f0f0;
-      border: 1px solid #999;
-      padding: 0.75rem;
-      font-size: 1.25rem;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .buttons button:hover {
-      background: #e0e0e0;
-    }
-    .buttons button.operator {
-      background: #ff9500;
-      color: #fff;
-    }
-    .buttons button.operator:hover {
-      background: #cc7a00;
+    #purchase-terms .title {
+      font-size: 10pt;
+      text-align: center;
+      font-weight:600;
+      margin-bottom: 0.3em;
     }
     @media (max-width: 700px) {
-      #welcome {
-        max-width: 100%;
-        margin: 0.5rem;
-      }
-      #app {
-        max-width: 100%;
-        margin: 1rem 0;
-      }
-      h1 { font-size: 6rem; }
-      .button-row { flex-direction: column; gap: 0.5rem;}
-      #adminPassword, #adminSubmit { width: 100%; min-width: 0; }
+      .container { padding: 0 0.1rem 4rem 0.1rem; }
+      .logo { height: 26px; }
+      .btn-main, #adminBtn { font-size: 1em; }
+      #toc { padding: 0.6em; }
     }
   </style>
 </head>
 <body>
-  <h1>CLT HUB</h1>
   <div id="lang-select-container">
     <select id="lang-select" aria-label="Wybierz język">
       <option value="pl">PL</option>
@@ -209,126 +174,149 @@
       <option value="de">GER</option>
     </select>
   </div>
-
-  <div id="welcome">
-    <p class="title">
-      <span class="headline">CLT level up!</span>
-      <span class="small subtitle">(jedna sesja bezpłatnie)</span>
-    </p>
+  <div class="container">
+    <h1>CLT HUB</h1>
     <div class="button-row">
-      <button id="startBtn">Wejdź</button>
+      <button class="btn-main" id="entryBtn">
+        <span id="entry-text">Wejdź</span>
+        <span class="sub" id="entry-terms">akceptuję warunki Regulaminu</span>
+        <span class="session-note" id="session-note">(jedna sesja bezpłatnie)</span>
+      </button>
       <button id="adminBtn">Logowanie admin</button>
+      <!-- LOGO base64: zastąp 'logo.png' swoim kodem base64 lub ścieżką -->
+      <img src="logo.png" alt="Logo" class="logo">
     </div>
-    <div id="admin-login-area">
-      <input type="password" id="adminPassword" placeholder="Hasło serwisowe" autocomplete="off" />
+    <div id="adminLogin">
+      <input type="password" id="adminPass" placeholder="Hasło serwisowe" autocomplete="off"/>
       <button id="adminSubmit">Zaloguj</button>
       <span id="adminError"></span>
     </div>
-    <div class="promo-container">
-      <img
-        src="data:image/png;base64,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"
-        alt="Promocja"
-        class="promo-image"
-      />
-    </div>
-    <p class="desc">
-      Link odsyła na stronę z materiałami o podniesionym stopniu zaawansowania od poziomu ogólnego, ale nie zastępuje konstruktora z uprawnieniami i specjalistów branżystów; ma charakter wyłącznie informacyjny. Istnieje możliwość symulowania stanów granicznych, sprawdzania założeń i może stanowić wsparcie dla użytkowników niezajmujących się profesjonalnie w dopracowaniu własnej koncepcji obiektu przed przekazaniem do architekta. Autor nie ponosi odpowiedzialności za ewentualne szkody wynikające z wdrożeń wykonanych na podstawie analiz i symulacji narzędzi z CLTHUB. Lista dostępnych opracowań będzie uzupełniana sukcesywnie (można także składać własne propozycje dla przyszłych wdrożeń). ©® Wszelkie prawa zastrzeżone (All rights reserved). Autor strony: Piotr Baltyn <a href="mailto:cltplhub@gmail.com" style="color:#fff; text-decoration:underline;">cltplhub@gmail.com</a>
-    </p>
-  </div>
-
-  <div id="app">
-    <div class="display" id="display">0</div>
-    <div class="buttons">
-      <!-- przyciski kalkulatora -->
+    <div id="toc"></div>
+    <div id="purchase-terms">
+      <div class="title" id="regulamin-title">Regulamin</div>
+      <div id="regulamin-content">
+        Koszt usługi dostępu wyświetli się po akceptacji regulaminu z możliwością rezygnacji.<br>
+        Usługa daje jednorazowy dostęp do kalkulatora po opłacie. Po odświeżeniu strony lub zmianie urządzenia trzeba zapłacić ponownie.<br>
+        Usługa działa natychmiast po otrzymaniu płatności.<br>
+        Usługa świadczona jest jako działalność nieewidencjonowana (art. 5, Dz.U. 2024 poz. 236).<br>
+        Nie wystawiamy faktur ani paragonów. Potwierdzeniem jest płatność przez HotPay.<br>
+        Po wykonaniu usługi nie ma prawa do odstąpienia (art. 38 ustawy o prawach konsumenta).<br>
+        Reklamacje po płatności możliwe są tylko, jeśli usługa nie została wykonana. Zgłoszenia: <a href="mailto:cltplhub@gmail.com">cltplhub@gmail.com</a>.
+      </div>
     </div>
   </div>
-
   <script>
-    const hotpayUrl = 'https://pay.hotpay.com/checkout/XXXXX';
-    const servicePassword = 'cltpladmin'; // <-- zmień na swoje produkcyjne
-
-    // Obsługa wejścia bezpłatnego
-    document.getElementById('startBtn').addEventListener('click', function() {
-      const lang = localStorage.getItem('clthub_lang') || 'pl';
-      if (localStorage.getItem('freeUsed') === 'true') {
-        // Jeśli już była darmowa sesja, przekieruj na HotPay
-        window.location.href = hotpayUrl;
-        return;
-      }
-      // Aktywuj trial i przejdź do kalkulatora
-      sessionStorage.setItem('trialActive', '1');
-      window.location.href = 'https://clthubpl.github.io/kalkulator-szablon/HUBCLT.html?free=1&lang=' + lang;
-    });
-
-    // Obsługa logowania admina
-    const adminBtn = document.getElementById('adminBtn');
-    const adminPasswordInput = document.getElementById('adminPassword');
-    const adminSubmitBtn = document.getElementById('adminSubmit');
-    const adminError = document.getElementById('adminError');
-
-    adminBtn.addEventListener('click', function() {
-      adminPasswordInput.style.display = 'block';
-      adminSubmitBtn.style.display = 'block';
-      adminPasswordInput.focus();
-    });
-
-    adminSubmitBtn.addEventListener('click', function() {
-      adminError.style.display = 'none';
-      const pass = adminPasswordInput.value.trim();
-      if (pass === servicePassword) {
-        sessionStorage.setItem('serviceAccess', 'granted');
-        const lang = localStorage.getItem('clthub_lang') || 'pl';
-        window.location.href = 'https://clthubpl.github.io/kalkulator-szablon/HUBCLT.html?admin=1&lang=' + lang;
-      } else {
-        adminError.style.display = 'block';
-        adminError.textContent = 'Błędne hasło serwisowe';
-        adminPasswordInput.value = '';
-        adminPasswordInput.focus();
-      }
-    });
-
-    adminPasswordInput.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        adminSubmitBtn.click();
-      }
-    });
-
-    // Oznacz zakończony trial (przy wyjściu)
-    window.addEventListener('beforeunload', function() {
-      if (sessionStorage.getItem('trialActive') === '1') {
-        localStorage.setItem('freeUsed', 'true');
-      }
-    });
-
-    // Tłumaczenia UI (oryginał z pliku)
-    const translations = {
+    // Tłumaczenia przycisku, sesji, regulaminu
+    const texts = {
       pl: {
-        subtitle: '(jedna sesja bezpłatnie)',
-        startBtn: 'Wejdź',
-        desc: `Link odsyła na stronę z materiałami o podniesionym stopniu zaawansowania od poziomu ogólnego, ale nie zastępuje konstruktora z uprawnieniami i specjalistów branżystów; ma charakter wyłącznie informacyjny. Istnieje możliwość symulowania stanów granicznych, sprawdzania założeń i może stanowić wsparcie dla użytkowników niezajmujących się profesjonalnie w dopracowaniu własnej koncepcji obiektu przed przekazaniem do architekta. Autor nie ponosi odpowiedzialności za ewentualne szkody wynikające z wdrożeń wykonanych na podstawie analiz i symulacji narzędzi z CLTHUB. Lista dostępnych opracowań będzie uzupełniana sukcesywnie (można także składać własne propozycje dla przyszłych wdrożeń). ©® Wszelkie prawa zastrzeżone (All rights reserved). Autor strony: Piotr Baltyn <a href="mailto:cltplhub@gmail.com" style="color:#fff; text-decoration:underline;">cltplhub@gmail.com</a>`
+        entry: "Wejdź",
+        terms: "akceptuję warunki Regulaminu",
+        session: "(jedna sesja bezpłatnie)",
+        admin: "Logowanie admin",
+        adminError: "Błędne hasło serwisowe",
+        regulaminTitle: "Regulamin",
+        regulamin: `Koszt usługi dostępu wyświetli się po akceptacji regulaminu z możliwością rezygnacji.<br>
+        Usługa daje jednorazowy dostęp do kalkulatora po opłacie. Po odświeżeniu strony lub zmianie urządzenia trzeba zapłacić ponownie.<br>
+        Usługa działa natychmiast po otrzymaniu płatności.<br>
+        Usługa świadczona jest jako działalność nieewidencjonowana (art. 5, Dz.U. 2024 poz. 236).<br>
+        Nie wystawiamy faktur ani paragonów. Potwierdzeniem jest płatność przez HotPay.<br>
+        Po wykonaniu usługi nie ma prawa do odstąpienia (art. 38 ustawy o prawach konsumenta).<br>
+        Reklamacje po płatności możliwe są tylko, jeśli usługa nie została wykonana. Zgłoszenia: <a href="mailto:cltplhub@gmail.com">cltplhub@gmail.com</a>.`
       },
       en: {
-        subtitle: '(one free session)',
-        startBtn: 'Start session',
-        desc: `The link directs you to materials with a higher level of advancement than the general level but does not replace a certified structural engineer or specialist; it is for informational purposes only. You can simulate limit states and check assumptions, which may support non-professional users in developing their own building concept before handing it over to an architect. The author is not responsible for any damages resulting from implementations based on analyses and simulations from CLTHUB. The list of available studies will be updated successively (you can also submit your own suggestions for future features). ©® All rights reserved. Website author: Piotr Baltyn <a href="mailto:cltplhub@gmail.com" style="color:#fff; text-decoration:underline;">cltplhub@gmail.com</a>`
+        entry: "Enter",
+        terms: "I accept the Terms and Conditions",
+        session: "(one free session)",
+        admin: "Admin login",
+        adminError: "Incorrect service password",
+        regulaminTitle: "Terms and conditions",
+        regulamin: `The cost of access will appear after you accept the terms. You can cancel at this stage.<br>
+        The service gives one-time access to the calculator after payment. If you refresh the page or change device, you must pay again.<br>
+        The service is available right after payment is received.<br>
+        The service is provided as unregistered business activity (Art. 5, Dz.U. 2024 item 236).<br>
+        No invoices or receipts are issued. Payment via HotPay is your proof.<br>
+        After the service is delivered, you have no right to withdraw (Art. 38 of the Polish Consumer Rights Act).<br>
+        Complaints after payment are only possible if the service was not delivered. Contact: <a href="mailto:cltplhub@gmail.com">cltplhub@gmail.com</a>.`
       },
       de: {
-        subtitle: '(eine Sitzung kostenlos)',
-        startBtn: 'Sitzung starten',
-        desc: `Der Link führt zu Materialien mit einem höheren Schwierigkeitsgrad als dem allgemeinen Niveau, ersetzt jedoch keinen zugelassenen Tragwerksplaner oder Fachingenieur und dient ausschließlich Informationszwecken. Es besteht die Möglichkeit, Grenzzustände zu simulieren und Annahmen zu überprüfen, was Laien bei der Entwicklung ihres eigenen Gebäudeentwurfs unterstützen kann, bevor dieser an den Architekten übergeben wird. Der Autor übernimmt keine Haftung für Schäden, die durch die Umsetzung auf Grundlage von Analysen und Simulationen von CLTHUB entstehen. Die Liste der verfügbaren Studien wird laufend ergänzt (eigene Vorschläge für zukünftige Entwicklungen sind willkommen). ©® Alle Rechte vorbehalten. Autor der Seite: Piotr Baltyn <a href="mailto:cltplhub@gmail.com" style="color:#fff; text-decoration:underline;">cltplhub@gmail.com</a>`
+        entry: "Ich trete ein",
+        terms: "Ich akzeptiere die Bedingungen des Regelwerks",
+        session: "(eine Sitzung kostenlos)",
+        admin: "Admin-Login",
+        adminError: "Falsches Service-Passwort",
+        regulaminTitle: "Regelwerk",
+        regulamin: `Die Zugangskosten werden nach Annahme der Regeln angezeigt. Sie können dann abbrechen.<br>
+        Der Service bietet nach der Zahlung einmaligen Zugang zum Rechner. Nach dem Aktualisieren der Seite oder Gerätewechsel ist eine neue Zahlung nötig.<br>
+        Der Service steht sofort nach Zahlungseingang zur Verfügung.<br>
+        Der Service wird als nicht eingetragene Tätigkeit erbracht (Art. 5, Dz.U. 2024 Pos. 236).<br>
+        Es werden keine Rechnungen oder Kassenbelege ausgestellt. Die Zahlung über HotPay gilt als Nachweis.<br>
+        Nach der Leistung gibt es kein Widerrufsrecht (Art. 38 polnisches Verbraucherschutzgesetz).<br>
+        Reklamationen nach der Zahlung sind nur möglich, wenn der Service nicht erbracht wurde. Kontakt: <a href="mailto:cltplhub@gmail.com">cltplhub@gmail.com</a>.`
       }
     };
 
+    // --- Spis treści z github ---
+    async function loadTOC(lang='pl') {
+      let url = 'https://raw.githubusercontent.com/clthubpl/kalkulator-szablon/main/docs/toc.json';
+      try {
+        let res = await fetch(url);
+        let data = await res.json();
+        let html = '';
+        if (data && data[lang]) {
+          Object.entries(data[lang]).forEach(([section, list]) => {
+            html += `<div style="margin-bottom:1.1em"><b>${section}</b><ul style="margin:0.25em 0 0 1em;">`;
+            list.forEach(item => html += `<li>${item}</li>`);
+            html += '</ul></div>';
+          });
+        } else {
+          html = `<span style="color:#d22">Brak spisu treści dla wybranego języka.</span>`;
+        }
+        document.getElementById('toc').innerHTML = html;
+      } catch(e) {
+        document.getElementById('toc').innerHTML = `<span style="color:#d22">Nie udało się załadować spisu treści.</span>`;
+      }
+    }
+    // --- Admin login ---
+    document.getElementById('adminBtn').onclick = function(){
+      document.getElementById('adminLogin').style.display = 'block';
+      document.getElementById('adminPass').focus();
+    };
+    document.getElementById('adminSubmit').onclick = function(){
+      const lang = document.getElementById('lang-select').value;
+      const pass = document.getElementById('adminPass').value.trim();
+      if (pass === 'cltpladmin') {
+        window.location.href = 'https://clthubpl.github.io/kalkulator-szablon/HUBCLT.html?admin=1&lang=' + lang;
+      } else {
+        document.getElementById('adminError').style.display = 'inline';
+        document.getElementById('adminError').textContent = texts[lang].adminError;
+        document.getElementById('adminPass').value = "";
+        document.getElementById('adminPass').focus();
+      }
+    };
+    document.getElementById('adminPass').addEventListener('keydown', function(e){
+      if(e.key==='Enter') document.getElementById('adminSubmit').click();
+    });
+
+    // --- Entry button ---
+    document.getElementById('entryBtn').onclick = function() {
+      const lang = document.getElementById('lang-select').value;
+      window.location.href = 'https://clthubpl.github.io/kalkulator-szablon/HUBCLT.html?free=1&lang=' + lang;
+    };
+
+    // --- Język ---
     function applyLang(lang) {
-      document.querySelector('#welcome .headline').textContent = 'CLT level up!';
-      document.querySelector('#welcome .subtitle').textContent = translations[lang].subtitle;
-      document.getElementById('startBtn').textContent = translations[lang].startBtn;
-      document.querySelector('#welcome .desc').innerHTML = translations[lang].desc;
+      document.getElementById('entry-text').textContent = texts[lang].entry;
+      document.getElementById('entry-terms').textContent = texts[lang].terms;
+      document.getElementById('session-note').textContent = texts[lang].session;
+      document.getElementById('adminBtn').textContent = texts[lang].admin;
+      document.getElementById('regulamin-title').textContent = texts[lang].regulaminTitle;
+      document.getElementById('regulamin-content').innerHTML = texts[lang].regulamin;
+      loadTOC(lang);
     }
     document.getElementById('lang-select').addEventListener('change', function() {
       applyLang(this.value);
-      localStorage.setItem('clthub_lang', this.value);
     });
+
     window.addEventListener('DOMContentLoaded', () => {
       const saved = localStorage.getItem('clthub_lang') || 'pl';
       document.getElementById('lang-select').value = saved;
