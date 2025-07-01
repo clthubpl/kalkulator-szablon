@@ -1,1 +1,23 @@
-
+{
+  "name": "kalkulator-szablon",
+  "version": "1.0.0",
+  "description": "Interaktywne narzędzia i kalkulatory CLT – projekt frontend na GitHub Pages",
+  "main": "index.html",
+  "scripts": {
+    "start": "echo 'Open index.html in your browser!'",
+    "test": "echo 'No tests specified'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clthubpl/kalkulator-szablon.git"
+  },
+  "keywords": [
+    "CLT",
+    "calculator",
+    "frontend",
+    "GitHub Pages",
+    "construction"
+  ],
+  "author": "Piotr Baltyn",
+  "license": "MIT"
+}
