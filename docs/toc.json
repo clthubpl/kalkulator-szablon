@@ -1,161 +1,53 @@
-{
-  "Kalkulatory": {
-    "pl": "Kalkulatory",
-    "en": "Calculators",
-    "de": "Rechner",
-    "items": [
+[
+  {
+    "kategoria": "Kalkulatory CLT",
+    "kategoria_en": "CLT Calculators",
+    "kategoria_de": "CLT-Rechner",
+    "kalkulatory": [
       {
-        "pl": "Kalkulator masy",
-        "en": "Mass calculator",
-        "de": "Massenrechner"
+        "nazwa": "Kalkulator statyki CLT",
+        "nazwa_en": "CLT Statics Calculator",
+        "nazwa_de": "CLT Statikrechner",
+        "opis": "Oblicz nośność, ugięcia i bezpieczeństwo płyt/ścian/słupów CLT zgodnie z Eurokod 5.",
+        "opis_en": "Calculate capacity, deflections, and safety for CLT panels, walls, and columns per Eurocode 5.",
+        "opis_de": "Berechnet Tragfähigkeit, Durchbiegung und Sicherheit für CLT-Platten, Wände und Stützen nach Eurocode 5.",
+        "link": "public/kalkulator-clt.html"
       },
       {
-        "pl": "Kalkulator statyki",
-        "en": "Statics calculator",
-        "de": "Statikrechner"
+        "nazwa": "Kalkulator masy CLT",
+        "nazwa_en": "CLT Mass Calculator",
+        "nazwa_de": "CLT-Massenrechner",
+        "opis": "Szybko policz masę płyty, ściany lub elementu CLT na podstawie wymiarów i gęstości.",
+        "opis_en": "Quickly calculate the mass of CLT panels, walls, or elements based on dimensions and density.",
+        "opis_de": "Berechnet schnell die Masse von CLT-Elementen nach Abmessungen und Dichte.",
+        "link": "public/kalkulator-masy.html"
       }
     ]
   },
-  "Budowa": {
-    "pl": "Budowa",
-    "en": "Construction",
-    "de": "Bau",
-    "items": [
+  {
+    "kategoria": "Budowa i tematyka CLT",
+    "kategoria_en": "Construction & CLT Topics",
+    "kategoria_de": "Bau und CLT-Themen",
+    "kalkulatory": [
       {
-        "pl": "Rodzaje budowli w technologii CLT",
-        "en": "Types of structures in CLT technology",
-        "de": "Bauarten in CLT-Technologie"
+        "nazwa": "Rodzaje budowli w technologii CLT",
+        "nazwa_en": "Types of structures in CLT technology",
+        "nazwa_de": "Bauarten in CLT-Technologie",
+        "opis": "Temat: typy obiektów możliwych do wykonania w CLT.",
+        "opis_en": "Topic: types of structures possible in CLT.",
+        "opis_de": "Thema: Arten von Bauwerken in CLT-Technologie.",
+        "link": "#temat-rodzaje-budowli"
       },
       {
-        "pl": "Cross-Laminated Timber (CLT) Drewno Klejone Krzyżowo",
-        "en": "Cross-Laminated Timber (CLT)",
-        "de": "Cross-Laminated Timber (CLT) Brettsperrholz"
-      },
-      {
-        "pl": "Główne certyfikaty i zaświadczenia związane z CLT",
-        "en": "Main certificates and attestations for CLT",
-        "de": "Wesentliche Zertifikate und Bescheinigungen für CLT"
-      },
-      {
-        "pl": "Główne wymagania ETA dla CLT",
-        "en": "Main ETA requirements for CLT",
-        "de": "Wesentliche ETA-Anforderungen für CLT"
-      },
-      {
-        "pl": "Software",
-        "en": "Software",
-        "de": "Software"
-      },
-      {
-        "pl": "Proces projektowy dla Biura projektowego/ Architekta",
-        "en": "Design process for Design Office / Architect",
-        "de": "Planungsprozess für Planungsbüro/Architekt"
-      },
-      {
-        "pl": "Współpraca z producentem płyty CLT",
-        "en": "Cooperation with CLT panel manufacturer",
-        "de": "Zusammenarbeit mit dem CLT-Plattenhersteller"
-      },
-      {
-        "pl": "Przegrody CLT i rodzaje",
-        "en": "CLT partitions and types",
-        "de": "CLT-Trennwände und Arten"
-      },
-      {
-        "pl": "Lista czynności dla typowego obiektu CLT",
-        "en": "List of activities for a typical CLT project",
-        "de": "Ablaufplan für ein typisches CLT-Projekt"
-      },
-      {
-        "pl": "Zagadnienia dotyczące drewna",
-        "en": "Wood-related issues",
-        "de": "Holzbezogene Themen"
-      },
-      {
-        "pl": "Zalecenia",
-        "en": "Recommendations",
-        "de": "Empfehlungen"
-      },
-      {
-        "pl": "Parametry płyty",
-        "en": "Panel parameters",
-        "de": "Plattenparameter"
-      },
-      {
-        "pl": "Akustyka",
-        "en": "Acoustics",
-        "de": "Akustik"
-      },
-      {
-        "pl": "Błędy",
-        "en": "Errors",
-        "de": "Fehler"
-      },
-      {
-        "pl": "Akumulacja",
-        "en": "Thermal mass",
-        "de": "Speicherfähigkeit"
-      },
-      {
-        "pl": "Farby i zabezpieczenia",
-        "en": "Paints and protections",
-        "de": "Farben und Schutz"
-      },
-      {
-        "pl": "Izolacje",
-        "en": "Insulations",
-        "de": "Dämmungen"
-      },
-      {
-        "pl": "Palność",
-        "en": "Fire resistance",
-        "de": "Brandschutz"
-      },
-      {
-        "pl": "Statyka",
-        "en": "Statics",
-        "de": "Statik"
-      },
-      {
-        "pl": "Zastosowania nietypowe",
-        "en": "Non-standard applications",
-        "de": "Ungewöhnliche Anwendungen"
-      },
-      {
-        "pl": "Dyfuzja, Przenikanie pary przez przegrody, punkt rosy",
-        "en": "Diffusion, Vapor permeability, dew point",
-        "de": "Diffusion, Dampfdurchgang, Taupunkt"
-      },
-      {
-        "pl": "Złącza i elementy uzupełniające",
-        "en": "Joints and complementary elements",
-        "de": "Verbindungen und ergänzende Elemente"
-      },
-      {
-        "pl": "Przegrody",
-        "en": "Partitions",
-        "de": "Trennwände"
-      },
-      {
-        "pl": "Podwalina",
-        "en": "Sill plate",
-        "de": "Schwelle"
-      },
-      {
-        "pl": "Fundamenty",
-        "en": "Foundations",
-        "de": "Fundamente"
-      },
-      {
-        "pl": "Właściwości zdrowotne",
-        "en": "Health properties",
-        "de": "Gesundheitliche Eigenschaften"
-      },
-      {
-        "pl": "Korzyści",
-        "en": "Benefits",
-        "de": "Vorteile"
+        "nazwa": "Cross-Laminated Timber (CLT) Drewno Klejone Krzyżowo",
+        "nazwa_en": "Cross-Laminated Timber (CLT)",
+        "nazwa_de": "Cross-Laminated Timber (CLT) Brettsperrholz",
+        "opis": "Czym jest CLT? Definicja, właściwości, zalety.",
+        "opis_en": "What is CLT? Definition, properties, advantages.",
+        "opis_de": "Was ist CLT? Definition, Eigenschaften, Vorteile.",
+        "link": "#temat-co-to-jest-clt"
       }
+      // ...tu kolejne tematy z Twojej listy – możesz dorzucić dowolnie
     ]
   }
-}
+]
