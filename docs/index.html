@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <title>CLT HUB – Powitalny</title>
   <meta name="viewport" content="width=1024">
-  <style>
-    /* ... Twój styl bez zmian ... */
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="lang-select-container">
@@ -19,7 +17,7 @@
   <h1>CLT HUB</h1>
   <main class="main-wrap">
     <section class="panel left-panel">
-      <img src="logo CLTPL.png" alt="Logo CLT HUB" class="logo"/>
+      <img src="logo.png" alt="Logo CLT HUB" class="logo"/>
       <div class="headline" id="headline">CLT level up!</div>
       <div id="desc" class="desc"></div>
       <button class="entry-btn" id="entryBtn" onclick="window.location.href='HUBCLT.html?free=1&lang=pl#calc-mass'">
@@ -28,7 +26,7 @@
         <span>Zapoznaj się z regulaminem poniżej.</span>
       </button>
       <div class="regulamin-panel" id="regulamin">
-        <!-- ... Bez zmian ... -->
+        <!-- ... -->
       </div>
     </section>
     <aside class="panel right-panel">
@@ -37,17 +35,17 @@
     </aside>
   </main>
   <div class="footer" id="footer">
-    <!-- ... Bez zmian ... -->
+    <!-- ... -->
   </div>
   <script>
-    // ... tłumaczenia bez zmian ...
+    // ...tłumaczenia bez zmian...
     function applyLang(lang) {
-      // ... tłumaczenia bez zmian ...
+      // ...tłumaczenia bez zmian...
       document.getElementById('entryBtn').setAttribute("onclick", `window.location.href='HUBCLT.html?free=1&lang=${lang}#calc-mass'`);
       renderTOC(lang);
     }
-    // ... obsługa języka bez zmian ...
-    // UWAGA! ŚCIEŻKA DO toc.json JEST RELATYWNA (bo index.html jest w /docs)
+    // ...obsługa języka bez zmian...
+    // UWAGA! ŚCIEŻKA DO toc.json JEST RELATYWNA (index.html jest w głównym katalogu)
     function renderTOC(lang) {
       fetch('toc.json')
         .then(res => res.json())
@@ -65,7 +63,7 @@
               const li = document.createElement('li');
               const a = document.createElement('a');
               a.className = "toc-link";
-              a.href = calc.link;
+              a.href = calc.link.replace('public/', ''); // Poprawka: usuwamy 'public/', bo pliki są w root
               a.target = "_blank";
               a.textContent = calc[`nazwa_${lang}`] || calc.nazwa;
               let opis = calc[`opis_${lang}`] || calc.opis;
