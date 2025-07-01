@@ -11,7 +11,7 @@
         "opis": "Oblicz nośność, ugięcia i bezpieczeństwo płyt/ścian/słupów CLT zgodnie z Eurokod 5.",
         "opis_en": "Calculate capacity, deflections, and safety for CLT panels, walls, and columns per Eurocode 5.",
         "opis_de": "Berechnet Tragfähigkeit, Durchbiegung und Sicherheit für CLT-Platten, Wände und Stützen nach Eurocode 5.",
-        "link": "public/kalkulator-clt.html"
+        "link": "kalkulator-clt.html"
       },
       {
         "nazwa": "Kalkulator masy CLT",
@@ -20,7 +20,7 @@
         "opis": "Szybko policz masę płyty, ściany lub elementu CLT na podstawie wymiarów i gęstości.",
         "opis_en": "Quickly calculate the mass of CLT panels, walls, or elements based on dimensions and density.",
         "opis_de": "Berechnet schnell die Masse von CLT-Elementen nach Abmessungen und Dichte.",
-        "link": "public/kalkulator-masy.html"
+        "link": "kalkulator-masy.html"
       }
     ]
   },
@@ -47,7 +47,6 @@
         "opis_de": "Was ist CLT? Definition, Eigenschaften, Vorteile.",
         "link": "#temat-co-to-jest-clt"
       }
-      // ... możesz dodać kolejne tematy
     ]
   }
 ]
