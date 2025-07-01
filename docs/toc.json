@@ -11,7 +11,7 @@
         "opis": "Oblicz nośność, ugięcia i bezpieczeństwo płyt/ścian/słupów CLT zgodnie z Eurokod 5.",
         "opis_en": "Calculate capacity, deflections, and safety for CLT panels, walls, and columns per Eurocode 5.",
         "opis_de": "Berechnet Tragfähigkeit, Durchbiegung und Sicherheit für CLT-Platten, Wände und Stützen nach Eurocode 5.",
-        "link": "https://clthubpl.github.io/kalkulator-szablon/public/kalkulator-clt.html"
+        "link": "public/kalkulator-clt.html"
       },
       {
         "nazwa": "Kalkulator masy CLT",
@@ -20,7 +20,7 @@
         "opis": "Szybko policz masę płyty, ściany lub elementu CLT na podstawie wymiarów i gęstości.",
         "opis_en": "Quickly calculate the mass of CLT panels, walls, or elements based on dimensions and density.",
         "opis_de": "Berechnet schnell die Masse von CLT-Elementen nach Abmessungen und Dichte.",
-        "link": "https://clthubpl.github.io/kalkulator-szablon/public/kalkulator-masy.html"
+        "link": "public/kalkulator-masy.html"
       }
     ]
   },
@@ -33,9 +33,9 @@
         "nazwa": "Rodzaje budowli w technologii CLT",
         "nazwa_en": "Types of structures in CLT technology",
         "nazwa_de": "Bauarten in CLT-Technologie",
-        "opis": "Typy obiektów możliwych do wykonania w CLT.",
-        "opis_en": "Types of structures possible in CLT.",
-        "opis_de": "Arten von Bauwerken in CLT-Technologie.",
+        "opis": "Temat: typy obiektów możliwych do wykonania w CLT.",
+        "opis_en": "Topic: types of structures possible in CLT.",
+        "opis_de": "Thema: Arten von Bauwerken in CLT-Technologie.",
         "link": "#temat-rodzaje-budowli"
       },
       {
@@ -46,62 +46,8 @@
         "opis_en": "What is CLT? Definition, properties, advantages.",
         "opis_de": "Was ist CLT? Definition, Eigenschaften, Vorteile.",
         "link": "#temat-co-to-jest-clt"
-      },
-      {
-        "nazwa": "Główne certyfikaty i zaświadczenia związane z CLT",
-        "nazwa_en": "Main certificates and attestations for CLT",
-        "nazwa_de": "Wesentliche Zertifikate und Bescheinigungen für CLT",
-        "opis": "",
-        "opis_en": "",
-        "opis_de": "",
-        "link": "#temat-certyfikaty"
-      },
-      {
-        "nazwa": "Główne wymagania ETA dla CLT",
-        "nazwa_en": "Main ETA requirements for CLT",
-        "nazwa_de": "Wesentliche ETA-Anforderungen für CLT",
-        "opis": "",
-        "opis_en": "",
-        "opis_de": "",
-        "link": "#temat-eta"
-      },
-      {
-        "nazwa": "Proces projektowy dla Biura projektowego/ Architekta",
-        "nazwa_en": "Design process for Design Office / Architect",
-        "nazwa_de": "Planungsprozess für Planungsbüro/Architekt",
-        "opis": "",
-        "opis_en": "",
-        "opis_de": "",
-        "link": "#temat-proces-projektowy"
-      },
-      {
-        "nazwa": "Lista czynności dla typowego obiektu CLT",
-        "nazwa_en": "List of activities for a typical CLT project",
-        "nazwa_de": "Ablaufplan für ein typisches CLT-Projekt",
-        "opis": "",
-        "opis_en": "",
-        "opis_de": "",
-        "link": "#temat-lista-czynnosci"
-      },
-      {
-        "nazwa": "Fundamenty",
-        "nazwa_en": "Foundations",
-        "nazwa_de": "Fundamente",
-        "opis": "",
-        "opis_en": "",
-        "opis_de": "",
-        "link": "#temat-fundamenty"
-      },
-      {
-        "nazwa": "Parametry płyty",
-        "nazwa_en": "Panel parameters",
-        "nazwa_de": "Plattenparameter",
-        "opis": "",
-        "opis_en": "",
-        "opis_de": "",
-        "link": "#temat-parametry-plyty"
       }
-      // --- dodaj tu kolejne tematy wg potrzeby ---
+      // ... możesz dodać kolejne tematy
     ]
   }
 ]
