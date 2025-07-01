@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator CLT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h2>Kalkulator CLT</h2>
+    <form id="cltForm" autocomplete="off">
+        <label for="powiat">Wybierz powiat:</label>
+        <select id="powiat" required>
+            <option value="">Wczytywanie listy powiatów...</option>
+        </select>
+        <div id="strefy"></div>
+
+        <label for="dlugosc">Długość elementu [m]:</label>
+        <input type="number" id="dlugosc" step="0.01" required>
+
+        <label for="szerokosc">Szerokość elementu [m]:</label>
+        <input type="number" id="szerokosc" step="0.01" required>
+
+        <label for="grubosc">Grubość CLT [mm]:</label>
+        <input type="number" id="grubosc" step="1" required>
+
+        <label for="obciazenie">Obciążenie charakterystyczne [kN/m²]:</label>
+        <input type="number" id="obciazenie" step="0.01" required>
+
+        <label for="typPodpory">Typ podparcia:</label>
+        <select id="typPodpory">
+            <option value="swobodniePodparte">Swobodnie podparte</option>
+            <option value="utwierdzone">Utwierdzone</option>
+        </select>
+        <button type="submit">Oblicz</button>
+    </form>
+    <div id="wynik" class="wynik" style="display:none"></div>
+    <div id="alert" class="alert" style="display:none"></div>
+</div>
+<script>
+let powiatyData = [];
+// Wczytaj powiaty.json
+fetch('powiaty.json')
+    .then(res => res.json())
+    .then(data => {
+        powiatyData = data;
+        const select = document.getElementById('powiat');
+        select.innerHTML = '<option value="">Wybierz...</option>';
+        data.forEach(p => {
+            const opt = document.createElement('option');
+            opt.value = p.nazwa;
+            opt.textContent = p.nazwa;
+            select.appendChild(opt);
+        });
+    });
+
+// Po wyborze powiatu, pokaż strefy klimatyczne
+document.getElementById('powiat').onchange = function() {
+    const pow = powiatyData.find(p => p.nazwa === this.value);
+    const info = pow
+        ? `Strefa śniegowa: <b>${pow.strefaSniegowa}</b> &nbsp;&nbsp; Strefa wiatrowa: <b>${pow.strefaWiatrowa}</b>`
+        : '';
+    document.getElementById('strefy').innerHTML = info;
+};
+
+document.getElementById('cltForm').onsubmit = function(e) {
+    e.preventDefault();
+    // Odczytaj dane wejściowe
+    const dl = parseFloat(document.getElementById('dlugosc').value);
+    const sz = parseFloat(document.getElementById('szerokosc').value);
+    const gr = parseFloat(document.getElementById('grubosc').value) / 1000; // mm->m
+    const obc = parseFloat(document.getElementById('obciazenie').value);
+    const podp = document.getElementById('typPodpory').value;
+    const pow = powiatyData.find(p => p.nazwa === document.getElementById('powiat').value);
+
+    // Sprawdzenie danych
+    if (!dl || !sz || !gr || !obc || !pow) {
+        pokazAlert('Uzupełnij wszystkie dane.');
+        return;
+    }
+
+    // Algorytm uproszczony: sprawdzenie nośności płyty CLT (wg Eurokodu 5, uproszczone)
+    const fmd = 16000 * 1e3; // [N/m2]
+    const q = obc * 1000; // kN/m2 -> N/m2
+    // Moment zginający: M = q*L²/8 (swobodnie), M = q*L²/12 (utwierdzone)
+    const M = q * dl * dl / (podp === 'swobodniePodparte' ? 8 : 12); // N*m/m
+    const W = sz * gr * gr / 6; // [m3/m]
+    const naprezenie = M / W; // N/m2
+
+    const bezpieczna = naprezenie < fmd;
+    let wynik = `<b>Obliczone naprężenie:</b> ${naprezenie.toFixed(0)} N/m²<br>`;
+    wynik += `<b>Nośność doraźna (Rd):</b> ${fmd.toFixed(0)} N/m²<br>`;
+    wynik += bezpieczna
+      ? `<span style="color:green;"><b>Konstrukcja spełnia warunki nośności.</b></span>`
+      : `<span style="color:#d0552b;"><b>Konstrukcja NIE spełnia warunków nośności!</b></span>`;
+    document.getElementById('wynik').innerHTML = wynik;
+    document.getElementById('wynik').style.display = 'block';
+    document.getElementById('alert').style.display = 'none';
+};
+function pokazAlert(t) {
+    document.getElementById('alert').innerHTML = t;
+    document.getElementById('alert').style.display = 'block';
+    document.getElementById('wynik').style.display = 'none';
+}
+</script>
+</body>
+</html>
