@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>CLT HUB – Powitalny</title>
+  <meta name="viewport" content="width=1024">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="lang-select-container">
+    <select id="lang-select" aria-label="Wybierz język">
+      <option value="pl">PL</option>
+      <option value="en">ENG</option>
+      <option value="de">GER</option>
+    </select>
+  </div>
+  <h1>CLT HUB</h1>
+  <main class="main-wrap">
+    <section class="panel left-panel">
+      <img src="logo.png" alt="Logo CLT HUB" class="logo"/>
+      <div class="headline" id="headline">CLT level up!</div>
+      <button class="entry-btn" id="entryBtn" onclick="window.location.href='HUBCLT.html?free=1&lang=pl#calc-mass'">
+        Przejdź do CLT HUB
+        <span>Jednorazowy dostęp. Każde kolejne wejście wymaga aktywacji płatnej sesji.</span>
+        <span>Zapoznaj się z regulaminem poniżej.</span>
+      </button>
+      <div class="regulamin-panel" id="regulamin">
+        <!-- Tu może być regulamin -->
+      </div>
+    </section>
+    <aside class="panel right-panel">
+      <div class="toc-title" id="tocTitle">Kalkulatory i narzędzia</div>
+      <div id="toc"></div>
+    </aside>
+  </main>
+  <div class="footer" id="footer">
+    <!-- Stopka -->
+  </div>
+
+  <script>
+    const translations = {
+      pl: {
+        headline: "CLT level up!",
+        entryBtn: "Przejdź do CLT HUB",
+        span1: "Jednorazowy dostęp. Każde kolejne wejście wymaga aktywacji płatnej sesji.",
+        span2: "Zapoznaj się z regulaminem poniżej.",
+        tocTitle: "Kalkulatory i narzędzia"
+      },
+      en: {
+        headline: "CLT level up!",
+        entryBtn: "Enter CLT HUB",
+        span1: "One-time access. Subsequent entries require paid session activation.",
+        span2: "Please review the terms and conditions below.",
+        tocTitle: "Calculators and Tools"
+      },
+      de: {
+        headline: "CLT auf neuem Niveau!",
+        entryBtn: "Zum CLT HUB",
+        span1: "Einmaliger Zugang. Jeder weitere Zugriff erfordert eine kostenpflichtige Sitzung.",
+        span2: "Bitte lesen Sie unten die Nutzungsbedingungen.",
+        tocTitle: "Rechner und Werkzeuge"
+      }
+    };
+
+    function translateStaticText(lang) {
+      const t = translations[lang] || translations.pl;
+      document.getElementById("headline").textContent = t.headline;
+
+      const entryBtn = document.getElementById("entryBtn");
+      entryBtn.childNodes[0].textContent = t.entryBtn + " ";
+      if (entryBtn.children.length >= 2) {
+        entryBtn.children[0].textContent = t.span1;
+        entryBtn.children[1].textContent = t.span2;
+      }
+
+      document.getElementById("tocTitle").textContent = t.tocTitle;
+    }
+
+    function applyLang(lang) {
+      translateStaticText(lang);
+      document.getElementById('entryBtn').setAttribute("onclick", \`window.location.href='HUBCLT.html?free=1&lang=\${lang}#calc-mass'\`);
+      renderTOC(lang);
+    }
+
+    function renderTOC(lang) {
+      fetch('toc.json')
+        .then(res => res.json())
+        .then(toc => {
+          const tocDiv = document.getElementById('toc');
+          tocDiv.innerHTML = "";
+          toc.forEach(section => {
+            const secTitle = document.createElement('div');
+            secTitle.className = "toc-section-title";
+            secTitle.textContent = section[\`kategoria_\${lang}\`] || section.kategoria;
+            tocDiv.appendChild(secTitle);
+
+            const ul = document.createElement('ul');
+            ul.className = "toc-list";
+            section.kalkulatory.forEach(calc => {
+              const li = document.createElement('li');
+              const a = document.createElement('a');
+              a.className = "toc-link";
+              a.href = calc.link.replace('public/', '');
+              a.target = "_blank";
+              a.textContent = calc[\`nazwa_\${lang}\`] || calc.nazwa;
+
+              let opis = calc[\`opis_\${lang}\`] || calc.opis;
+              if (opis) a.title = opis;
+
+              li.appendChild(a);
+
+              if (opis) {
+                const span = document.createElement('span');
+                span.style.fontSize = "0.95em";
+                span.style.color = "#444";
+                span.style.fontWeight = "400";
+                span.textContent = " – " + opis;
+                li.appendChild(span);
+              }
+
+              ul.appendChild(li);
+            });
+
+            tocDiv.appendChild(ul);
+          });
+        })
+        .catch(() => {
+          document.getElementById('toc').innerHTML = '<div style="color:#b02c2c;">Nie można załadować listy kalkulatorów (toc.json).</div>';
+        });
+    }
+
+    document.getElementById('lang-select').addEventListener('change', function () {
+      const lang = this.value;
+      applyLang(lang);
+    });
+
+    const defaultLang = navigator.language.startsWith('de') ? 'de' :
+                        navigator.language.startsWith('en') ? 'en' : 'pl';
+    document.getElementById('lang-select').value = defaultLang;
+    applyLang(defaultLang);
+  </script>
+</body>
+</html>
