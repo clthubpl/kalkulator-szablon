@@ -11,7 +11,21 @@
         "opis": "Oblicz nośność, ugięcia i bezpieczeństwo płyt/ścian/słupów CLT zgodnie z Eurokod 5.",
         "opis_en": "Calculate capacity, deflections, and safety for CLT panels, walls, and columns per Eurocode 5.",
         "opis_de": "Berechnet Tragfähigkeit, Durchbiegung und Sicherheit für CLT-Platten, Wände und Stützen nach Eurocode 5.",
-        "link": "kalkulator-clt.html"
+        "link": "kalkulator-clt.html",
+        "podsekcje": [
+          {
+            "nazwa": "Instrukcja obsługi",
+            "nazwa_en": "User Guide",
+            "nazwa_de": "Bedienungsanleitung",
+            "link": "instrukcja-statyk.html"
+          },
+          {
+            "nazwa": "Wzory Eurokodu 5",
+            "nazwa_en": "Eurocode 5 Formulas",
+            "nazwa_de": "Eurocode 5 Formeln",
+            "link": "wzory-eurokod5.html"
+          }
+        ]
       },
       {
         "nazwa": "Kalkulator masy CLT",
@@ -20,7 +34,15 @@
         "opis": "Szybko policz masę płyty, ściany lub elementu CLT na podstawie wymiarów i gęstości.",
         "opis_en": "Quickly calculate the mass of CLT panels, walls, or elements based on dimensions and density.",
         "opis_de": "Berechnet schnell die Masse von CLT-Elementen nach Abmessungen und Dichte.",
-        "link": "kalkulator-masy.html"
+        "link": "kalkulator-masy.html",
+        "podsekcje": [
+          {
+            "nazwa": "Częste pytania (FAQ)",
+            "nazwa_en": "Frequently Asked Questions (FAQ)",
+            "nazwa_de": "Häufig gestellte Fragen (FAQ)",
+            "link": "faq-masa.html"
+          }
+        ]
       }
     ]
   },
@@ -36,7 +58,21 @@
         "opis": "Temat: typy obiektów możliwych do wykonania w CLT.",
         "opis_en": "Topic: types of structures possible in CLT.",
         "opis_de": "Thema: Arten von Bauwerken in CLT-Technologie.",
-        "link": "#temat-rodzaje-budowli"
+        "link": "#temat-rodzaje-budowli",
+        "podsekcje": [
+          {
+            "nazwa": "Domy jednorodzinne",
+            "nazwa_en": "Single-family houses",
+            "nazwa_de": "Einfamilienhäuser",
+            "link": "#domy-jednorodzinne"
+          },
+          {
+            "nazwa": "Obiekty użyteczności publicznej",
+            "nazwa_en": "Public utility buildings",
+            "nazwa_de": "Öffentliche Gebäude",
+            "link": "#obiekty-publiczne"
+          }
+        ]
       },
       {
         "nazwa": "Cross-Laminated Timber (CLT) Drewno Klejone Krzyżowo",
@@ -45,7 +81,21 @@
         "opis": "Czym jest CLT? Definicja, właściwości, zalety.",
         "opis_en": "What is CLT? Definition, properties, advantages.",
         "opis_de": "Was ist CLT? Definition, Eigenschaften, Vorteile.",
-        "link": "#temat-co-to-jest-clt"
+        "link": "#temat-co-to-jest-clt",
+        "podsekcje": [
+          {
+            "nazwa": "Parametry materiałowe",
+            "nazwa_en": "Material parameters",
+            "nazwa_de": "Materialparameter",
+            "link": "#parametry-materialowe"
+          },
+          {
+            "nazwa": "Normy i certyfikaty",
+            "nazwa_en": "Standards and certificates",
+            "nazwa_de": "Normen und Zertifikate",
+            "link": "#normy-certyfikaty"
+          }
+        ]
       }
     ]
   }
