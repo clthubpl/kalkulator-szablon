@@ -19,7 +19,7 @@
     h1 {
       margin-top: 1.1rem;
       font-size: 2rem;
-      color: #222;
+      color: #fff;
       text-align: center;
       letter-spacing: 0.04em;
     }
@@ -61,6 +61,32 @@
       align-items: center;
       text-align: justify;
       position: relative;
+    }
+    .regulamin-panel {
+      background: #14281d;
+      color: #fff;
+      border-radius: 10px;
+      margin-top: 16px;
+      padding: 20px 28px 18px 28px;
+      width: 100%;
+      max-width: 670px;
+      box-sizing: border-box;
+      font-size: 0.98em;
+      font-weight: 400;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+      letter-spacing: 0.01em;
+    }
+    .regulamin-panel h2 {
+      font-size: 1.16em;
+      color: #fff;
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-align: left;
+    }
+    .regulamin-panel ul, .regulamin-panel ol {
+      padding-left: 20px;
     }
     .promo-container {
       position: absolute;
@@ -156,68 +182,13 @@
       line-height: 1.08;
       letter-spacing: 0.01em;
     }
-    #toc-container {
-      background: #e0e0e0;
-      color: #14281d;
-      border-radius: 13px;
-      padding: 1.2em 1.3em 1.2em 1.3em;
-      margin-left: 0;
-      margin-top: 0;
-      min-width: 320px;
-      max-width: 340px;
-      width: 35vw;
-      align-self: flex-start;
-      box-shadow: 0 2px 12px rgba(20,40,29,0.07);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-    }
-    #toc-container h2 {
-      font-size: 1.14rem;
-      margin: 0 0 0.45em 0;
-      font-weight: 700;
-      color: #218838;
-      letter-spacing: 0.03em;
-      padding: 0;
-    }
-    #toc-calcs, #toc-build {
-      margin: 0 0 1.05em 0;
-      padding: 0;
-      width: 100%;
-    }
-    .toc-list {
-      list-style: none;
-      margin: 0.22em 0 0.22em 0;
-      padding: 0;
-    }
-    .toc-list li {
-      font-size: 0.97em;
-      color: #14281d;
-      background: none;
-      border: none;
-      margin-bottom: 0.12em;
-      letter-spacing: 0.01em;
-      text-align: left;
-      padding: 0.05em 0;
-      font-weight: 400;
-    }
-    .toc-header {
-      font-size: 1.03em;
-      color: #218838;
-      font-weight: 600;
-      margin: 0.18em 0 0.14em 0;
-      letter-spacing: 0.01em;
-    }
     @media (max-width: 1080px) {
       #main-area { flex-direction: column; align-items: center; }
-      #welcome { margin: 0 auto 28px auto; width: 96vw; min-width: unset; }
-      #toc-container { margin: 0 auto; width: 97vw; min-width: unset; max-width: 98vw;}
+      #welcome, .regulamin-panel { margin: 0 auto 28px auto; width: 96vw; min-width: unset; }
     }
     @media (max-width: 700px) {
       h1 { font-size: 1.4rem; }
-      #welcome { padding: 1.2em 0.15em 1.4em 0.15em; min-width: 0; width: 97vw;}
-      #toc-container { padding: 1.2em 0.3em 1.2em 0.3em; min-width: 0; }
+      #welcome, .regulamin-panel { padding: 1.2em 0.15em 1.4em 0.15em; min-width: 0; width: 97vw;}
       .promo-image { height: 28px;}
     }
   </style>
@@ -233,24 +204,27 @@
   <h1>CLT HUB</h1>
   <div id="main-area">
     <!-- LEWY KONTENER POWITALNY -->
-    <div id="welcome">
-      <div class="promo-container">
-        <!-- Logo, możesz zamienić na <img src="logo.png" ...> jeśli masz swój plik -->
-        <img class="promo-image" src="logo.png" alt="Logo"/>
+    <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+      <div id="welcome">
+        <div class="promo-container">
+          <img class="promo-image" src="logo.png" alt="Logo"/>
+        </div>
+        <p class="title">
+          <span class="headline">CLT level up!</span>
+        </p>
+        <div class="desc-container">
+          <p class="desc"></p>
+        </div>
+        <div class="button-row">
+          <button id="buyAcceptBtn" onclick="window.location.href='HUBCLT.html?free=1&lang=pl#calc-mass'">
+            <span class="btn-main"></span>
+            <span class="btn-sub"></span>
+            <span class="btn-note"></span>
+          </button>
+        </div>
       </div>
-      <p class="title">
-        <span class="headline">CLT level up!</span>
-      </p>
-      <div class="desc-container">
-        <p class="desc"></p>
-      </div>
-      <div class="button-row">
-        <button id="buyAcceptBtn" onclick="window.location.href='HUBCLT.html?free=1&lang=pl#calc-mass'">
-          <span class="btn-main"></span>
-          <span class="btn-sub"></span>
-          <span class="btn-note"></span>
-        </button>
-      </div>
+      <!-- REGULAMIN – dynamicznie -->
+      <div class="regulamin-panel" id="regulamin"></div>
     </div>
     <!-- PRAWY KONTENER: DYNAMICZNY SPIS TREŚCI -->
     <div id="toc-container">
@@ -266,6 +240,52 @@
     </div>
   </div>
   <script>
+    // Teksty regulaminu w 3 językach
+    const REGULAMIN = {
+      pl: `
+        <h2>Regulamin korzystania z narzędzi CLTHUB</h2>
+        <ol>
+          <li>Strona ma wyłącznie charakter informacyjny i edukacyjny. Nie zastępuje konsultacji z uprawnionym konstruktorem ani nie stanowi oferty handlowej.</li>
+          <li>Kalkulatory i narzędzia mają charakter poglądowy i nie mogą być podstawą do projektowania ani realizacji inwestycji budowlanych bez indywidualnej weryfikacji przez uprawnionych specjalistów.</li>
+          <li>Autor nie ponosi odpowiedzialności za wykorzystanie narzędzi i materiałów zamieszczonych na stronie w procesie projektowania, realizacji lub eksploatacji obiektów budowlanych.</li>
+          <li>Użytkownik korzysta z narzędzi dobrowolnie i na własne ryzyko.</li>
+          <li>Wszelkie prawa autorskie do treści, kalkulatorów i materiałów zastrzeżone.</li>
+          <li>Kontakt z autorem: Piotr Baltyn, cltplhub@gmail.com</li>
+        </ol>
+        <div style="margin-top:14px; font-size:0.95em; color:#e0e0e0;">
+          Wszelkie prawa zastrzeżone. CLTHUB.PL
+        </div>
+      `,
+      en: `
+        <h2>Terms of Use for CLTHUB Tools</h2>
+        <ol>
+          <li>This website is for informational and educational purposes only. It does not replace consultation with a licensed structural engineer and does not constitute a commercial offer.</li>
+          <li>All calculators and tools are for reference only and may not be used as the basis for design or implementation of construction projects without individual verification by qualified professionals.</li>
+          <li>The author is not responsible for any use of the tools and materials presented on this website in the design, implementation, or operation of construction projects.</li>
+          <li>The user uses the tools voluntarily and at their own risk.</li>
+          <li>All copyrights to content, calculators, and materials are reserved.</li>
+          <li>Contact the author: Piotr Baltyn, cltplhub@gmail.com</li>
+        </ol>
+        <div style="margin-top:14px; font-size:0.95em; color:#e0e0e0;">
+          All rights reserved. CLTHUB.PL
+        </div>
+      `,
+      de: `
+        <h2>Nutzungsbedingungen für CLTHUB-Tools</h2>
+        <ol>
+          <li>Die Seite dient ausschließlich Informations- und Ausbildungszwecken. Sie ersetzt keine Beratung durch einen befugten Statiker und stellt kein kommerzielles Angebot dar.</li>
+          <li>Die Rechner und Tools dienen nur als Orientierungshilfe und dürfen nicht ohne individuelle Prüfung durch qualifizierte Fachleute als Grundlage für die Planung oder Durchführung von Bauvorhaben verwendet werden.</li>
+          <li>Der Autor übernimmt keine Haftung für die Nutzung der auf der Seite bereitgestellten Tools und Materialien im Rahmen der Planung, Ausführung oder Nutzung von Bauwerken.</li>
+          <li>Die Nutzung der Tools erfolgt freiwillig und auf eigenes Risiko.</li>
+          <li>Alle Urheberrechte an Inhalten, Rechnern und Materialien sind vorbehalten.</li>
+          <li>Kontakt zum Autor: Piotr Baltyn, cltplhub@gmail.com</li>
+        </ol>
+        <div style="margin-top:14px; font-size:0.95em; color:#e0e0e0;">
+          Alle Rechte vorbehalten. CLTHUB.PL
+        </div>
+      `
+    };
+
     // Adres pliku toc.json na GitHub (możesz zmienić na lokalny jeśli testujesz lokalnie)
     const TOC_JSON_URL = "https://raw.githubusercontent.com/clthubpl/kalkulator-szablon/main/docs/toc.json";
     // Tłumaczenia statycznych nagłówków
@@ -317,7 +337,6 @@
         const resp = await fetch(TOC_JSON_URL);
         tocData = await resp.json();
       } catch (e) {
-        // Fallback jeżeli błąd
         tocData = {
           pl: { calcs: [], build: [] },
           en: { calcs: [], build: [] },
@@ -325,13 +344,10 @@
         };
       }
     }
-    // Renderowanie kontenera prawego
     function renderTOC(lang) {
       document.getElementById('toc-title').textContent = UI[lang].tocTitle;
       document.getElementById('toc-header-calcs').textContent = UI[lang].tocCalcs;
       document.getElementById('toc-header-build').textContent = UI[lang].tocBuild;
-
-      // Kalkulatory
       const ulCalcs = document.getElementById('toc-calcs');
       ulCalcs.innerHTML = "";
       if (tocData && tocData[lang] && tocData[lang].calcs) {
@@ -341,7 +357,6 @@
           ulCalcs.appendChild(li);
         });
       }
-      // Budowa
       const ulBuild = document.getElementById('toc-build');
       ulBuild.innerHTML = "";
       if (tocData && tocData[lang] && tocData[lang].build) {
@@ -352,7 +367,6 @@
         });
       }
     }
-    // Renderowanie powitania i przycisku
     function renderWelcome(lang) {
       document.querySelector('.headline').textContent = UI[lang].headline;
       document.querySelector('.desc').textContent = UI[lang].desc;
@@ -366,19 +380,22 @@
         window.location.href = `HUBCLT.html?free=1&lang=${lang}#calc-mass`;
       };
     }
-    // Obsługa zmiany języka
+    function renderRegulamin(lang) {
+      document.getElementById('regulamin').innerHTML = REGULAMIN[lang];
+    }
     document.getElementById('lang-select').addEventListener('change', function () {
       currentLang = this.value;
       localStorage.setItem('clthub_lang', currentLang);
       renderWelcome(currentLang);
       renderTOC(currentLang);
+      renderRegulamin(currentLang);
     });
-    // Inicjalizacja po załadowaniu strony
     window.addEventListener('DOMContentLoaded', async () => {
       document.getElementById('lang-select').value = currentLang;
       await loadTOC();
       renderWelcome(currentLang);
       renderTOC(currentLang);
+      renderRegulamin(currentLang);
     });
   </script>
 </body>
