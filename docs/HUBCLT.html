@@ -2,403 +2,173 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
+  <title>CLT HUB – Kalkulatory i materiały</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CLT HUB</title>
-  <link rel="stylesheet" href="style.css">
   <style>
-    /* DODATKOWE STYLOWANIE zgodnie z referencyjnym UI */
-    body {
-      background: #e0e0e0;
-    }
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 1rem 3rem 1rem;
-    }
-    h1 {
-      margin: 1.4rem 0 1.2rem 0;
-      font-size: 2rem;
-      color: #222;
-      text-align: center;
-      letter-spacing: 0.04em;
-    }
-    #lang-select-container {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      z-index: 1000;
-    }
-    #lang-select {
-      font-size: 1rem;
-      padding: 0.15em 0.6em;
-      border-radius: 6px;
-      border: 1px solid #999;
-      background: #fff;
-      color: #14281d;
-    }
-    nav {
-      width: 100%;
-      margin-bottom: 1.6rem;
-      background: #1c3426;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.10);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      padding-left: 0.5rem;
-      min-height: 54px;
-      margin-top: 0.3rem;
-    }
-    .logo-wrap {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      height: 100%;
-    }
-    .logo-right {
-      margin: 3mm;
-      height: 38px;
-      width: auto;
-      background: transparent;
-      border-radius: 7px;
-    }
-    .dropdown {
-      position: relative;
-      display: inline-block;
-      margin-right: 1.3rem;
-    }
-    .dropdown-btn {
-      color: #fff;
-      padding: 0.45em 1.0em;
-      text-decoration: none;
-      font-size: 1.05rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-family: inherit;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      border-radius: 8px 8px 0 0;
-      transition: background 0.2s;
-    }
-    .dropdown-btn:hover,
-    .dropdown-content .dropdown-item:hover {
-      background: #218838;
-      color: #fff;
-    }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      left: 0;
-      top: 100%;
-      min-width: 240px;
-      background: #1c3426;
-      border-radius: 0 0 10px 10px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.14);
-      z-index: 10;
-      max-height: 60vh;
-      overflow-y: auto;
-      padding: 0.1em 0 0.1em 0;
-    }
-    .dropdown:hover .dropdown-content,
-    .dropdown:focus-within .dropdown-content {
-      display: block;
-    }
-    .dropdown-content .dropdown-item {
-      color: #fff;
-      padding: 0.7em 1.3em;
-      text-decoration: none;
-      display: block;
-      font-size: 0.99rem;
-      border: none;
-      background: none;
-      cursor: pointer;
-      text-align: left;
-      white-space: normal;
-      transition: background 0.15s;
-      border-radius: 0;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-    }
-    .section-title {
-      font-size: 1.19rem;
-      color: #14281d;
-      margin: 2.1rem 0 1.1rem 0;
-      border-bottom: 2px solid #1c3426;
-      padding-bottom: 0.2em;
-      letter-spacing: 0.03em;
-    }
-    .build-section-title {
-      font-size: 1.08rem;
-      font-weight: 700;
-      color: #1c3426;
-      margin: 2.2rem 0 1.2rem 0;
-      border-bottom: 2px solid #218838;
-      padding-bottom: 0.2em;
-      letter-spacing: 0.03em;
-    }
-    .build-topic-container {
-      background: #e8f1e7;
-      color: #153326;
-      border-radius: 8px;
-      box-shadow: 0 1px 5px rgba(44,80,62,0.09);
-      padding: 1.1rem 1.2rem;
-      margin-bottom: 1rem;
-      text-align: left;
-      font-size: 0.95rem;
-      font-weight: 500;
-      line-height: 1.21;
-      border-left: 3px solid #218838;
-      border-right: 3px solid #218838;
-    }
-    .session-note-bottom {
-      color: #14281d;
-      font-size: 0.77rem;
-      font-weight: 500;
-      background: none;
-      border: none;
-      text-align: center;
-      margin: 1mm 0 0.6rem 0;
-      width: 100%;
-      display: block;
-      letter-spacing: 0.01em;
-    }
-    footer {
-      background: #14281d;
-      color: #fff;
-      width: 100%;
-      text-align: center;
-      padding: 1.2rem 0 1rem 0;
-      border-radius: 16px 16px 0 0;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      font-size: 1.01rem;
-      letter-spacing: 0.01em;
-      z-index: 20;
-    }
-    @media (max-width: 700px) {
-      .container { padding: 0 0.1rem 4rem 0.1rem; }
-      nav { flex-direction: column; align-items: stretch; min-height: 48px; }
-      .dropdown { margin-bottom: 0.6rem; }
-      .logo-wrap { margin-left: auto; }
-      .logo-right { height: 28px; }
-      .section-title { font-size: 1.07rem; }
-      .session-note-bottom { font-size: 0.70rem;}
-      .dropdown-btn { font-size: 1rem; }
-    }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f6f6f2; color: #1f3d2c; margin: 0; padding: 30px 0;}
+    .main-title { text-align: center; font-size: 2.1em; color: #218838; margin-top: 0; margin-bottom: 26px; font-weight: bold; letter-spacing: 0.05em; }
+    #lang-select-container { position: absolute; top: 18px; right: 32px; z-index: 100; }
+    #lang-select { font-size: 1.08em; padding: 3px 16px; border-radius: 7px; background: #fff; color: #1f3d2c; border: none; font-weight: 600; }
+    .main-wrap { display: flex; justify-content: center; align-items: flex-start; gap: 1cm; max-width: 900px; margin: 0 auto; }
+    .panel { background: #fff; border-radius: 12px; box-shadow: 0 4px 12px #1f3d2c20; padding: 24px 24px; flex: 1 1 0; min-width: 270px; max-width: 350px; margin: 0;}
+    .panel.left-panel { text-align: left; }
+    .panel.right-panel { background: #14281d; color: #fff; font-size: 1em; min-width: 250px; max-width: 350px; word-break: break-word;}
+    ul.toc { padding: 0; margin: 0; list-style-type: disc; padding-left: 18px;}
+    ul.toc > li { margin-bottom: 10px; font-size: 1.05em; font-weight: 700; letter-spacing: 0.01em;}
+    ul.toc ul { margin-top: 4px; margin-bottom: 6px; margin-left: 14px; font-size: 0.97em;}
+    ul.toc li ul li { font-weight: 400; font-size: 0.96em; margin-bottom: 4px; margin-top: 4px;}
+    ul.toc a { color: #c2ffd5; text-decoration: underline; transition: color 0.15s;}
+    ul.toc a:hover { color: #b8f570;}
+    @media (max-width: 900px) { .main-wrap { flex-direction: column; gap: 18px; max-width: 99vw; } .panel { max-width: 100%; min-width: unset; } }
+    .regulamin { max-width: 900px; margin: 36px auto 0 auto; font-size: 0.97em; background: #fff; border-radius: 10px; box-shadow: 0 2px 10px #1f3d2c18; padding: 18px 26px 18px 26px; color: #233729; line-height: 1.55;}
+    .regulamin strong { font-weight: 700; }
   </style>
 </head>
 <body>
   <div id="lang-select-container">
-    <select id="lang-select" aria-label="Wybierz język">
+    <select id="lang-select" aria-label="Select language">
       <option value="pl">PL</option>
       <option value="en">ENG</option>
       <option value="de">GER</option>
     </select>
   </div>
-  <div class="container">
-    <h1>CLT HUB</h1>
-    <nav>
-      <div class="dropdown">
-        <a class="dropdown-btn" id="nav-calcs" href="#">Kalkulatory</a>
-        <div class="dropdown-content" id="calcs-dropdown">
-          <a class="dropdown-item" id="calc-mass-link" href="Kalkulator%20masy%20%C5%9Bciany%20CLTWITKOWSCY.html" target="_blank">Kalkulator masy</a>
-          <a class="dropdown-item" id="calc-static-link" href="kalkulator-clt.html" target="_blank">Kalkulator statyki</a>
-        </div>
+  <div class="main-title" id="main-title">CLT HUB – Kalkulatory i materiały edukacyjne</div>
+  <div class="main-wrap">
+    <section class="panel left-panel">
+      <h2 id="h2title">Materiały edukacyjne i kalkulatory</h2>
+      <div id="hubdesc">
+        <p>Witaj w sekcji narzędzi i materiałów. Wybierz interesujący Cię kalkulator lub temat ze spisu po prawej stronie, lub przejdź bezpośrednio do:</p>
+        <ul>
+          <li><a href="kalkulator-clt.html">Kalkulator statyki CLT</a></li>
+          <li><a href="kalkulator-masy.html">Kalkulator masy CLT</a></li>
+        </ul>
+        <p>Jeśli jesteś administratorem, możesz edytować spis treści modyfikując plik <code>toc.json</code>.</p>
       </div>
-      <div class="dropdown">
-        <a class="dropdown-btn" id="nav-build" href="#">Budowa</a>
-        <div class="dropdown-content" id="build-dropdown"></div>
-      </div>
-      <div class="logo-wrap">
-        <img class="logo-right" alt="Logo CLTPL" src="logo.png"/>
-      </div>
-    </nav>
-
-    <div id="session-note-bottom" class="session-note-bottom"></div>
-    <div>
-      <div class="section-title" id="main-section-title"></div>
-      <!-- NIE WYŚWIETLAMY kalkulatorów, tylko linki w menu! -->
-      <div class="build-section-title" id="build-section-title"></div>
-      <div id="build-topics-list"></div>
-    </div>
+    </section>
+    <section class="panel right-panel">
+      <ul class="toc" id="toc"></ul>
+    </section>
   </div>
-  <footer id="footer"></footer>
+  <div class="regulamin" id="regulamin">
+    <strong>Regulamin / Informacje prawne:</strong><br>
+    Strona CLT HUB stanowi zbiór informacji oraz bazę wiedzy na temat technologii CLT. Niektóre jej elementy, takie jak kalkulatory inżynieryjne, umożliwiają symulacje i modelowanie, jednak nie zastępują profesjonalnej obsługi ze strony uprawnionego konstruktora lub innych specjalistów branżowych. Autor nie ponosi odpowiedzialności za ewentualne szkody powstałe w wyniku wdrożeń opartych na analizach i symulacjach narzędzi dostępnych w CLT HUB. Lista dostępnych opracowań będzie sukcesywnie rozszerzana (można zgłaszać własne propozycje do wdrożeń).<br>
+    © Wszelkie prawa zastrzeżone (All rights reserved).
+  </div>
   <script>
-    // Treści build i tłumaczenia jak poprzednio
-    const buildTopics = {
-      pl: [
-        "Rodzaje budowli w technologii CLT",
-        "Cross-Laminated Timber (CLT) Drewno Klejone Krzyżowo",
-        "Główne certyfikaty i zaświadczenia związane z CLT",
-        "Główne wymagania ETA dla CLT",
-        "Software",
-        "Proces projektowy dla Biura projektowego/ Architekta",
-        "Współpraca z producentem płyty CLT",
-        "Przegrody CLT i rodzaje",
-        "Lista czynności dla typowego obiektu CLT",
-        "Zagadnienia dotyczące drewna",
-        "Zalecenia",
-        "Parametry płyty",
-        "Akustyka",
-        "Błędy",
-        "Akumulacja",
-        "Farby i zabezpieczenia",
-        "Izolacje",
-        "Palność",
-        "Statyka",
-        "Zastosowania nietypowe",
-        "Dyfuzja, Przenikanie pary przez przegrody, punkt rosy",
-        "Złącza i elementy uzupełniające",
-        "Przegrody",
-        "Podwalina",
-        "Fundamenty",
-        "Właściwości zdrowotne",
-        "Korzyści"
-      ],
-      en: [
-        "Types of structures in CLT technology",
-        "Cross-Laminated Timber (CLT)",
-        "Main certificates and attestations for CLT",
-        "Main ETA requirements for CLT",
-        "Software",
-        "Design process for Design Office / Architect",
-        "Cooperation with CLT panel manufacturer",
-        "CLT partitions and types",
-        "List of activities for a typical CLT project",
-        "Wood-related issues",
-        "Recommendations",
-        "Panel parameters",
-        "Acoustics",
-        "Errors",
-        "Thermal mass",
-        "Paints and protections",
-        "Insulations",
-        "Fire resistance",
-        "Statics",
-        "Non-standard applications",
-        "Diffusion, Vapor permeability, dew point",
-        "Joints and complementary elements",
-        "Partitions",
-        "Sill plate",
-        "Foundations",
-        "Health properties",
-        "Benefits"
-      ],
-      de: [
-        "Bauarten in CLT-Technologie",
-        "Cross-Laminated Timber (CLT) Brettsperrholz",
-        "Wesentliche Zertifikate und Bescheinigungen für CLT",
-        "Wesentliche ETA-Anforderungen für CLT",
-        "Software",
-        "Planungsprozess für Planungsbüro/Architekt",
-        "Zusammenarbeit mit dem CLT-Plattenhersteller",
-        "CLT-Trennwände und Arten",
-        "Ablaufplan für ein typisches CLT-Projekt",
-        "Holzbezogene Themen",
-        "Empfehlungen",
-        "Plattenparameter",
-        "Akustik",
-        "Fehler",
-        "Speicherfähigkeit",
-        "Farben und Schutz",
-        "Dämmungen",
-        "Brandschutz",
-        "Statik",
-        "Ungewöhnliche Anwendungen",
-        "Diffusion, Dampfdurchgang, Taupunkt",
-        "Verbindungen und ergänzende Elemente",
-        "Trennwände",
-        "Schwelle",
-        "Fundamente",
-        "Gesundheitliche Eigenschaften",
-        "Vorteile"
-      ]
-    };
-
+    // Tłumaczenia tekstów
     const translations = {
       pl: {
-        navCalcs: "Kalkulatory",
-        navBuild: "Budowa",
-        sectionTitle: "Kalkulatory budowlane",
-        calcMass: "Kalkulator masy",
-        calcStatic: "Kalkulator statyki",
-        buildSection: "Budowa",
-        sessionNote: "Uwaga! Po zamknięciu strony sesja bezpłatna zostanie wygaszona a kolejne wejścia będą podlegać każdorazowo opłacie.",
-        footer: "©® Wszelkie prawa zastrzeżone (All rights reserved). Autor strony: Piotr Baltyn <a href='mailto:cltplhub@gmail.com' style='color:#fff;text-decoration:underline;'>cltplhub@gmail.com</a>",
-        calcMassLink: "Kalkulator masy",
-        calcStaticLink: "Kalkulator statyki"
+        mainTitle: "CLT HUB – Kalkulatory i materiały edukacyjne",
+        h2title: "Materiały edukacyjne i kalkulatory",
+        hubdesc: `<p>Witaj w sekcji narzędzi i materiałów. Wybierz interesujący Cię kalkulator lub temat ze spisu po prawej stronie, lub przejdź bezpośrednio do:</p>
+        <ul>
+          <li><a href="kalkulator-clt.html">Kalkulator statyki CLT</a></li>
+          <li><a href="kalkulator-masy.html">Kalkulator masy CLT</a></li>
+        </ul>
+        <p>Jeśli jesteś administratorem, możesz edytować spis treści modyfikując plik <code>toc.json</code>.</p>`,
+        regulamin: `<strong>Regulamin / Informacje prawne:</strong><br>
+          Strona CLT HUB stanowi zbiór informacji oraz bazę wiedzy na temat technologii CLT. Niektóre jej elementy, takie jak kalkulatory inżynieryjne, umożliwiają symulacje i modelowanie, jednak nie zastępują profesjonalnej obsługi ze strony uprawnionego konstruktora lub innych specjalistów branżowych. Autor nie ponosi odpowiedzialności za ewentualne szkody powstałe w wyniku wdrożeń opartych na analizach i symulacjach narzędzi dostępnych w CLT HUB. Lista dostępnych opracowań będzie sukcesywnie rozszerzana (można zgłaszać własne propozycje do wdrożeń).<br>
+          © Wszelkie prawa zastrzeżone (All rights reserved).`
       },
       en: {
-        navCalcs: "Calculators",
-        navBuild: "Construction",
-        sectionTitle: "Construction calculators",
-        calcMass: "Mass calculator",
-        calcStatic: "Statics calculator",
-        buildSection: "Construction",
-        sessionNote: "Attention! After closing the page, the free session will expire and subsequent visits will be subject to a fee each time.",
-        footer: "©® All rights reserved. Website author: Piotr Baltyn <a href='mailto:cltplhub@gmail.com' style='color:#fff;text-decoration:underline;'>cltplhub@gmail.com</a>",
-        calcMassLink: "Mass calculator",
-        calcStaticLink: "Statics calculator"
+        mainTitle: "CLT HUB – Calculators and Educational Materials",
+        h2title: "Educational Materials and Calculators",
+        hubdesc: `<p>Welcome to the tools and materials section. Select the calculator or topic from the menu on the right, or go directly to:</p>
+        <ul>
+          <li><a href="kalkulator-clt.html">CLT Statics Calculator</a></li>
+          <li><a href="kalkulator-masy.html">CLT Mass Calculator</a></li>
+        </ul>
+        <p>If you are an administrator, you can edit the table of contents by modifying the <code>toc.json</code> file.</p>`,
+        regulamin: `<strong>Terms & Legal Notice:</strong><br>
+          The CLT HUB website is an information base about CLT technology. Some elements, such as engineering calculators, allow simulation and modeling, but do not replace professional support from a licensed structural engineer or other specialists. The author is not responsible for any damages resulting from implementations based on analyses and simulations of the CLT HUB tools. The list of available studies will be successively expanded (you can also submit your own proposals for future implementations).<br>
+          © All rights reserved.`
       },
       de: {
-        navCalcs: "Rechner",
-        navBuild: "Bau",
-        sectionTitle: "Bau-Rechner",
-        calcMass: "Massenrechner",
-        calcStatic: "Statikrechner",
-        buildSection: "Bau",
-        sessionNote: "Achtung! Nach dem Schließen der Seite wird die kostenlose Sitzung beendet und weitere Zugriffe sind jeweils gebührenpflichtig.",
-        footer: "©® Alle Rechte vorbehalten. Autor der Seite: Piotr Baltyn <a href='mailto:cltplhub@gmail.com' style='color:#fff;text-decoration:underline;'>cltplhub@gmail.com</a>",
-        calcMassLink: "Massenrechner",
-        calcStaticLink: "Statikrechner"
+        mainTitle: "CLT HUB – Rechner und Lehrmaterialien",
+        h2title: "Lehrmaterialien und Rechner",
+        hubdesc: `<p>Willkommen im Bereich für Werkzeuge und Materialien. Wählen Sie den gewünschten Rechner oder das Thema aus dem Menü auf der rechten Seite oder gehen Sie direkt zu:</p>
+        <ul>
+          <li><a href="kalkulator-clt.html">CLT Statikrechner</a></li>
+          <li><a href="kalkulator-masy.html">CLT-Massenrechner</a></li>
+        </ul>
+        <p>Wenn Sie Administrator sind, können Sie das Inhaltsverzeichnis durch Bearbeitung der Datei <code>toc.json</code> ändern.</p>`,
+        regulamin: `<strong>Regeln / Rechtliche Hinweise:</strong><br>
+          Die Seite CLT HUB ist eine Informations- und Wissensdatenbank zur CLT-Technologie. Einige Elemente, wie die Ingenieurrechner, ermöglichen Simulationen und Modellierungen, ersetzen jedoch nicht die professionelle Betreuung durch einen berechtigten Konstrukteur oder andere Fachleute. Der Autor übernimmt keine Haftung für Schäden, die aus der Umsetzung von Analysen und Simulationen der CLT HUB-Tools entstehen. Die Liste der verfügbaren Studien wird schrittweise erweitert (eigene Vorschläge können eingereicht werden).<br>
+          © Alle Rechte vorbehalten.`
       }
     };
 
-    function updateBuildDropdown(lang) {
-      const dropdown = document.getElementById('build-dropdown');
-      dropdown.innerHTML = "";
-      buildTopics[lang].forEach((topic, idx) => {
-        const a = document.createElement('a');
-        a.className = "dropdown-item";
-        a.href = "#build-topic-" + idx;
-        a.textContent = topic;
-        dropdown.appendChild(a);
+    // Zmiana języka
+    function setLanguage(lang) {
+      document.getElementById('main-title').textContent = translations[lang].mainTitle;
+      document.getElementById('h2title').textContent = translations[lang].h2title;
+      document.getElementById('hubdesc').innerHTML = translations[lang].hubdesc;
+      document.getElementById('regulamin').innerHTML = translations[lang].regulamin;
+      renderTOC(lang, tocCache);
+    }
+
+    // Spis treści z toc.json (wielojęzycznie)
+    let tocCache = [];
+    function renderTOC(lang, toc) {
+      const tocRoot = document.getElementById('toc');
+      tocRoot.innerHTML = "";
+      toc.forEach(section => {
+        const sectionLi = document.createElement('li');
+        sectionLi.textContent = section["kategoria"+(lang==="pl"?"":(lang==="en"?"_en":"_de"))] || section.kategoria;
+        if (Array.isArray(section.kalkulatory)) {
+          const kalkUl = document.createElement('ul');
+          section.kalkulatory.forEach(kalk => {
+            const kalkLi = document.createElement('li');
+            kalkLi.innerHTML = ""; // reset
+            if (kalk.link && kalk.link !== "#") {
+              const kalkA = document.createElement('a');
+              kalkA.href = kalk.link;
+              kalkA.textContent = kalk["nazwa"+(lang==="pl"?"":(lang==="en"?"_en":"_de"))] || kalk.nazwa;
+              kalkA.target = '_blank';
+              kalkLi.appendChild(kalkA);
+            } else {
+              kalkLi.textContent = kalk["nazwa"+(lang==="pl"?"":(lang==="en"?"_en":"_de"))] || kalk.nazwa;
+            }
+            // Podsekcje
+            if (Array.isArray(kalk.podsekcje) && kalk.podsekcje.length) {
+              const podUl = document.createElement('ul');
+              kalk.podsekcje.forEach(pod => {
+                const podLi = document.createElement('li');
+                if (pod.link && pod.link !== "#") {
+                  const podA = document.createElement('a');
+                  podA.href = pod.link;
+                  podA.textContent = pod["nazwa"+(lang==="pl"?"":(lang==="en"?"_en":"_de"))] || pod.nazwa;
+                  podA.target = '_blank';
+                  podLi.appendChild(podA);
+                } else {
+                  podLi.textContent = pod["nazwa"+(lang==="pl"?"":(lang==="en"?"_en":"_de"))] || pod.nazwa;
+                }
+                podUl.appendChild(podLi);
+              });
+              kalkLi.appendChild(podUl);
+            }
+            kalkUl.appendChild(kalkLi);
+          });
+          sectionLi.appendChild(kalkUl);
+        }
+        tocRoot.appendChild(sectionLi);
       });
     }
-    function updateBuildSection(lang) {
-      const buildSection = document.getElementById('build-topics-list');
-      buildSection.innerHTML = "";
-      buildTopics[lang].forEach((topic, idx) => {
-        const div = document.createElement('div');
-        div.className = "build-topic-container";
-        div.id = "build-topic-" + idx;
-        div.textContent = topic;
-        buildSection.appendChild(div);
+
+    fetch('toc.json')
+      .then(res => res.json())
+      .then(data => {
+        tocCache = data;
+        setLanguage(document.getElementById('lang-select').value);
+      })
+      .catch(() => {
+        document.getElementById('toc').innerHTML = '<li>Nie udało się pobrać listy sekcji. Sprawdź plik toc.json.</li>';
       });
-      document.getElementById('build-section-title').textContent = translations[lang].buildSection;
+
+    // Przełącznik języka
+    document.getElementById('lang-select').onchange = function() {
+      setLanguage(this.value);
     }
-    function applyLang(lang) {
-      document.getElementById('nav-calcs').textContent = translations[lang].navCalcs;
-      document.getElementById('nav-build').textContent = translations[lang].navBuild;
-      document.getElementById('main-section-title').textContent = translations[lang].sectionTitle;
-      // Menu kalkulatorów – dynamiczne tłumaczenia
-      document.getElementById('calc-mass-link').textContent = translations[lang].calcMassLink;
-      document.getElementById('calc-static-link').textContent = translations[lang].calcStaticLink;
-      document.getElementById('footer').innerHTML = translations[lang].footer;
-      document.getElementById('session-note-bottom').textContent = translations[lang].sessionNote;
-      updateBuildDropdown(lang);
-      updateBuildSection(lang);
-    }
-    document.getElementById('lang-select').addEventListener('change', function() {
-      applyLang(this.value);
-      localStorage.setItem('clthub_lang', this.value);
-    });
-    window.addEventListener('DOMContentLoaded', () => {
-      const saved = localStorage.getItem('clthub_lang') || 'pl';
-      document.getElementById('lang-select').value = saved;
-      applyLang(saved);
-    });
   </script>
 </body>
 </html>
