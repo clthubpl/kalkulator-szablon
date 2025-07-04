@@ -5,23 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CLT HUB</title>
   <style>
+    :root {
+      --main-panel-width: 880px;
+    }
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: #218838;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       min-height: 100vh;
       color: #333;
+      width: 100vw;
+      box-sizing: border-box;
     }
     h1 {
-      margin-top: 1.1rem;
+      margin-top: 12px;
+      margin-bottom: 12px;
       font-size: 2rem;
       color: #fff;
       text-align: center;
       letter-spacing: 0.04em;
+      padding-left: 3mm;
+      padding-right: 3mm;
     }
     #lang-select-container {
       position: absolute;
@@ -39,42 +44,38 @@
     }
     #main-area {
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      margin-top: 0.3cm;
-      width: 100%;
-      max-width: 1160px;
-      min-height: 80vh;
+      flex-direction: column;
+      align-items: center;
+      width: 100vw;
     }
-    #welcome {
-      background: #14281d;
-      color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.11);
-      max-width: 670px;
-      min-width: 360px;
-      width: 58vw;
-      margin-right: 28px;
-      padding: 0.54cm 0.7cm 0.6cm 0.7cm;
+    .panel-wrap {
+      width: var(--main-panel-width);
+      max-width: 98vw;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: justify;
-      position: relative;
+      box-sizing: border-box;
     }
-    .regulamin-panel {
+    #welcome, .regulamin-panel {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      border-radius: 10px;
       background: #14281d;
       color: #fff;
-      border-radius: 10px;
-      margin-top: 16px;
-      padding: 20px 28px 18px 28px;
-      width: 100%;
-      max-width: 670px;
-      box-sizing: border-box;
-      font-size: 0.98em;
-      font-weight: 400;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.09);
-      letter-spacing: 0.01em;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.11);
+      margin-bottom: 18px;
+      text-align: justify;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.54cm 2.3rem 0.6cm 2.3rem;
+    }
+    .regulamin-panel {
+      margin-top: 0;
+      padding: 1.1em 2.3rem 1.2em 2.3rem;
+      font-size: 1.02em;
     }
     .regulamin-panel h2 {
       font-size: 1.16em;
@@ -84,9 +85,11 @@
       font-weight: 700;
       letter-spacing: 0.02em;
       text-align: left;
+      width: 100%;
     }
     .regulamin-panel ul, .regulamin-panel ol {
-      padding-left: 20px;
+      padding-left: 22px;
+      margin-bottom: 10px;
     }
     .promo-container {
       position: absolute;
@@ -103,6 +106,7 @@
       font-size: 1.18rem;
       margin: 0 0 0.55rem 0;
       font-weight: 600;
+      width: 100%;
     }
     #welcome .headline {
       display: block;
@@ -110,6 +114,8 @@
       font-weight: 600;
       margin-bottom: 0.15em;
       letter-spacing: 0.03em;
+      width: 100%;
+      text-align: center;
     }
     #welcome .subtitle {
       display: block;
@@ -118,6 +124,8 @@
       margin-top: 0.18em;
       color: #e0e0e0;
       letter-spacing: 0.01em;
+      width: 100%;
+      text-align: center;
     }
     .desc-container {
       width: 100%;
@@ -130,6 +138,7 @@
       font-size: 0.97em;
       margin: 0;
       color: #e0e0e0;
+      width: 100%;
     }
     .button-row {
       width: 100%;
@@ -182,13 +191,66 @@
       line-height: 1.08;
       letter-spacing: 0.01em;
     }
+    /* Spis treści (dynamika z podsekcjami) */
+    #toc-container {
+      background: #e0e0e0;
+      color: #14281d;
+      border-radius: 13px;
+      padding: 1.2em 1.6em 1.2em 1.6em;
+      margin: 2.6rem auto 1rem auto;
+      min-width: 320px;
+      width: var(--main-panel-width);
+      max-width: 98vw;
+      align-self: center;
+      box-shadow: 0 2px 12px rgba(20,40,29,0.07);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    #toc-container h2 {
+      font-size: 1.14rem;
+      margin: 0 0 0.45em 0;
+      font-weight: 700;
+      color: #218838;
+      letter-spacing: 0.03em;
+      padding: 0;
+    }
+    .toc-section {
+      margin-bottom: 1em;
+    }
+    .toc-section-title {
+      font-size: 1.04em;
+      color: #218838;
+      font-weight: 600;
+      margin-top: 0.25em;
+      margin-bottom: 0.22em;
+      letter-spacing: 0.01em;
+    }
+    .toc-list {
+      list-style: none;
+      margin: 0 0 0.25em 0.5em;
+      padding: 0 0 0 0.7em;
+    }
+    .toc-list li {
+      font-size: 0.99em;
+      color: #14281d;
+      background: none;
+      border: none;
+      margin-bottom: 0.10em;
+      letter-spacing: 0.01em;
+      text-align: left;
+      padding: 0.04em 0;
+      font-weight: 400;
+    }
     @media (max-width: 1080px) {
-      #main-area { flex-direction: column; align-items: center; }
-      #welcome, .regulamin-panel { margin: 0 auto 28px auto; width: 96vw; min-width: unset; }
+      :root { --main-panel-width: 96vw; }
+      #welcome, .regulamin-panel, #toc-container { max-width: 99vw; }
     }
     @media (max-width: 700px) {
       h1 { font-size: 1.4rem; }
-      #welcome, .regulamin-panel { padding: 1.2em 0.15em 1.4em 0.15em; min-width: 0; width: 97vw;}
+      :root { --main-panel-width: 99vw; }
+      #welcome, .regulamin-panel, #toc-container { padding: 1.2em 0.1em 1.4em 0.1em; min-width: 0; }
       .promo-image { height: 28px;}
     }
   </style>
@@ -203,8 +265,7 @@
   </div>
   <h1>CLT HUB</h1>
   <div id="main-area">
-    <!-- LEWY KONTENER POWITALNY -->
-    <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+    <div class="panel-wrap">
       <div id="welcome">
         <div class="promo-container">
           <img class="promo-image" src="logo.png" alt="Logo"/>
@@ -216,31 +277,22 @@
           <p class="desc"></p>
         </div>
         <div class="button-row">
-          <button id="buyAcceptBtn" onclick="window.location.href='HUBCLT.html?free=1&lang=pl#calc-mass'">
+          <button id="buyAcceptBtn">
             <span class="btn-main"></span>
             <span class="btn-sub"></span>
             <span class="btn-note"></span>
           </button>
         </div>
       </div>
-      <!-- REGULAMIN – dynamicznie -->
       <div class="regulamin-panel" id="regulamin"></div>
     </div>
-    <!-- PRAWY KONTENER: DYNAMICZNY SPIS TREŚCI -->
     <div id="toc-container">
       <h2 id="toc-title"></h2>
-      <div>
-        <div class="toc-header" id="toc-header-calcs"></div>
-        <ul class="toc-list" id="toc-calcs"></ul>
-      </div>
-      <div>
-        <div class="toc-header" id="toc-header-build"></div>
-        <ul class="toc-list" id="toc-build"></ul>
-      </div>
+      <div id="toc-sections"></div>
     </div>
   </div>
   <script>
-    // Teksty regulaminu w 3 językach
+    // --- REGULAMIN
     const REGULAMIN = {
       pl: `
         <h2>Regulamin korzystania z narzędzi CLTHUB</h2>
@@ -253,7 +305,7 @@
           <li>Kontakt z autorem: Piotr Baltyn, cltplhub@gmail.com</li>
         </ol>
         <div style="margin-top:14px; font-size:0.95em; color:#e0e0e0;">
-          Wszelkie prawa zastrzeżone. CLTHUB.PL
+          Wszelkie prawa zastrzeżone © CLTHUB.PL
         </div>
       `,
       en: `
@@ -267,7 +319,7 @@
           <li>Contact the author: Piotr Baltyn, cltplhub@gmail.com</li>
         </ol>
         <div style="margin-top:14px; font-size:0.95em; color:#e0e0e0;">
-          All rights reserved. CLTHUB.PL
+          All rights reserved © CLTHUB.PL
         </div>
       `,
       de: `
@@ -281,92 +333,109 @@
           <li>Kontakt zum Autor: Piotr Baltyn, cltplhub@gmail.com</li>
         </ol>
         <div style="margin-top:14px; font-size:0.95em; color:#e0e0e0;">
-          Alle Rechte vorbehalten. CLTHUB.PL
+          Alle Rechte vorbehalten © CLTHUB.PL
         </div>
       `
     };
 
-    // Adres pliku toc.json na GitHub (możesz zmienić na lokalny jeśli testujesz lokalnie)
-    const TOC_JSON_URL = "https://raw.githubusercontent.com/clthubpl/kalkulator-szablon/main/docs/toc.json";
-    // Tłumaczenia statycznych nagłówków
+    // --- UI/Nagłówki/przyciski
     const UI = {
       pl: {
         headline: "CLT level up!",
         desc: "Odnośnik prowadzi do materiałów o podwyższonym poziomie zaawansowania i opisuje tematykę CLT bardziej szczegółowo i detalicznie niż w typowych broszurach marketingowych. Materiały mają wyłącznie charakter informacyjny i nie zastępują konsultacji z konstruktorem lub innymi uprawnionymi specjalistami.",
-        btn: {
-          main: "Wchodzę",
-          sub: "akceptuję warunki Regulaminu",
-          note: "(jedna sesja bezpłatnie)"
-        },
-        tocTitle: "Spis treści",
-        tocCalcs: "Kalkulatory",
-        tocBuild: "Budowa"
+        btn: { main: "Wchodzę", sub: "akceptuję warunki Regulaminu", note: "(jedna sesja bezpłatnie)" },
+        tocTitle: "Spis treści"
       },
       en: {
         headline: "CLT level up!",
         desc: "The link leads to materials with an advanced level and describes CLT topics in more detail than typical marketing brochures. These materials are for information only and do not replace consultation with a structural engineer or other qualified specialists.",
-        btn: {
-          main: "Enter",
-          sub: "I accept the Terms and Conditions",
-          note: "(one free session)"
-        },
-        tocTitle: "Table of contents",
-        tocCalcs: "Calculators",
-        tocBuild: "Construction"
+        btn: { main: "Enter", sub: "I accept the Terms and Conditions", note: "(one free session)" },
+        tocTitle: "Table of contents"
       },
       de: {
         headline: "CLT level up!",
         desc: "Der Link führt zu Materialien auf fortgeschrittenem Niveau und beschreibt CLT-Themen ausführlicher und detaillierter als übliche Marketingbroschüren. Diese Materialien dienen nur zur Information und ersetzen nicht die Beratung durch einen Statiker oder andere qualifizierte Fachleute.",
-        btn: {
-          main: "Ich trete ein",
-          sub: "Ich akzeptiere die Bedingungen des Regelwerks",
-          note: "(eine Sitzung kostenlos)"
-        },
-        tocTitle: "Inhaltsverzeichnis",
-        tocCalcs: "Rechner",
-        tocBuild: "Bau"
+        btn: { main: "Ich trete ein", sub: "Ich akzeptiere die Bedingungen des Regelwerks", note: "(eine Sitzung kostenlos)" },
+        tocTitle: "Inhaltsverzeichnis"
       }
     };
-    // Zmienne globalne
+
+    // ---- Pobierz spis treści z toc.json, sekcje + podsekcje
+    const TOC_JSON_URL = "https://raw.githubusercontent.com/clthubpl/kalkulator-szablon/main/docs/toc.json";
     let tocData = null;
     let currentLang = localStorage.getItem('clthub_lang') || 'pl';
 
-    // --- Ładowanie dynamiczne toc.json z GitHub
     async function loadTOC() {
       try {
         const resp = await fetch(TOC_JSON_URL);
         tocData = await resp.json();
       } catch (e) {
-        tocData = {
-          pl: { calcs: [], build: [] },
-          en: { calcs: [], build: [] },
-          de: { calcs: [], build: [] }
-        };
+        tocData = [];
       }
     }
+
     function renderTOC(lang) {
       document.getElementById('toc-title').textContent = UI[lang].tocTitle;
-      document.getElementById('toc-header-calcs').textContent = UI[lang].tocCalcs;
-      document.getElementById('toc-header-build').textContent = UI[lang].tocBuild;
-      const ulCalcs = document.getElementById('toc-calcs');
-      ulCalcs.innerHTML = "";
-      if (tocData && tocData[lang] && tocData[lang].calcs) {
-        tocData[lang].calcs.forEach(txt => {
-          const li = document.createElement('li');
-          li.textContent = txt;
-          ulCalcs.appendChild(li);
-        });
-      }
-      const ulBuild = document.getElementById('toc-build');
-      ulBuild.innerHTML = "";
-      if (tocData && tocData[lang] && tocData[lang].build) {
-        tocData[lang].build.forEach(txt => {
-          const li = document.createElement('li');
-          li.textContent = txt;
-          ulBuild.appendChild(li);
-        });
-      }
+      const container = document.getElementById('toc-sections');
+      container.innerHTML = "";
+      if (!tocData || !tocData[lang]) return;
+
+      tocData[lang].forEach(section => {
+        // Każda sekcja
+        const secDiv = document.createElement('div');
+        secDiv.className = "toc-section";
+        // Tytuł sekcji
+        if (section.kategoria) {
+          const secTitle = document.createElement('div');
+          secTitle.className = "toc-section-title";
+          secTitle.textContent = section.kategoria;
+          secDiv.appendChild(secTitle);
+        }
+        // Lista kalkulatorów/podsekcji
+        if (section.kalkulatory && section.kalkulatory.length > 0) {
+          const ul = document.createElement('ul');
+          ul.className = "toc-list";
+          section.kalkulatory.forEach(calc => {
+            const li = document.createElement('li');
+            li.textContent = calc.nazwa || calc;
+            // Jeśli jest link, zrób aktywny
+            if (calc.link) {
+              const a = document.createElement('a');
+              a.href = calc.link;
+              a.textContent = calc.nazwa;
+              a.style.color = "#218838";
+              a.target = "_blank";
+              li.innerHTML = '';
+              li.appendChild(a);
+            }
+            // Jeśli są podsekcje (podlisty)
+            if (calc.podsekcje && calc.podsekcje.length > 0) {
+              const subUl = document.createElement('ul');
+              subUl.className = "toc-list";
+              calc.podsekcje.forEach(sub => {
+                const subLi = document.createElement('li');
+                subLi.textContent = sub.nazwa || sub;
+                if (sub.link) {
+                  const a = document.createElement('a');
+                  a.href = sub.link;
+                  a.textContent = sub.nazwa;
+                  a.style.color = "#218838";
+                  a.target = "_blank";
+                  subLi.innerHTML = '';
+                  subLi.appendChild(a);
+                }
+                subUl.appendChild(subLi);
+              });
+              li.appendChild(subUl);
+            }
+            ul.appendChild(li);
+          });
+          secDiv.appendChild(ul);
+        }
+        container.appendChild(secDiv);
+      });
     }
+
     function renderWelcome(lang) {
       document.querySelector('.headline').textContent = UI[lang].headline;
       document.querySelector('.desc').textContent = UI[lang].desc;
@@ -387,15 +456,15 @@
       currentLang = this.value;
       localStorage.setItem('clthub_lang', currentLang);
       renderWelcome(currentLang);
-      renderTOC(currentLang);
       renderRegulamin(currentLang);
+      renderTOC(currentLang);
     });
     window.addEventListener('DOMContentLoaded', async () => {
       document.getElementById('lang-select').value = currentLang;
       await loadTOC();
       renderWelcome(currentLang);
-      renderTOC(currentLang);
       renderRegulamin(currentLang);
+      renderTOC(currentLang);
     });
   </script>
 </body>
