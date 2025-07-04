@@ -2,57 +2,248 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>CLT HUB – Powitalny</title>
+  <title>CLT HUB – wersja finalna, full-width</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #218838; color: #1f3d2c; margin: 0; padding: 30px 0;}
-    .main-title { text-align: center; font-size: 2.1em; color: #fff; margin-top: 0; margin-bottom: 26px; font-weight: bold; letter-spacing: 0.05em; }
-    #lang-select-container { position: absolute; top: 18px; right: 32px; z-index: 100; }
-    #lang-select { font-size: 1.08em; padding: 3px 16px; border-radius: 7px; background: #fff; color: #1f3d2c; border: none; font-weight: 600; }
-    .main-wrap { display: flex; justify-content: center; align-items: flex-start; gap: 1cm; max-width: 900px; margin: 0 auto; }
-    .panel { background: #fff; border-radius: 12px; box-shadow: 0 4px 12px #1f3d2c20; padding: 24px 24px; flex: 1 1 0; min-width: 270px; max-width: 350px; margin: 0; }
-    .panel.left-panel { text-align: center; display: flex; flex-direction: column; align-items: center;}
-    .logo { width: 90px; margin-bottom: 12px; }
-    .headline { font-size: 1.2em; margin-bottom: 18px; color: #1f3d2c; }
-    .contact { font-size: 1em; margin-top: 34px; color: #1f3d2c;}
-    .entry-btn { margin-top: 18px; padding: 10px 40px; font-size: 1.07em; background: #2b6542; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; letter-spacing: 0.04em; transition: background 0.15s;}
-    .entry-btn:hover { background: #184123;}
-    .admin-login { margin-top: 18px; display: flex; flex-direction: column; align-items: center;}
-    .admin-login input { padding: 8px; border-radius: 6px; border: 1px solid #ccc; margin-bottom: 6px; font-size: 1em; width: 160px;}
-    .admin-login button { padding: 7px 18px; border-radius: 6px; border: none; background: #218838; color: #fff; font-weight: 600; cursor: pointer;}
-    .admin-info { color: #218838; margin-top: 8px; font-size: 0.95em; font-weight: 600;}
-    .panel.right-panel { background: #14281d; color: #fff; font-size: 1em; min-width: 250px; max-width: 350px; word-break: break-word;}
-    ul.toc { padding: 0; margin: 0; list-style-type: disc; padding-left: 18px;}
-    ul.toc > li { margin-bottom: 10px; font-size: 1.05em; font-weight: 700; letter-spacing: 0.01em;}
-    ul.toc ul { margin-top: 4px; margin-bottom: 6px; margin-left: 14px; font-size: 0.97em;}
-    ul.toc li ul li { font-weight: 400; font-size: 0.96em; margin-bottom: 4px; margin-top: 4px;}
-    ul.toc a { color: #c2ffd5; text-decoration: underline; transition: color 0.15s;}
-    ul.toc a:hover { color: #b8f570;}
-    @media (max-width: 900px) { .main-wrap { flex-direction: column; gap: 18px; max-width: 99vw; } .panel { max-width: 100%; min-width: unset; } }
-    .regulamin { max-width: 900px; margin: 36px auto 0 auto; font-size: 0.97em; background: #fff; border-radius: 10px; box-shadow: 0 2px 10px #1f3d2c18; padding: 18px 26px 18px 26px; color: #233729; line-height: 1.55;}
-    .regulamin strong { font-weight: 700; }
+    :root {
+      --green-dark: #14281d;
+      --green-main: #218838;
+      --white: #fff;
+      --gray-bg: #f6f6f2;
+      --font-light: #e5ede0;
+      --panel-width: 360px;
+      --panel-gap: 1cm;
+      --margin-h: 1cm;
+      --radius: 14px;
+    }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--gray-bg);
+      color: var(--green-dark);
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+    }
+    .main-titlebar {
+      width: 100vw;
+      background: var(--green-main);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 51px;
+      box-sizing: border-box;
+      border-bottom: 2.5px solid var(--green-dark);
+      font-size: 1.09em;
+      font-weight: bold;
+      letter-spacing: 0.03em;
+      position: relative;
+      /* rozciągnięcie na całość, ale zawartość (panele) wyśrodkowana niżej */
+      padding: 0;
+    }
+    .main-titlebar .bar-inner {
+      width: calc(2 * var(--panel-width) + var(--panel-gap));
+      min-width: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 auto;
+      height: 100%;
+    }
+    .main-titlebar .bar-left {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100%;
+    }
+    .main-titlebar .bar-center {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 140px;
+      font-size: 1.12em;
+      letter-spacing: 0.01em;
+    }
+    .main-titlebar .bar-right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 14px;
+    }
+    .main-titlebar .contact {
+      font-size: 0.93em;
+      color: #e7fff3;
+      opacity: 0.95;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      transition: text-decoration 0.2s;
+      display: flex;
+      align-items: center;
+    }
+    .main-titlebar .contact:hover {
+      text-decoration: underline;
+      color: #fff;
+    }
+    #lang-select-container {
+      display: flex;
+      align-items: center;
+      margin-right: 5px;
+    }
+    #lang-select {
+      font-size: 1em; padding: 2.5px 12px; border-radius: 7px;
+      background: var(--green-dark); color: var(--font-light);
+      border: none; font-weight: 600; margin-right: 0px;
+    }
+    .admin-login {
+      opacity: 0.41;
+      background: rgba(33, 136, 56, 0.11);
+      border-radius: 7px;
+      padding: 2px 7px 2px 7px;
+      display: flex;
+      align-items: center;
+      font-size: 0.93em;
+      margin-left: 6px;
+      transition: opacity 0.17s;
+    }
+    .admin-login input {
+      padding: 2px 6px; border-radius: 5px; border: 1px solid #c7eac5;
+      margin-right: 4px; font-size: 0.99em; width: 77px;
+      background: #e5ede044; color: #184123;
+    }
+    .admin-login button {
+      padding: 2px 10px; border-radius: 6px; border: none;
+      background: var(--green-dark); color: var(--white); font-weight: 500; cursor: pointer; font-size: 0.98em;
+    }
+    .admin-info {
+      color: #c6ffd6; font-size: 0.91em; font-weight: 600; margin-left: 8px;
+      display: inline-block;
+    }
+    .main-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: var(--panel-gap);
+      margin: 0 auto;
+      max-width: calc(2 * var(--panel-width) + var(--panel-gap) + 2 * var(--margin-h));
+      padding-left: var(--margin-h); padding-right: var(--margin-h);
+      box-sizing: border-box;
+    }
+    .panel {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px #1f3d2c1a;
+      padding: 18px 14px 15px 14px;
+      min-width: 0;
+      width: var(--panel-width);
+      max-width: var(--panel-width);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .panel.left-panel { align-items: center;}
+    .panel.right-panel {
+      background: var(--green-dark);
+      color: var(--font-light);
+      align-items: flex-start;
+      min-height: 240px;
+      max-height: 370px;
+      overflow-y: auto;
+      border-radius: var(--radius);
+    }
+    .logo {
+      width: 79px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      box-shadow: 0 2px 7px #1f3d2c16;
+    }
+    .headline {
+      font-size: 1em;
+      margin-bottom: 12px;
+      color: var(--green-main);
+      font-weight: 600;
+      text-align: center;
+    }
+    .entry-btn {
+      margin: 12px 0 7px 0;
+      padding: 8px 34px;
+      font-size: 1em;
+      background: var(--green-dark);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      box-shadow: 0 1px 6px #1f3d2c0d;
+      transition: background 0.13s, transform 0.09s;
+    }
+    .entry-btn:hover { background: var(--green-main); transform: scale(1.02);}
+    ul.toc { width: 100%; padding: 0; margin: 0; list-style-type: disc; padding-left: 15px;}
+    ul.toc > li { margin-bottom: 10px; font-size: 1em; font-weight: 700; color: var(--font-light);}
+    .regulamin {
+      width: var(--panel-width);
+      max-width: var(--panel-width);
+      min-width: 0;
+      margin: 20px auto 29px auto;
+      background: var(--green-dark);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 10px #1f3d2c10;
+      padding: 10px 14px 11px 14px;
+      color: var(--font-light);
+      line-height: 1.54;
+      border: 2px solid var(--green-main);
+      text-align: left;
+      font-size: 0.97em;
+    }
+    .regulamin strong { font-weight: 700; color: var(--white);}
+    @media (max-width: 900px) {
+      :root { --panel-width: 97vw;}
+      .main-titlebar, .main-wrap { max-width: 99vw; min-width: unset; width: 99vw;}
+      .main-titlebar .bar-inner { width: 99vw;}
+      .panel { max-width: 99vw; width: 99vw;}
+      .regulamin { max-width: 99vw; width: 99vw;}
+      .main-titlebar { border-radius: 0; }
+    }
+    @media (max-width: 800px) {
+      .main-wrap { flex-direction: column; gap: 14px;}
+    }
   </style>
 </head>
 <body>
-  <div id="lang-select-container">
-    <select id="lang-select" aria-label="Wybierz język">
-      <option value="pl">PL</option>
-      <option value="en">ENG</option>
-      <option value="de">GER</option>
-    </select>
+  <div class="main-titlebar">
+    <div class="bar-inner">
+      <div class="bar-left">
+        <a class="contact" id="contactInfo" href="mailto:cltplhub@gmail.com">Kontakt z autorem: cltplhub@gmail.com</a>
+      </div>
+      <div class="bar-center">
+        CLT HUB
+      </div>
+      <div class="bar-right">
+        <div id="lang-select-container">
+          <select id="lang-select" aria-label="Wybierz język">
+            <option value="pl">PL</option>
+            <option value="en">ENG</option>
+            <option value="de">GER</option>
+          </select>
+        </div>
+        <form class="admin-login" id="adminLogin" autocomplete="off">
+          <input type="text" id="adminName" placeholder="Login admina">
+          <button type="submit" id="loginBtn">OK</button>
+          <span id="adminInfo" class="admin-info" style="display:none">ADMIN</span>
+        </form>
+      </div>
+    </div>
   </div>
-  <div class="main-title" id="main-title">CLT HUB</div>
   <div class="main-wrap">
     <section class="panel left-panel">
       <img src="logo.png" alt="Logo CLT HUB" class="logo"/>
       <div class="headline" id="headline">CLT level up!</div>
-      <form class="admin-login" id="adminLogin" autocomplete="off">
-        <input type="text" id="adminName" placeholder="Login admina">
-        <button type="submit" id="loginBtn">Zaloguj admina</button>
-        <div id="adminInfo" class="admin-info" style="display:none">Jesteś zalogowany jako admin.</div>
-      </form>
       <button id="entryBtn" class="entry-btn">Wejdź</button>
-      <div class="contact" id="contactInfo">Kontakt z autorem cltplhub@gmail.com</div>
     </section>
     <section class="panel right-panel">
       <ul class="toc" id="toc"></ul>
@@ -64,55 +255,52 @@
     © Wszelkie prawa zastrzeżone (All rights reserved).
   </div>
   <script>
-    // Tłumaczenia statycznych elementów interfejsu
+    // Tłumaczenia
     const translations = {
       pl: {
-        mainTitle: "CLT HUB",
         headline: "CLT level up!",
-        adminPlaceholder: "Login admina",
-        loginBtn: "Zaloguj admina",
-        adminInfo: "Jesteś zalogowany jako admin.",
         entryBtn: "Wejdź",
-        contact: "Kontakt z autorem cltplhub@gmail.com",
+        contact: "Kontakt z autorem: cltplhub@gmail.com",
+        adminPlaceholder: "Login admina",
+        loginBtn: "OK",
+        adminInfo: "ADMIN",
         regulamin: `<strong>Regulamin / Informacje prawne:</strong><br>
           Strona CLT HUB stanowi zbiór informacji oraz bazę wiedzy na temat technologii CLT. Niektóre jej elementy, takie jak kalkulatory inżynieryjne, umożliwiają symulacje i modelowanie, jednak nie zastępują profesjonalnej obsługi ze strony uprawnionego konstruktora lub innych specjalistów branżowych. Autor nie ponosi odpowiedzialności za ewentualne szkody powstałe w wyniku wdrożeń opartych na analizach i symulacjach narzędzi dostępnych w CLT HUB. Lista dostępnych opracowań będzie sukcesywnie rozszerzana (można zgłaszać własne propozycje do wdrożeń).<br>
           © Wszelkie prawa zastrzeżone (All rights reserved).`
       },
       en: {
-        mainTitle: "CLT HUB",
         headline: "CLT level up!",
-        adminPlaceholder: "Admin login",
-        loginBtn: "Log in as admin",
-        adminInfo: "You are logged in as admin.",
         entryBtn: "Enter",
         contact: "Contact: cltplhub@gmail.com",
+        adminPlaceholder: "Admin login",
+        loginBtn: "OK",
+        adminInfo: "ADMIN",
         regulamin: `<strong>Terms & Legal Notice:</strong><br>
           The CLT HUB website is an information base about CLT technology. Some elements, such as engineering calculators, allow simulation and modeling, but do not replace professional support from a licensed structural engineer or other specialists. The author is not responsible for any damages resulting from implementations based on analyses and simulations of the CLT HUB tools. The list of available studies will be successively expanded (you can also submit your own proposals for future implementations).<br>
           © All rights reserved.`
       },
       de: {
-        mainTitle: "CLT HUB",
         headline: "CLT level up!",
-        adminPlaceholder: "Admin-Login",
-        loginBtn: "Als Admin anmelden",
-        adminInfo: "Sie sind als Admin angemeldet.",
         entryBtn: "Eintritt",
         contact: "Kontakt: cltplhub@gmail.com",
+        adminPlaceholder: "Admin-Login",
+        loginBtn: "OK",
+        adminInfo: "ADMIN",
         regulamin: `<strong>Regeln / Rechtliche Hinweise:</strong><br>
           Die Seite CLT HUB ist eine Informations- und Wissensdatenbank zur CLT-Technologie. Einige Elemente, wie die Ingenieurrechner, ermöglichen Simulationen und Modellierungen, ersetzen jedoch nicht die professionelle Betreuung durch einen berechtigten Konstrukteur oder andere Fachleute. Der Autor übernimmt keine Haftung für Schäden, die aus der Umsetzung von Analysen und Simulationen der CLT HUB-Tools entstehen. Die Liste der verfügbaren Studien wird schrittweise erweitert (eigene Vorschläge können eingereicht werden).<br>
           © Alle Rechte vorbehalten.`
       }
     };
 
-    // Zmiana języka UI i TOC
+    // Język
     function setLanguage(lang) {
-      document.getElementById('main-title').textContent = translations[lang].mainTitle;
       document.getElementById('headline').textContent = translations[lang].headline;
+      document.getElementById('entryBtn').textContent = translations[lang].entryBtn;
+      document.getElementById('contactInfo').textContent = translations[lang].contact;
+      document.getElementById('contactInfo').href = "mailto:cltplhub@gmail.com";
       document.getElementById('adminName').placeholder = translations[lang].adminPlaceholder;
       document.getElementById('loginBtn').textContent = translations[lang].loginBtn;
       document.getElementById('adminInfo').textContent = translations[lang].adminInfo;
-      document.getElementById('entryBtn').textContent = translations[lang].entryBtn;
-      document.getElementById('contactInfo').textContent = translations[lang].contact;
       document.getElementById('regulamin').innerHTML = translations[lang].regulamin;
       renderTOC(lang, tocCache);
     }
@@ -123,11 +311,11 @@
       const val = document.getElementById('adminName').value.trim();
       if(val === 'admin') {
         localStorage.setItem('clthub_login', 'admin');
-        document.getElementById('adminInfo').style.display = 'block';
+        document.getElementById('adminInfo').style.display = 'inline-block';
       }
     }
     if(localStorage.getItem('clthub_login') === 'admin') {
-      document.getElementById('adminInfo').style.display = 'block';
+      document.getElementById('adminInfo').style.display = 'inline-block';
     }
 
     // Wejdź: raz bez hotpay, kolejne wejście hotpay, admin zawsze wchodzi
@@ -135,7 +323,7 @@
       const admin = localStorage.getItem("clthub_login") === "admin";
       const wasEntered = localStorage.getItem("clthub_entry") === "true";
       const cltUrl = "HUBCLT.html?free=1&lang=" + document.getElementById('lang-select').value;
-      const hotpayUrl = "https://hotpay.pl/payment/link-przykladowy"; // <-- Podmień na swój!
+      const hotpayUrl = "https://hotpay.pl/payment/link-przykladowy";
       if (admin) {
         window.location.href = cltUrl;
         return;
@@ -148,7 +336,7 @@
       }
     };
 
-    // Spis treści z toc.json (wielojęzycznie)
+    // Spis treści z toc.json — tylko kategorie (PL/EN/DE), bez opisów/podsekcji/linków
     let tocCache = [];
     function renderTOC(lang, toc) {
       const tocRoot = document.getElementById('toc');
@@ -156,42 +344,6 @@
       toc.forEach(section => {
         const sectionLi = document.createElement('li');
         sectionLi.textContent = section["kategoria"+(lang==="pl"?"":(lang==="en"?"_en":"_de"))] || section.kategoria;
-        if (Array.isArray(section.kalkulatory)) {
-          const kalkUl = document.createElement('ul');
-          section.kalkulatory.forEach(kalk => {
-            const kalkLi = document.createElement('li');
-            kalkLi.innerHTML = ""; // reset
-            if (kalk.link && kalk.link !== "#") {
-              const kalkA = document.createElement('a');
-              kalkA.href = kalk.link;
-              kalkA.textContent = kalk["nazwa"+(lang==="pl"?"":(lang==="en"?"_en":"_de"))] || kalk.nazwa;
-              kalkA.target = '_blank';
-              kalkLi.appendChild(kalkA);
-            } else {
-              kalkLi.textContent = kalk["nazwa"+(lang==="pl"?"":(lang==="en"?"_en":"_de"))] || kalk.nazwa;
-            }
-            // Podsekcje
-            if (Array.isArray(kalk.podsekcje) && kalk.podsekcje.length) {
-              const podUl = document.createElement('ul');
-              kalk.podsekcje.forEach(pod => {
-                const podLi = document.createElement('li');
-                if (pod.link && pod.link !== "#") {
-                  const podA = document.createElement('a');
-                  podA.href = pod.link;
-                  podA.textContent = pod["nazwa"+(lang==="pl"?"":(lang==="en"?"_en":"_de"))] || pod.nazwa;
-                  podA.target = '_blank';
-                  podLi.appendChild(podA);
-                } else {
-                  podLi.textContent = pod["nazwa"+(lang==="pl"?"":(lang==="en"?"_en":"_de"))] || pod.nazwa;
-                }
-                podUl.appendChild(podLi);
-              });
-              kalkLi.appendChild(podUl);
-            }
-            kalkUl.appendChild(kalkLi);
-          });
-          sectionLi.appendChild(kalkUl);
-        }
         tocRoot.appendChild(sectionLi);
       });
     }
@@ -206,7 +358,6 @@
         document.getElementById('toc').innerHTML = '<li>Nie udało się pobrać listy sekcji. Sprawdź plik toc.json.</li>';
       });
 
-    // Przełącznik języka
     document.getElementById('lang-select').onchange = function() {
       setLanguage(this.value);
     }
