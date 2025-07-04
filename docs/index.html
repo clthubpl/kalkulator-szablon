@@ -322,7 +322,7 @@
     // --- Funkcja wejścia i HotPay
     function checkEntryOrRedirect() {
       let entryCount = parseInt(localStorage.getItem('clthub_entry') || "0", 10);
-      const adminLogged = localStorage.getItem('clthub_admin') === "1";
+      const adminLogged = localStorage.getItem('clthubadmin') === "1";
       if (adminLogged) return true; // admin ma zawsze dostęp
       if (entryCount === 0) {
         localStorage.setItem('clthub_entry', "1");
