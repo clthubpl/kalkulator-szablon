@@ -1,375 +1,376 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CLT HUB</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --panel-h: 520px;
-      --panel-max: 1100px;
-      --panel-min: 320px;
-      --clr-bg: #dee0de;
-      --clr-main: #12291d;
-      --clr-btn: #1fb24c;
-      --clr-btn-txt: #fff;
-      --clr-scroll: #6fffc2;
-      --radius-xl: 44px;
+      --green: #218838;
+      --bg: #14281d;
+      --panel-radius: 10px;
     }
     html, body {
+      margin: 0;
+      padding: 0;
       height: 100%;
-      margin: 0; padding: 0;
-      background: var(--clr-bg);
-      font-family: 'Inter', 'Montserrat', Arial, sans-serif;
+      font-family: 'Arial Narrow', Arial, sans-serif;
+      background: var(--bg);
     }
     body {
       min-height: 100vh;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      margin: 0;
+      color: #999;
+      width: 100vw;
+      height: 100vh;
+      overflow-x: hidden;
     }
-    .mainpanel {
-      margin: 1.2vw auto 0;  /* <-- zmniejszony odstęp od góry */
-      width: 95vw;
-      max-width: var(--panel-max);
-      min-width: var(--panel-min);
-      min-height: var(--panel-h);
-      background: var(--clr-main);
-      border-radius: var(--radius-xl);
-      box-shadow: 0 6px 36px #183e2b22;
+    .main-wrap {
+      width: 100vw;
+      min-height: 100vh;
+      background: var(--bg);
       display: flex;
       flex-direction: row;
-      gap: 0;
+      align-items: flex-start;
+      justify-content: center;
       padding: 0;
-      position: relative;
-      overflow: visible;
-      transition: all 0.2s;
-    }
-    .panel {
-      display: flex;
-      flex-direction: column;
-      height: var(--panel-h);
-      justify-content: flex-start;
-      min-width: 0;
+      box-sizing: border-box;
     }
     .panel-left {
-      flex: 0 1 45%;
-      align-items: flex-start;
-      padding: 44px 0 36px 44px;
-      box-sizing: border-box;
-      position: relative;
-      z-index: 1;
-    }
-    .panel-right {
-      flex: 0 1 55%;
-      padding: 44px 44px 36px 32px;
-      box-sizing: border-box;
+      flex: 1 1 44%;
+      min-width: 290px;
       display: flex;
       flex-direction: column;
-      height: var(--panel-h);
-      min-width: 280px;
+      align-items: flex-start;
+      padding-left: 4vw;
+      padding-right: 1vw;
+      margin-top: 2vh;
+      margin-bottom: 2vh;
     }
-    .clt-logo {
-      width: 110px;
-      height: 110px;
-      object-fit: contain;
+    .logo-headline-row {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      width: 100%;
+      margin-bottom: 0.5vh;
+    }
+    .logo-box {
+      width: 68px;
+      height: 68px;
       background: #fff;
-      border-radius: 18px;
-      margin-bottom: 4px;
-      box-shadow: 0 0 8px #0001;
+      border-radius: var(--panel-radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 1px 3px #1115;
+      margin-right: 2vw;
+    }
+    .logo-box img {
+      width: 90%;
+      height: 90%;
+      object-fit: contain;
+      display: block;
     }
     .headline {
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-size: 1.42rem;
-      font-weight: 700;
-      margin: 0 0 10px 0;
-      letter-spacing: 1px;
-      color: #fff;
-      line-height: 1.12;
+      font-family: 'Arial Narrow', Arial, sans-serif;
+      font-weight: bold;
+      color: #999;
+      margin: 0;
+      padding: 0;
+      flex: 1 1 auto;
+      text-align: left;
+      /* Font-size & width: dynamic, 20% szerszy od przycisku, max 98vw on mobile */
+      font-size: 2.7em;
+      min-width: 220px;
+      width: calc(320px + 18vw);
+      max-width: 90vw;
+      letter-spacing: 0.4px;
+      line-height: 1.05em;
+      transition: width 0.2s, font-size 0.2s;
+      white-space: nowrap;
+    }
+    .button-row {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 1.3vh;
+      margin-bottom: 0;
     }
     .entry-btn {
-      margin: 10px 0 0 0;
-      font-size: 1.08rem;
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 600;
-      background: var(--clr-btn);
-      color: var(--clr-btn-txt);
+      background: var(--green);
+      color: #fff;
+      font-family: 'Arial Narrow', Arial, sans-serif;
+      font-size: 2.2em;
+      font-weight: bold;
+      padding: 0.19em 1.8em 0.19em 1.8em;
       border: none;
-      border-radius: 16px;
-      padding: 10px 38px 6px 38px;
-      min-width: 230px;
-      min-height: 56px;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px #21883833;
+      margin: 0 0.1em;
       cursor: pointer;
-      box-shadow: 0 2px 8px #0003;
+      min-width: 200px;
+      width: 65vw;
+      max-width: 420px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      line-height: 1.1;
+      text-align: center;
+      transition: width 0.2s, font-size 0.2s;
+      outline: none;
     }
-    .entry-btn .entry-line1 {
-      font-size: 1.25em;
-      font-weight: 700;
-      margin-bottom: 0px;
+    .entry-btn .entry-desc {
       color: #fff;
-      font-family: 'Montserrat', Arial, sans-serif;
-      letter-spacing: 1px;
+      opacity: 0.76;
+      font-size: 0.36em;
+      font-weight: normal;
+      margin: 0;
+      line-height: 1.13em;
+      padding-top: 0.18em;
     }
-    .entry-btn .entry-line2 {
-      font-size: 0.84em;
-      color: #31e66d;
-      font-family: 'Inter', Arial, sans-serif;
-      font-weight: 500;
-      margin-top: -2px;
-      letter-spacing: 0.2px;
-    }
-    .entry-btn:active {
-      background: #13a13a;
-    }
-    .regulamin-scroll {
-      width: 96%;
-      height: 110px;
-      margin-top: 15px;
-      background: none;
-      color: #fff;
-      font-size: 0.89rem;
-      line-height: 1.32;
+    .legal-box {
+      margin-top: 2vh;
+      margin-bottom: 0;
+      width: 98%;
+      min-height: 100px;
+      height: 140px;
       overflow-y: auto;
-      border: none;
-      scrollbar-width: thin;
-      scrollbar-color: var(--clr-scroll) #26372c;
+      font-size: 1em;
+      color: #999;
+      line-height: 1.16em;
+      padding-right: 8px;
+      text-align: left;
+      background: transparent;
     }
-    .regulamin-scroll::-webkit-scrollbar {
-      width: 9px;
-      background: #24382b;
-      border-radius: 6px;
-    }
-    .regulamin-scroll::-webkit-scrollbar-thumb {
-      background: var(--clr-scroll);
-      border-radius: 6px;
+    .panel-toc {
+      flex: 1 1 56%;
+      min-width: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 2.2vh;
+      margin-right: 2vw;
+      color: #999;
+      min-height: 80vh;
     }
     .toc-title {
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 13px;
-      margin-top: 0;
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #218838;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
     }
-    .toc-scroll {
-      flex: 1 1 auto;
-      background: none;
-      color: #fff;
-      font-size: 0.94rem;
-      line-height: 1.35;
+    .toc-list {
+      width: 100%;
+      height: 420px;
       overflow-y: auto;
-      border: none;
-      padding-right: 8px;
+      font-size: 1em;
+      color: #999;
+      line-height: 1.17em;
+      padding-left: 22px;
+      margin-top: 0.1em;
+      margin-bottom: 0;
+      box-sizing: border-box;
+    }
+    .panel-toc .toc-list::-webkit-scrollbar,
+    .legal-box::-webkit-scrollbar {
+      width: 10px;
+    }
+    .panel-toc .toc-list::-webkit-scrollbar-thumb,
+    .legal-box::-webkit-scrollbar-thumb {
+      background: var(--green);
+      border-radius: 5px;
+    }
+    .panel-toc .toc-list::-webkit-scrollbar-track,
+    .legal-box::-webkit-scrollbar-track {
+      background: #14281d;
+    }
+    .panel-toc .toc-list, .legal-box {
       scrollbar-width: thin;
-      scrollbar-color: var(--clr-scroll) #26372c;
-      height: 194px;
-      min-height: 120px;
-      max-height: 214px;
+      scrollbar-color: var(--green) #14281d;
     }
-    .toc-scroll::-webkit-scrollbar {
-      width: 9px;
-      background: #24382b;
-      border-radius: 6px;
+    /* Scrollbary: równa długość */
+    .panel-toc .toc-list {
+      padding-bottom: 20px;
     }
-    .toc-scroll::-webkit-scrollbar-thumb {
-      background: var(--clr-scroll);
-      border-radius: 6px;
-    }
-    .toc-section-title {
-      margin-top: 7px;
-      font-size: 1.08rem;
-      font-weight: 700;
-      font-family: 'Montserrat', Arial, sans-serif;
-      color: #fff;
-    }
-    .toc-scroll ul {
-      padding-left: 1.15em;
-      margin: 5px 0 0 0;
-    }
-    .toc-scroll li {
-      font-size: 0.93rem;
-      margin-bottom: 2px;
-    }
-    .lang-select {
+    .lang-box {
       position: absolute;
-      top: 16px;
-      right: 24px;
-      font-size: 1.03rem;
+      top: 2vh;
+      right: 2vw;
+      z-index: 2;
       background: #fff;
-      color: #1d341d;
-      border-radius: 16px;
-      padding: 2px 14px 2px 7px;
+      border-radius: 26px;
+      box-shadow: 0 0 5px #14281d18;
+      padding: 2px 14px;
+    }
+    .lang-box select {
       border: none;
-      box-shadow: 0 1px 4px #0002;
+      font-size: 1.12em;
+      font-family: 'Arial Narrow', Arial, sans-serif;
+      background: transparent;
+      color: #222;
       outline: none;
-      z-index: 4;
-      font-family: 'Inter', Arial, sans-serif;
-      font-weight: 600;
-      transition: box-shadow .13s;
+      padding: 0;
     }
-    @media (max-width: 900px) {
-      .mainpanel { max-width: 99vw; flex-direction: column;}
-      .panel { width: 100%; height: unset; }
-      .panel-left, .panel-right { padding: 20px 12px 14px 14px; height: unset;}
-      .toc-scroll { max-height: 160px;}
-      .lang-select { top: 8px; right: 10px;}
-      .headline { font-size: 1.05rem;}
-      .clt-logo { width: 68px; height: 68px;}
-      .entry-btn { min-width: 140px; min-height: 36px; font-size: .84rem;}
-      .regulamin-scroll { font-size: .67rem;}
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .main-wrap {
+        flex-direction: column;
+        min-height: 670px;
+        height: auto;
+      }
+      .panel-left, .panel-toc {
+        min-width: 0;
+        width: 98vw;
+      }
+      .panel-toc { margin-left: 0; margin-top: 2vw; min-height: unset; }
+      .legal-box { height: 90px; font-size: 0.92em;}
     }
-    @media (max-width: 600px) {
-      .mainpanel { border-radius: 13px;}
-      .panel-left, .panel-right { padding: 7px 2vw 10px 2vw;}
-      .toc-title { font-size: .89rem;}
-      .toc-section-title { font-size: .87rem;}
-      .toc-scroll { font-size: .82rem;}
+    @media (max-width: 700px) {
+      .main-wrap { padding: 0; }
+      .logo-box { width: 43px; height: 43px; }
+      .headline { font-size: 1.1em; min-width: 108px; }
+      .entry-btn { font-size: 1em; min-width: 76px; }
+      .panel-toc .toc-title { font-size: 0.98em; }
+      .legal-box { font-size: 0.7em; height: 70px;}
+      .panel-toc .toc-list { font-size: 0.78em; }
     }
   </style>
 </head>
 <body>
-  <div class="mainpanel">
-    <div class="panel panel-left">
-      <img src="https://clthubpl.github.io/kalkulator-szablon/docs/logo.png" alt="Logo CLT HUB" class="clt-logo" />
-      <div class="headline">CLT level up!</div>
-      <!-- PRZYCISK z dwoma liniami -->
-      <button class="entry-btn">
-        <span class="entry-line1">Wejdź</span>
-        <span class="entry-line2">(jedna sesja bezpłatnie)</span>
-      </button>
-      <div class="regulamin-scroll"></div>
-    </div>
-    <div class="panel panel-right">
-      <select class="lang-select" aria-label="Język / Language">
+  <div class="main-wrap">
+    <div class="lang-box">
+      <select id="lang" aria-label="Wybierz język">
         <option value="pl">PL</option>
         <option value="en">EN</option>
         <option value="de">DE</option>
       </select>
-      <div class="toc-title"></div>
-      <div class="toc-scroll"></div>
+    </div>
+    <div class="panel-left">
+      <div class="logo-headline-row">
+        <div class="logo-box">
+          <img src="https://clthubpl.github.io/kalkulator-szablon/docs/logo.png" alt="Logo CLT HUB">
+        </div>
+        <div class="headline" id="title-txt">CLT level up!</div>
+      </div>
+      <div class="button-row">
+        <button class="entry-btn" id="entryBtn">
+          <span id="btn-main">Wejdź</span>
+          <span class="entry-desc" id="entry-desc">jedna sesja bezpłatnie</span>
+        </button>
+      </div>
+      <div class="legal-box" id="legal-txt"></div>
+    </div>
+    <div class="panel-toc">
+      <div class="toc-title" id="toc-title">Spis treści HUB CLT</div>
+      <ul class="toc-list" id="toc-list"></ul>
     </div>
   </div>
   <script>
-    // PL / EN / DE content
-    const texts = {
+    const translations = {
       pl: {
-        headline: "CLT level up!",
-        button1: "Wejdź",
-        button2: "(jedna sesja bezpłatnie)",
-        tocTitle: "Spis treści HUB CLT",
-        tocHtml: `
-        <div class="toc-section-title">Kalkulatory CLT</div>
-        <ul>
-          <li>Kalkulator masy</li>
-          <li>Kalkulator statyki</li>
-        </ul>
-        <div class="toc-section-title">Budowa i tematyka CLT</div>
-        <ul>
-          <li>Rodzaje budowli w technologii CLT</li>
-          <li>Cross-Laminated Timber (CLT) Drewno Klejone Krzyżowo</li>
-          <li>Główne certyfikaty i zaświadczenia związane z CLT</li>
-          <li>Główne wymagania ETA dla CLT</li>
-          <li>Software</li>
-          <li>Proces projektowy dla Biura projektowego/ Architekta</li>
-          <li>Współpraca z producentem płyty CLT</li>
-          <li>Przegrody CLT i rodzaje</li>
-          <li>Lista czynności dla typowego obiektu CLT</li>
-          <li>Zagadnienia dotyczące drewna</li>
-          <li>Zalecenia</li>
-          <li>Parametry płyty</li>
-          <li>Akustyka</li>
-          <li>Błędy</li>
-        </ul>`,
-        regulamin: `Regulamin / Informacje prawne:<br>
-        Strona CLT HUB stanowi zbiór informacji oraz bazę wiedzy na temat technologii CLT. Niektóre jej elementy, takie jak kalkulatory inżynieryjne, umożliwiają symulacje i modelowanie, jednak nie zastępują profesjonalnej obsługi ze strony uprawnionego konstruktora lub innych specjalistów branżowych. Autor nie ponosi odpowiedzialności za ewentualne szkody powstałe w wyniku wdrożeń opartych na analizach i symulacjach narzędzi dostępnych w CLT HUB. Lista dostępnych opracowań będzie sukcesywnie rozszerzana (można zgłaszać własne propozycje do wdrożeń).<br>
-        © Wszelkie prawa zastrzeżone (All rights reserved).`
+        title: "CLT level up!",
+        entry: "Wejdź",
+        entryDesc: "jedna sesja bezpłatnie",
+        legal: `Regulamin / Informacje prawne:<br>
+Strona CLT HUB stanowi zbiór informacji oraz bazę wiedzy na temat technologii CLT. Niektóre jej elementy, takie jak kalkulatory inżynieryjne, umożliwiają symulacje i modelowanie, jednak nie zastępują profesjonalnej obsługi ze strony uprawnionego konstruktora lub innych specjalistów branżowych. Autor nie ponosi odpowiedzialności za ewentualne szkody powstałe w wyniku wdrożeń. Lista dostępnych opracowań będzie sukcesywnie rozszerzana (można zgłaszać własne propozycje do wdrożeń).<br>
+© Wszelkie prawa zastrzeżone (All rights reserved).`,
+        toc: "Spis treści HUB CLT",
+        list: [
+          "<strong>Kalkulatory CLT</strong>",
+          "Kalkulator masy",
+          "Kalkulator statyki",
+          "<strong>Budowa i tematyka CLT</strong>",
+          "Rodzaje budowli w technologii CLT",
+          "Cross-Laminated Timber (CLT) Drewno Klejone Krzyżowo",
+          "Główne certyfikaty i zaświadczenia związane z CLT",
+          "Główne wymagania ETA dla CLT",
+          "Software",
+          "Proces projektowy dla Biura projektowego/ Architekta",
+          "Współpraca z producentem płyty CLT",
+          "Przegrody CLT i rodzaje",
+          "Lista czynności dla typowego obiektu CLT",
+          "Zagadnienia dotyczące drewna",
+          "Zalecenia",
+          "Parametry płyty",
+          "Akustyka",
+          "Błędy",
+          "Aktualności"
+        ]
       },
       en: {
-        headline: "CLT level up!",
-        button1: "Enter",
-        button2: "(one free session)",
-        tocTitle: "CLT HUB Contents",
-        tocHtml: `
-        <div class="toc-section-title">CLT Calculators</div>
-        <ul>
-          <li>Mass calculator</li>
-          <li>Statics calculator</li>
-        </ul>
-        <div class="toc-section-title">CLT construction & topics</div>
-        <ul>
-          <li>Types of buildings in CLT technology</li>
-          <li>Cross-Laminated Timber (CLT) Cross-glued timber</li>
-          <li>Main CLT certificates and attestations</li>
-          <li>Main ETA requirements for CLT</li>
-          <li>Software</li>
-          <li>Design process for design offices / architects</li>
-          <li>Cooperation with CLT panel manufacturer</li>
-          <li>CLT partitions and types</li>
-          <li>Checklist for typical CLT object</li>
-          <li>Wood-related topics</li>
-          <li>Recommendations</li>
-          <li>Panel parameters</li>
-          <li>Acoustics</li>
-          <li>Errors</li>
-        </ul>`,
-        regulamin: `Terms / Legal information:<br>
-        The CLT HUB website is an information repository and knowledge base on CLT technology. Some of its features, such as engineering calculators, enable simulation and modelling, but do not substitute for professional service from a licensed structural engineer or other industry specialists. The author assumes no responsibility for any damage resulting from implementations based on analyses and simulations using tools available on CLT HUB. The list of available materials will be gradually expanded (you can submit your own suggestions for future implementations).<br>
-        © All rights reserved.`
+        title: "CLT level up!",
+        entry: "Enter",
+        entryDesc: "one free session",
+        legal: `Legal notice / Disclaimer:<br>
+The CLT HUB site is a collection of information and a knowledge base on CLT technology. Some elements, such as engineering calculators, enable simulation and modeling but do not replace professional services of a certified structural engineer or other specialists. The author is not liable for any damages resulting from implementations. The list of available studies will be gradually expanded (proposals for new topics are welcome).<br>
+© All rights reserved.`,
+        toc: "CLT HUB Contents",
+        list: [
+          "<strong>CLT Calculators</strong>",
+          "Mass calculator",
+          "Statics calculator",
+          "<strong>CLT Construction & Topics</strong>",
+          "Types of buildings in CLT technology",
+          "Cross-Laminated Timber (CLT) Panel",
+          "Main certificates and declarations for CLT",
+          "Main ETA requirements for CLT",
+          "Software",
+          "Design process for design office/ architect",
+          "Cooperation with CLT panel manufacturer",
+          "CLT partitions and types",
+          "Checklist for a typical CLT building",
+          "Timber-related topics",
+          "Recommendations",
+          "Panel parameters",
+          "Acoustics",
+          "Errors",
+          "Updates"
+        ]
       },
       de: {
-        headline: "CLT level up!",
-        button1: "Eintritt",
-        button2: "(eine Sitzung kostenlos)",
-        tocTitle: "CLT HUB Inhaltsverzeichnis",
-        tocHtml: `
-        <div class="toc-section-title">CLT-Rechner</div>
-        <ul>
-          <li>Massenrechner</li>
-          <li>Statikrechner</li>
-        </ul>
-        <div class="toc-section-title">Bau und Themen zu CLT</div>
-        <ul>
-          <li>Arten von Gebäuden in CLT-Technologie</li>
-          <li>Cross-Laminated Timber (CLT) Brettsperrholz</li>
-          <li>Hauptzertifikate und Bescheinigungen für CLT</li>
-          <li>Wesentliche ETA-Anforderungen für CLT</li>
-          <li>Software</li>
-          <li>Planungsprozess für Architekten / Planungsbüros</li>
-          <li>Zusammenarbeit mit CLT-Plattenhersteller</li>
-          <li>CLT-Wände und Typen</li>
-          <li>Checkliste für typische CLT-Projekte</li>
-          <li>Themen zu Holz</li>
-          <li>Empfehlungen</li>
-          <li>Plattenparameter</li>
-          <li>Akustik</li>
-          <li>Fehler</li>
-        </ul>`,
-        regulamin: `Rechtlicher Hinweis / AGB:<br>
-        Die CLT HUB-Seite bietet eine Sammlung von Informationen und eine Wissensdatenbank über CLT-Technologie. Einige ihrer Funktionen, wie Ingenieurrechner, ermöglichen Simulationen und Modellierungen, ersetzen jedoch nicht die professionelle Betreuung durch einen zertifizierten Statiker oder andere Fachleute. Der Autor übernimmt keine Haftung für Schäden, die sich aus der Umsetzung von Analysen und Simulationen der im CLT HUB verfügbaren Tools ergeben. Die Liste der verfügbaren Studien wird laufend erweitert (eigene Vorschläge können eingereicht werden).<br>
-        © Alle Rechte vorbehalten.`
+        title: "CLT level up!",
+        entry: "Los",
+        entryDesc: "eine kostenlose Sitzung",
+        legal: `Rechtliche Hinweise / Disclaimer:<br>
+Die CLT HUB-Seite ist eine Informations- und Wissenssammlung zur CLT-Technologie. Einige Elemente wie Ingenieurrechner ermöglichen Simulationen und Modellierungen, ersetzen aber nicht die professionelle Betreuung durch einen zertifizierten Statiker oder andere Spezialisten. Der Autor übernimmt keine Haftung für Schäden, die durch Umsetzungen entstehen. Die Liste verfügbarer Studien wird sukzessive erweitert (Vorschläge für neue Themen willkommen).<br>
+© Alle Rechte vorbehalten.`,
+        toc: "CLT HUB-Inhalte",
+        list: [
+          "<strong>CLT-Rechner</strong>",
+          "Massenrechner",
+          "Statikrechner",
+          "<strong>CLT-Bau & Themen</strong>",
+          "Arten von Gebäuden in CLT-Technologie",
+          "Cross-Laminated Timber (CLT) Brettsperrholz",
+          "Hauptzertifikate und Bescheinigungen zu CLT",
+          "Hauptanforderungen ETA für CLT",
+          "Software",
+          "Planungsprozess für das Planungsbüro/Architekten",
+          "Zusammenarbeit mit CLT-Plattenhersteller",
+          "CLT-Trennwände und Typen",
+          "Checkliste für ein typisches CLT-Gebäude",
+          "Holzbezogene Fragen",
+          "Empfehlungen",
+          "Plattenparameter",
+          "Akustik",
+          "Fehler",
+          "Aktuelles"
+        ]
       }
     };
-
-    function setLang(lang) {
-      const t = texts[lang];
-      document.querySelector('.headline').textContent = t.headline;
-      document.querySelector('.entry-btn .entry-line1').textContent = t.button1;
-      document.querySelector('.entry-btn .entry-line2').textContent = t.button2;
-      document.querySelector('.toc-title').textContent = t.tocTitle;
-      document.querySelector('.toc-scroll').innerHTML = t.tocHtml;
-      document.querySelector('.regulamin-scroll').innerHTML = t.regulamin;
-    }
-    document.querySelector('.lang-select').addEventListener('change', function() {
-      setLang(this.value);
-    });
-    setLang('pl');
+    const langSel = document.getElementById("lang");
+    const setLang = l => {
+      const t = translations[l];
+      document.getElementById("title-txt").innerHTML = t.title;
+      document.getElementById("btn-main").innerText = t.entry;
+      document.getElementById("entry-desc").innerText = t.entryDesc;
+      document.getElementById("legal-txt").innerHTML = t.legal;
+      document.getElementById("toc-title").innerText = t.toc;
+      document.getElementById("toc-list").innerHTML = t.list.map(li => `<li>${li}</li>`).join("");
+    };
+    langSel.onchange = () => setLang(langSel.value);
+    setLang(langSel.value);
   </script>
 </body>
 </html>
