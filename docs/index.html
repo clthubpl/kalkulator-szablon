@@ -123,7 +123,7 @@
       height: 100%;
       justify-content: flex-start;
       transition: filter 0.2s;
-      margin-top: 56px; /* odstęp od paska język+poczta */
+      margin-top: 56px;
     }
     @media (max-width: 800px) {
       .main-container {
@@ -376,71 +376,12 @@
       font-family: Arial, sans-serif;
       user-select: none;
     }
-    .login-modal {
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      display: none;
-      background: #14281dcb;
-      z-index: 999;
-      justify-content: center;
-      align-items: center;
-    }
-    .login-modal.active { display: flex; }
-    .login-box {
-      background: #fff;
-      border-radius: 18px;
-      padding: 2.2em 2.5em;
-      min-width: 240px;
-      min-height: 140px;
-      box-shadow: 0 0 18px #0005;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    .login-box h2 {
-      font-size: 1.38em;
-      margin-bottom: 1.3em;
-      color: var(--green);
-      font-family: inherit;
-    }
-    .login-box input[type="password"] {
-      font-size: 1.17em;
-      padding: 0.32em 0.9em;
-      border-radius: 8px;
-      border: 1.5px solid var(--green);
-      margin-bottom: 1.4em;
-      width: 180px;
-      outline: none;
-      color: var(--green);
-    }
-    .login-box button {
-      background: var(--green);
-      color: #fff;
-      font-size: 1.08em;
-      border: none;
-      padding: 0.45em 1.9em;
-      border-radius: 8px;
-      cursor: pointer;
-      font-family: inherit;
-      font-weight: bold;
-    }
-    .close-login {
-      position: absolute;
-      top: 12px; right: 18px;
-      background: none; border: none;
-      font-size: 1.5em;
-      color: var(--green);
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .login-info {
-      color: var(--green);
-      font-size: 1em;
-      margin-top: 0.7em;
-      font-family: inherit;
-    }
+    /* Edytor UI */
+    .ed-panel input, .ed-panel select, .ed-panel button { font-size: 1em; }
+    .ed-panel label { margin-bottom:2px;display:inline-block;}
+    .ed-panel .ed-group { margin-bottom: 10px; }
+    .ed-panel .ed-apply { background: #218838; color: #fff; border-radius: 7px; border: none; font-size: 1.08em; padding: 6px 18px; margin-left: 6px; cursor: pointer; }
+    .ed-panel .ed-reset { background: #c92828; color: #fff; border-radius: 7px; border: none; font-size: 1.08em; padding: 6px 18px; margin-left: 6px; cursor: pointer; margin-top: 16px; }
   </style>
 </head>
 <body>
@@ -489,6 +430,96 @@
   <div class="copyright">
     © Copyright
   </div>
+  <!-- PANEL EDYTORA UI/UX Z IMPORTEM PRESETÓW GITHUB -->
+  <div id="uiEditorPanel" style="display:none; position:fixed; bottom:32px; right:32px; z-index:19999; background:#fff; border:2px solid #218838; border-radius:16px; box-shadow:0 4px 16px #14281d33; padding:22px 18px; min-width:340px;" class="ed-panel">
+    <button style="position:absolute;top:13px;right:13px;font-size:1.5em;background:none;border:none;color:#218838;cursor:pointer;" onclick="uiEditorPanel.style.display='none'">&times;</button>
+    <div style="margin-bottom:10px;">
+      <label for="ed-section"><b>Sekcja do edycji:</b></label>
+      <select id="ed-section" onchange="onEdSectionChange()">
+        <option value="body">Tło strony</option>
+        <option value="left-panel">Panel lewy</option>
+        <option value="right-panel">Panel prawy</option>
+        <option value="headline">Nagłówek główny</option>
+        <option value="regulamin">Regulamin</option>
+        <option value="entry-btn">Przycisk wejścia</option>
+        <option value="toc-header">Nagłówek spisu</option>
+        <option value="toc-list">Lista spisu treści</option>
+        <option value="copyright">Stopka</option>
+        <option value="reklama-bar">Panel reklamy</option>
+        <option value="mail-title">Tekst „Napisz do nas”</option>
+        <option value="free">Tekst „(jedna sesja bezpłatnie)”</option>
+      </select>
+    </div>
+    <div id="ed-group-color" style="margin-bottom:10px;">
+      <label for="ed-color">Kolor tła/tekstu:</label>
+      <input type="color" id="ed-color" value="#218838" style="vertical-align:middle;" onchange="applyEdColor()"/>
+      <input type="text" id="ed-color-text" value="#218838" style="width:95px;margin-left:10px;" oninput="applyEdColor(true)" placeholder="#218838"/>
+    </div>
+    <div id="ed-group-bg" style="display:none;margin-bottom:10px;">
+      <label for="ed-bg">Tło (gradient/url):</label>
+      <input type="text" id="ed-bg" style="width: 180px;" placeholder="linear-gradient(...) lub url(...)"/>
+      <button onclick="applyEdBg()">OK</button>
+    </div>
+    <div id="ed-group-text" style="display:none;margin-bottom:10px;">
+      <label for="ed-text">Treść sekcji:</label>
+      <input type="text" id="ed-text" style="width:180px;" />
+      <button onclick="applyEdText()">OK</button>
+    </div>
+    <div style="margin-bottom:10px;">
+      <label for="ed-fontsize">Rozmiar czcionki:</label>
+      <input type="number" id="ed-fontsize" min="8" max="120" step="1" style="width:60px;" value="18" onchange="applyEdFontsize()"/> px
+    </div>
+    <div style="margin-bottom:10px;">
+      <label for="ed-radius">Zaokrąglenie rogów:</label>
+      <input type="number" id="ed-radius" min="0" max="50" step="1" style="width:60px;" value="0" onchange="applyEdRadius()"/> px
+    </div>
+    <div style="margin-bottom:10px;">
+      <label for="ed-shadow">Cień (CSS):</label>
+      <input type="text" id="ed-shadow" style="width:170px;" onchange="applyEdShadow()" placeholder="np. 0 4px 24px #0005"/>
+    </div>
+    <div style="margin-bottom:10px;">
+      <label for="ed-fontfam">Czcionka (font-family):</label>
+      <select id="ed-fontfam" onchange="applyEdFontfam()">
+        <option value="">(domyślna)</option>
+        <option value="Arial, sans-serif">Arial</option>
+        <option value="Segoe UI, sans-serif">Segoe UI</option>
+        <option value="Verdana, sans-serif">Verdana</option>
+        <option value="'Arial Narrow', Arial, sans-serif">Arial Narrow</option>
+        <option value="Georgia, serif">Georgia</option>
+        <option value="Tahoma, sans-serif">Tahoma</option>
+        <option value="monospace">Monospace</option>
+      </select>
+    </div>
+    <div style="margin-bottom:10px;">
+      <label for="ed-fontweight">Grubość czcionki:</label>
+      <select id="ed-fontweight" onchange="applyEdFontweight()">
+        <option value="normal">normal</option>
+        <option value="bold">bold</option>
+        <option value="500">500</option>
+        <option value="600">600</option>
+        <option value="700">700</option>
+        <option value="900">900</option>
+      </select>
+    </div>
+    <div style="margin-bottom:10px;">
+      <label for="ed-padding">Padding (wew.):</label>
+      <input type="text" id="ed-padding" style="width:100px;" placeholder="np. 10px 20px" onchange="applyEdPadding()"/>
+    </div>
+    <div style="margin-bottom:10px;">
+      <label for="ed-margin">Margines (zew.):</label>
+      <input type="text" id="ed-margin" style="width:100px;" placeholder="np. 10px 0 20px 0" onchange="applyEdMargin()"/>
+    </div>
+    <div style="margin: 14px 0 9px 0; border-top:1px solid #eee; padding-top:8px;">
+      <b style="color:#218838">Importuj preset (GitHub):</b><br>
+      <input id="ed-import-url" type="text" style="width:70%;" placeholder="https://raw.githubusercontent.com/..."/>
+      <button onclick="importPresets();return false;" style="padding:3px 13px;">Wczytaj</button>
+      <select id="ed-preset-select" style="width:80%;margin-top:7px;display:none;" onchange="applyPresetFromList()"></select>
+    </div>
+    <div style="margin-top:14px;">
+      <button onclick="closeUiEditorPanel()" style="background:#218838;color:#fff;border-radius:7px;border:none;font-size:1.08em;padding:6px 18px;">Zamknij</button>
+      <button class="ed-reset" onclick="resetUiEdits();return false;">Resetuj zmiany</button>
+    </div>
+  </div>
   <!-- MODAL LOGOWANIA ADMIN -->
   <div class="login-modal" id="loginModal">
     <form class="login-box" onsubmit="return adminLogin()">
@@ -500,6 +531,22 @@
     </form>
   </div>
   <script>
+    // ZAPISZ DOMYŚLNE STYLE I TREŚCI DLA RESETU
+    const _uiEdDefaults = {};
+    window.addEventListener("DOMContentLoaded", function(){
+      [
+        "body",".left-panel",".right-panel","#headline","#regulamin","#entryBtn","#toc-header","#toc-list",".copyright",".reklama-bar","#mailTitle","#free"
+      ].forEach(sel=>{
+        let el = document.querySelector(sel);
+        if(!el) return;
+        _uiEdDefaults[sel] = {
+          style: el.getAttribute("style")||"",
+          html: el.innerHTML,
+          txt: el.innerText
+        };
+      });
+    });
+
     // Tłumaczenia dla "Napisz do nas" oraz reklamy
     const mailTitles = {
       pl: "Napisz do nas!",
@@ -511,8 +558,6 @@
       en: `Ask for a quote for your CLT structure at email: cltplhub@gmail.com (this means automatic consent to forward your inquiry as a copy to CLT PL partners) * Place your ad here [company name +5 words] 200PLN/month gross *`,
       de: `Fragen Sie nach einem Angebot für Ihre CLT-Konstruktion unter E-Mail: cltplhub@gmail.com (dies bedeutet die automatische Zustimmung, die Anfrage als Kopie an die Partner von CLT PL weiterzuleiten) * Platz für Ihre Werbung [Firmenname +5 Wörter] 200PLN/Monat brutto *`
     };
-
-    // --- Reszta tłumaczeń
     const translations = {
       pl: {
         headline: "CLT level up!",
@@ -627,13 +672,11 @@
       }
     };
     function setLang(lang) {
-      // Nagłówek, przycisk, free, regulamin, toc
       document.getElementById('headline').innerText = translations[lang].headline;
       document.querySelector('.entry-btn').childNodes[0].nodeValue = translations[lang].wejdz;
       document.getElementById('free').innerText = translations[lang].free;
       document.getElementById('regulamin').innerHTML = translations[lang].regulamin;
       document.getElementById('toc-header').innerText = translations[lang].tocHeader;
-      // Lista TOC z podlistami
       const toc = translations[lang].toc;
       let tocHTML = "";
       toc.forEach((sec, idx) => {
@@ -644,12 +687,10 @@
         tocHTML += `</ul>`;
       });
       document.getElementById('toc-list').innerHTML = tocHTML;
-      // Pasek reklamowy
       document.getElementById('adText').innerHTML =
         adTexts[lang] + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
         adTexts[lang] + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
         adTexts[lang];
-      // Tytuł przycisku poczty
       document.getElementById('mailTitle').innerText = mailTitles[lang];
       document.getElementById('mailIcon').title = mailTitles[lang];
     }
@@ -657,17 +698,200 @@
     document.getElementById('lang').addEventListener('change', function() {
       setLang(this.value);
     });
-    // Wejdź - pierwsze wejście do HUB, drugie do HotPay
     let wejdzClicks = 0;
     document.getElementById("entryBtn").onclick = function() {
       wejdzClicks++;
       if (wejdzClicks === 1) {
-        window.location.href = "https://clthubpl.github.io/kalkulator-szablon/HUBCLT.html?free=1&lang=pl";
+        window.location.href = "http://www.clthub.com.pl/HUBCLT.html/";
       } else {
         window.location.href = "https://hotpay.pl/";
       }
     };
-    // Logo -> logowanie admina
+    // --- Panel edytora UI/UX (otwórz np. po zalogowaniu admina) ---
+    function openUiEditorPanel() {
+      uiEditorPanel.style.display = "block";
+      onEdSectionChange();
+    }
+    function closeUiEditorPanel() {
+      uiEditorPanel.style.display = "none";
+    }
+    function onEdSectionChange() {
+      const sec = document.getElementById('ed-section').value;
+      document.getElementById('ed-group-bg').style.display =
+        (sec === 'body' || sec.includes('panel') || sec === 'reklama-bar') ? 'block' : 'none';
+      document.getElementById('ed-group-text').style.display =
+        (['headline','regulamin','toc-header','entry-btn','mail-title','free'].includes(sec)) ? 'block' : 'none';
+      let t = getEdTarget(sec);
+      let col = getComputedStyle(t)[(sec==='body'||sec.includes('panel')||sec==='reklama-bar')?'backgroundColor':'color'];
+      let hex = rgb2hex(col);
+      document.getElementById('ed-color').value = hex;
+      document.getElementById('ed-color-text').value = hex;
+      let fs = parseInt(getComputedStyle(t).fontSize,10)||18;
+      document.getElementById('ed-fontsize').value = fs;
+      let br = parseInt(getComputedStyle(t).borderRadius)||0;
+      document.getElementById('ed-radius').value = br;
+      let sh = getComputedStyle(t).boxShadow;
+      document.getElementById('ed-shadow').value = sh && sh!='none'? sh : '';
+      let fam = getComputedStyle(t).fontFamily||'';
+      let famOpt = Array.from(document.getElementById('ed-fontfam').options).find(o=>fam.includes(o.value));
+      document.getElementById('ed-fontfam').value = famOpt? famOpt.value : '';
+      let fw = getComputedStyle(t).fontWeight||'';
+      document.getElementById('ed-fontweight').value = fw;
+      document.getElementById('ed-padding').value = getComputedStyle(t).padding||'';
+      document.getElementById('ed-margin').value = getComputedStyle(t).margin||'';
+      if(['headline','regulamin','toc-header','entry-btn','mail-title','free'].includes(sec)) {
+        if (sec === 'regulamin') document.getElementById('ed-text').value = t.innerText.replace(/\s+/g,' ').trim().substring(0,220);
+        else document.getElementById('ed-text').value = t.innerText.replace(/\s+/g,' ').trim().substring(0,120);
+      }
+    }
+    function getEdTarget(sec) {
+      switch(sec) {
+        case 'body': return document.body;
+        case 'left-panel': return document.querySelector('.left-panel');
+        case 'right-panel': return document.querySelector('.right-panel');
+        case 'headline': return document.getElementById('headline');
+        case 'regulamin': return document.getElementById('regulamin');
+        case 'entry-btn': return document.getElementById('entryBtn');
+        case 'toc-header': return document.getElementById('toc-header');
+        case 'toc-list': return document.getElementById('toc-list');
+        case 'copyright': return document.querySelector('.copyright');
+        case 'reklama-bar': return document.querySelector('.reklama-bar');
+        case 'mail-title': return document.getElementById('mailTitle');
+        case 'free': return document.getElementById('free');
+      }
+    }
+    function applyEdColor(fromText=false) {
+      const sec = document.getElementById('ed-section').value;
+      let color = fromText ? document.getElementById('ed-color-text').value : document.getElementById('ed-color').value;
+      if (!fromText) document.getElementById('ed-color-text').value = color;
+      else document.getElementById('ed-color').value = color;
+      let t = getEdTarget(sec);
+      if(sec==='body'||sec.includes('panel')||sec==='reklama-bar') t.style.background = color;
+      else t.style.color = color;
+    }
+    function applyEdBg() {
+      const sec = document.getElementById('ed-section').value;
+      let t = getEdTarget(sec);
+      let bg = document.getElementById('ed-bg').value.trim();
+      if (bg.length < 3) return;
+      t.style.background = bg;
+    }
+    function applyEdText() {
+      const sec = document.getElementById('ed-section').value;
+      let text = document.getElementById('ed-text').value;
+      let t = getEdTarget(sec);
+      if (sec === 'entry-btn') t.childNodes[0].nodeValue = text;
+      else t.innerText = text;
+    }
+    function applyEdFontsize() {
+      const sec = document.getElementById('ed-section').value;
+      let fs = document.getElementById('ed-fontsize').value;
+      let t = getEdTarget(sec);
+      t.style.fontSize = fs+'px';
+    }
+    function applyEdRadius() {
+      const sec = document.getElementById('ed-section').value;
+      let r = document.getElementById('ed-radius').value;
+      let t = getEdTarget(sec);
+      t.style.borderRadius = r+'px';
+    }
+    function applyEdShadow() {
+      const sec = document.getElementById('ed-section').value;
+      let sh = document.getElementById('ed-shadow').value;
+      let t = getEdTarget(sec);
+      t.style.boxShadow = sh;
+    }
+    function applyEdFontfam() {
+      const sec = document.getElementById('ed-section').value;
+      let f = document.getElementById('ed-fontfam').value;
+      let t = getEdTarget(sec);
+      if(f) t.style.fontFamily = f;
+      else t.style.fontFamily = '';
+    }
+    function applyEdFontweight() {
+      const sec = document.getElementById('ed-section').value;
+      let fw = document.getElementById('ed-fontweight').value;
+      let t = getEdTarget(sec);
+      t.style.fontWeight = fw;
+    }
+    function applyEdPadding() {
+      const sec = document.getElementById('ed-section').value;
+      let pad = document.getElementById('ed-padding').value;
+      let t = getEdTarget(sec);
+      t.style.padding = pad;
+    }
+    function applyEdMargin() {
+      const sec = document.getElementById('ed-section').value;
+      let pad = document.getElementById('ed-margin').value;
+      let t = getEdTarget(sec);
+      t.style.margin = pad;
+    }
+    function rgb2hex(rgb) {
+      if(!rgb) return "#000";
+      let res = rgb.match(/\d+/g);
+      if (!res) return "#000";
+      return "#" + res.slice(0,3).map(x=>('0'+parseInt(x).toString(16)).slice(-2)).join('');
+    }
+    // --- IMPORT PRESETÓW GITHUB (JSON) ---
+    async function importPresets() {
+      const url = document.getElementById('ed-import-url').value.trim();
+      if (!url) return alert("Podaj adres URL pliku presetów z GitHub RAW");
+      try {
+        const res = await fetch(url);
+        const presets = await res.json();
+        const presetSel = document.getElementById('ed-preset-select');
+        presetSel.innerHTML = '';
+        presets.forEach((p, i) => {
+          let o = document.createElement('option');
+          o.value = i;
+          o.text = p.nazwa || ("Preset " + (i+1));
+          presetSel.appendChild(o);
+        });
+        presetSel.style.display = '';
+        presetSel.dataset.presets = JSON.stringify(presets);
+        alert("Presety zaimportowane. Wybierz z listy poniżej.");
+      } catch (e) {
+        alert("Błąd podczas pobierania presetów.\nSprawdź adres URL i format pliku.");
+      }
+    }
+    function applyPresetFromList() {
+      const idx = document.getElementById('ed-preset-select').value;
+      const presets = JSON.parse(document.getElementById('ed-preset-select').dataset.presets || '[]');
+      if (!presets[idx]) return;
+      const preset = presets[idx];
+      for (const sel in preset.style) {
+        let styles = preset.style[sel];
+        let targets = sel==="body" ? [document.body] : document.querySelectorAll(sel);
+        targets.forEach ? targets.forEach(el=>{
+          for(const k in styles) el.style[k]=styles[k];
+        }) : Object.keys(styles).forEach(k=>targets.style[k]=styles[k]);
+      }
+      if (preset.texts) {
+        for(const id in preset.texts) {
+          let el = document.getElementById(id);
+          if (el) el.innerText = preset.texts[id];
+        }
+      }
+    }
+    // --- RESET WSZYSTKICH ZMIAN (edytor) ---
+    function resetUiEdits() {
+      [
+        "body",".left-panel",".right-panel","#headline","#regulamin","#entryBtn","#toc-header","#toc-list",".copyright",".reklama-bar","#mailTitle","#free"
+      ].forEach(sel=>{
+        let el = document.querySelector(sel);
+        if(!el || !_uiEdDefaults[sel]) return;
+        el.setAttribute("style", _uiEdDefaults[sel].style);
+        el.innerHTML = _uiEdDefaults[sel].html;
+        // jeśli to prosty tekst, podmień także textContent
+        if(!_uiEdDefaults[sel].html || _uiEdDefaults[sel].html.replace(/<[^>]*>/g,'').trim() == _uiEdDefaults[sel].txt.trim())
+          el.innerText = _uiEdDefaults[sel].txt;
+      });
+      // Resetuj panel edytora (opcjonalnie: zamknij)
+      // uiEditorPanel.style.display = "none";
+      onEdSectionChange();
+    }
+
+    // --- LOGOWANIE ADMINA & dostęp do panelu edycji ---
     const logoBtn = document.getElementById('logoBtn');
     const loginModal = document.getElementById('loginModal');
     function closeLogin() {
@@ -676,14 +900,30 @@
       document.getElementById('adminPass').value = "";
     }
     logoBtn.onclick = function() {
+      // Umieść MODAL pod przyciskiem wejścia!
+      let entryBtn = document.getElementById("entryBtn");
+      let rect = entryBtn.getBoundingClientRect();
+      loginModal.style.display = "flex";
       loginModal.classList.add('active');
+      loginModal.style.position = "fixed";
+      loginModal.style.top = (window.scrollY + rect.bottom + 1) + "px";
+      loginModal.style.left = (window.scrollX + rect.left) + "px";
       setTimeout(()=>document.getElementById('adminPass').focus(),300);
     };
     function adminLogin() {
       const pass = document.getElementById('adminPass').value;
-      if (pass === "admin2025") {
-        document.getElementById('loginInfo').innerText = "Zalogowano!";
-        setTimeout(()=>window.location.href="https://clthubpl.github.io/kalkulator-szablon/HUBCLT.html?admin=1", 900);
+      if (pass === "edycjainterfejsu") {
+        document.getElementById('loginInfo').innerText = "Zalogowano! Otwieram edytor…";
+        setTimeout(()=>{
+          closeLogin();
+          openUiEditorPanel();
+        }, 900);
+      } else if(pass === "adminskip") {
+        document.getElementById('loginInfo').innerText = "Wejście bez płatności!";
+        setTimeout(()=>{
+          closeLogin();
+          window.location.href = "http://www.clthub.com.pl/HUBCLT.html/?free=1";
+        }, 1200);
       } else {
         document.getElementById('loginInfo').innerText = "Błędne hasło";
       }
