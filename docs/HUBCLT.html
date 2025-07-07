@@ -318,4 +318,29 @@
     });
   </script>
 </body>
+  <script>
+async function loadCltStyles(refUrl) {
+  try {
+    const res = await fetch(refUrl);
+    const styles = await res.json();
+    for(const sec in styles) {
+      let target;
+      switch(sec) {
+        case 'body': target = document.body; break;
+        case 'panel': target = document.querySelector('.main-container,.panel'); break;
+        case 'headline': target = document.getElementById('headline'); break;
+        case 'regulamin': target = document.getElementById('regulamin'); break;
+        case 'entry-btn': target = document.getElementById('entryBtn'); break;
+        case 'toc-header': target = document.getElementById('toc-header'); break;
+        // Dodaj więcej jeśli chcesz!
+      }
+      if(target) for(const k in styles[sec]) target.style[k] = styles[sec][k];
+    }
+  } catch(e) {
+    console.warn("Nie udało się załadować stylów:", e);
+  }
+}
+// Automatyczne ładowanie z domyślnego pliku na GitHub
+loadCltStyles("https://raw.githubusercontent.com/clthubpl/clt/main/docs/clt_styles_reference.json");
+</script>
 </html>
