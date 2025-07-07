@@ -1,24 +1,25 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8">
-  <title>CLT HUB – Edytor UI</title>
-  <style>
-    /* Style panelu edytora – przeniesione z index.html */
-    body { font-family: Arial, sans-serif; background: #f6f6f6; margin: 0; }
-    .ed-panel { max-width: 550px; margin: 60px auto 40px auto; background: #fff; border-radius: 18px; box-shadow: 0 4px 32px #0002; padding: 36px 34px; }
-    /* ...pozostałe style z indexu lub nowe pod edytor... */
-  </style>
-</head>
-<body>
-  <div class="ed-panel">
-    <h2>Edytor UI Twojej strony</h2>
-    <!-- Panel edytora z Twojego indexu + rozbudowa -->
-    <!-- ...cały kod panelu edytora... -->
-    <!-- Możesz tu wrzucić zakładki/podział na kategorie -->
-  </div>
-  <script>
-    // Skrypty panelu edytora + funkcje eksportu, importu, testy...
-  </script>
-</body>
-</html>
+<script>
+async function loadCltStyles(refUrl) {
+  try {
+    const res = await fetch(refUrl);
+    const styles = await res.json();
+    for(const sec in styles) {
+      let target;
+      switch(sec) {
+        case 'body': target = document.body; break;
+        case 'panel': target = document.querySelector('.main-container,.panel'); break;
+        case 'headline': target = document.getElementById('headline'); break;
+        case 'regulamin': target = document.getElementById('regulamin'); break;
+        case 'entry-btn': target = document.getElementById('entryBtn'); break;
+        case 'toc-header': target = document.getElementById('toc-header'); break;
+        // Dodaj więcej jeśli chcesz!
+      }
+      if(target) for(const k in styles[sec]) target.style[k] = styles[sec][k];
+    }
+  } catch(e) {
+    console.warn("Nie udało się załadować stylów:", e);
+  }
+}
+// Automatyczne ładowanie z domyślnego pliku na GitHub
+loadCltStyles("https://raw.githubusercontent.com/clthubpl/clt/main/docs/clt_styles_reference.json");
+</script>
