@@ -1,0 +1,24 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Validate HTML files
+      uses: jamesIves/html-validator-action@v1
+      with:
+        files: '**/*.html'
+
+    - name: Lint JavaScript
+      uses: github/super-linter@v4
+      env:
+        VALIDATE_JS: true
