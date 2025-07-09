@@ -61,7 +61,7 @@
       filter: brightness(1.3);
       background: #21883830;
     }
-    .mail-title { display: none !important; } /* Usuwamy tekst maila */
+    .mail-title { display: none !important; }
     .lang-select {
       z-index: 102;
       border: none;
@@ -148,13 +148,9 @@
       opacity: 1;
       pointer-events: all;
     }
-    .bio-panel-inner {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      padding: 26px 28px 22px 23px;
-    }
+    .bio-panel-inner { display: block; }
     .bio-avatar {
+      float: left;
       width: 80px;
       height: 80px;
       border-radius: 15px;
@@ -164,11 +160,11 @@
       box-shadow: 0 2px 16px #0003;
       flex-shrink: 0;
       margin-right: 22px;
-      margin-top: 0;
+      margin-bottom: 8px;
     }
     .bio-content {
       color: #fff;
-      font-size: 1.09em;
+      font-size: 0.92em;
       line-height: 1.44;
       font-weight: 400;
       text-align: justify;
@@ -208,13 +204,13 @@
         left: auto !important;
         right: 0 !important;
       }
-      .bio-content { max-width: 99vw; font-size: 0.97em; }
+      .bio-content { max-width: 99vw; font-size: 0.87em; }
       .bio-avatar { width: 60px; height: 60px; }
       .bio-panel-inner { padding: 12px 8px 14px 8px; }
       .bio-fb-link-inner { width: 41px; height: 41px; }
       .bio-fb-icon { width: 26px; height: 26px; }
     }
-    /* --- PONIŻEJ WSZYSTKIE TWOJE STYLI, UKŁADY, PANELE, KONTENERY BEZ ZMIAN! --- */
+    /* --- DALEJ TWOJE STYLE BEZ ZMIAN, UKŁADY, KONTENERY, KALKULATORY, PANEL EDYTORA --- */
     .main-container {
       display: flex;
       flex-direction: row;
@@ -505,6 +501,63 @@
     .ed-panel .ed-group { margin-bottom: 10px; }
     .ed-panel .ed-apply { background: #218838; color: #fff; border-radius: 7px; border: none; font-size: 1.08em; padding: 6px 18px; margin-left: 6px; cursor: pointer; }
     .ed-panel .ed-reset { background: #c92828; color: #fff; border-radius: 7px; border: none; font-size: 1.08em; padding: 6px 18px; margin-left: 6px; cursor: pointer; margin-top: 16px; }
+    /* LOGOWANIE ADMINA */
+    .login-modal {
+      display: none;
+      position: fixed;
+      z-index: 12000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(40,110,65,0.60);
+      align-items: center;
+      justify-content: center;
+    }
+    .login-modal.active {
+      display: flex !important;
+    }
+    .login-box {
+      background: #13724c;
+      color: #fff;
+      border-radius: 17px;
+      box-shadow: 0 8px 44px #2cc053cc;
+      padding: 34px 36px 25px 36px;
+      min-width: 320px;
+      font-family: inherit;
+      position: relative;
+    }
+    .login-box input[type="password"] {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1.16em;
+      color: #000;
+    }
+    .login-box button[type="submit"], .login-box .close-login {
+      background: #2cc053;
+      color: #fff;
+      border: none;
+      padding: 9px 22px;
+      border-radius: 9px;
+      font-size: 1.11em;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+    .login-box .close-login {
+      position: absolute;
+      top: 13px; right: 14px;
+      background: transparent;
+      color: #fff;
+      font-size: 1.2em;
+      font-weight: 600;
+      padding: 0;
+    }
+    .login-info { margin-top: 8px; min-height: 18px; color: #ffee90; }
   </style>
 </head>
 <body>
@@ -531,6 +584,7 @@
       <div class="bio-panel" id="bioPanel">
         <div class="bio-panel-inner">
           <img src="https://github.com/clthubpl/clt/blob/main/docs/PB.png?raw=true" alt="Bio avatar" class="bio-avatar" />
+          <div style="font-size:0.91em;font-weight:bold;color:#e0ffe7; text-align:center; margin-bottom:12px;">P.Baltyn</div>
           <div class="bio-content">
             Pasjonat zdrowego budownictwa i technologii drewna CLT.<br>
             Od lat aktywnie działam w branży przemysłowej jako doradca techniczny, interesuję się budownictwem i rozwiązaniami konstrukcyjnymi dedykowanym technologii CLT. Chętnie czytam wszelkie dostępne na świecie materiały i badania na temat CLT oraz zagadnień pokrewnych, aby następnie streścić je i podzielić się dalej wiedzą z innymi. Jestem zwolennikiem idei BIO w budownictwie — promuję stosowanie naturalnych materiałów i sprzeciwiam się nadmiernemu wykorzystaniu chemii budowlanej oraz tworzyw sztucznych. Utrzymuję stały kontakt z wykonawcami i producentami materiałów CLT, wspierając wdrożenia zdrowych, ekologicznych technologii w projektach budowlanych. Moim celem jest propagowanie nowoczesnych, zrównoważonych standardów w budowie domów z drewna CLT, z korzyścią dla zdrowia i środowiska. Przekazane mi zapytanie w widomości email przekieruję do podmiotu, który uznaję za doświadczony i kompetentny a zarazem odpowiedni do danego typu zapytania. Obecnie (CLT PL czy tożsame CLTHUB) nie zajmuje się wykonawstwem obiektów CLT, posiada kontakty branżowe i wiedzę o rynku CLT w Polsce i na świecie.
@@ -677,7 +731,7 @@
     </form>
   </div>
   <script>
-    // Panel BIO – tylko dodane:
+    // Panel BIO – obsługa animacji:
     const bioBar = document.getElementById('bioBar');
     const bioPanel = document.getElementById('bioPanel');
     const bioArrow = bioBar.querySelector('.bio-arrow');
@@ -714,7 +768,7 @@
       bioBar.style.boxShadow = '';
     });
 
-    // --- ZAPISZ DOMYŚLNE STYLE I TREŚCI DLA RESETU (oryginalne) ---
+    // ZAPISZ DOMYŚLNE STYLE I TREŚCI DLA RESETU (oryginalne)
     const _uiEdDefaults = {};
     window.addEventListener("DOMContentLoaded", function(){
       [
@@ -729,9 +783,7 @@
         };
       });
     });
-
-    // --- Twój oryginalny JS do tłumaczeń, reklam, kalkulatorów itd. ---
-    // (nic nie usuwam – wszystko zostaje)
+    // Twój oryginalny JS do tłumaczeń, reklam, kalkulatorów itd.
     const mailTitles = {
       pl: "Napisz do nas!",
       en: "Write to us!",
@@ -855,6 +907,7 @@
         ]
       }
     };
+
     function setLang(lang) {
       document.getElementById('headline').innerText = translations[lang].headline;
       document.querySelector('.entry-btn').childNodes[0].nodeValue = translations[lang].wejdz;
@@ -882,14 +935,11 @@
     document.getElementById('lang').addEventListener('change', function() {
       setLang(this.value);
     });
-    let wejdzClicks = 0;
-    document.getElementById("entryBtn").onclick = function() {
-      wejdzClicks++;
-      if (wejdzClicks === 1) {
-        window.location.href = "http://www.clthub.com.pl/HUBCLT.html";
-      } else {
-        window.location.href = "https://hotpay.pl/";
-      }
+
+    // Obsługa przycisku "Wejdź"
+    document.getElementById("entryBtn").onclick = function(e) {
+      e.preventDefault();
+      window.location.href = "https://www.clthub.com.pl/HUBCLT.html";
     };
 
     // --- Panel edytora UI/UX (otwórz np. po zalogowaniu admina) ---
@@ -1071,8 +1121,6 @@
         if(!_uiEdDefaults[sel].html || _uiEdDefaults[sel].html.replace(/<[^>]*>/g,'').trim() == _uiEdDefaults[sel].txt.trim())
           el.innerText = _uiEdDefaults[sel].txt;
       });
-      // Resetuj panel edytora (opcjonalnie: zamknij)
-      // uiEditorPanel.style.display = "none";
       onEdSectionChange();
     }
 
@@ -1085,13 +1133,12 @@
       document.getElementById('adminPass').value = "";
     }
     logoBtn.onclick = function() {
-      // Umieść MODAL pod przyciskiem wejścia!
       let entryBtn = document.getElementById("entryBtn");
       let rect = entryBtn.getBoundingClientRect();
       loginModal.style.display = "flex";
       loginModal.classList.add('active');
       loginModal.style.position = "fixed";
-      loginModal.style.top = (window.scrollY + rect.bottom + 1) + "px";
+      loginModal.style.top = (window.scrollY + rect.bottom + 4) + "px";
       loginModal.style.left = (window.scrollX + rect.left) + "px";
       setTimeout(()=>document.getElementById('adminPass').focus(),300);
     };
