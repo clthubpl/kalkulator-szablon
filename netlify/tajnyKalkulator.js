@@ -1,14 +1,14 @@
 // netlify/functions/tajnyKalkulator.js
-
 exports.handler = async function(event, context) {
-  // Odczytaj dane z zapytania POST (np. liczby do obliczeń)
+  // Parsujemy dane JSON wysłane w body POST:
   const { liczba1, liczba2 } = JSON.parse(event.body);
 
-  // Tu Twój TAJNY algorytm (np. mnożenie, dzielenie, itp.)
-  const wynik = (liczba1 * 7.43 + liczba2 / 2.1); // ← przykładowy wzór
+  // Obliczamy sumę:
+  const suma = Number(liczba1) + Number(liczba2);
 
+  // Przygotowujemy odpowiedź z wynikiem:
   return {
     statusCode: 200,
-    body: JSON.stringify({ result: wynik })
+    body: JSON.stringify({ result: suma })
   };
 };
