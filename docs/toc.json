@@ -1,102 +1,150 @@
-[
+// Nowa struktura ToC (z kategoriami, podsekcjami, wielojęzyczna)
+const tocData = [
   {
-    "kategoria": "Kalkulatory CLT",
-    "kategoria_en": "CLT Calculators",
-    "kategoria_de": "CLT-Rechner",
-    "kalkulatory": [
+    kategoria: "Kalkulatory CLT",
+    kategoria_en: "CLT Calculators",
+    kategoria_de: "CLT-Rechner",
+    kalkulatory: [
       {
-        "nazwa": "Kalkulator statyki CLT",
-        "nazwa_en": "CLT Statics Calculator",
-        "nazwa_de": "CLT Statikrechner",
-        "opis": "Oblicz nośność, ugięcia i bezpieczeństwo płyt/ścian/słupów CLT zgodnie z Eurokod 5.",
-        "opis_en": "Calculate capacity, deflections, and safety for CLT panels, walls, and columns per Eurocode 5.",
-        "opis_de": "Berechnet Tragfähigkeit, Durchbiegung und Sicherheit für CLT-Platten, Wände und Stützen nach Eurocode 5.",
-        "link": "kalkulator-clt.html",
-        "podsekcje": [
+        nazwa: "Kalkulator statyki CLT",
+        nazwa_en: "CLT Statics Calculator",
+        nazwa_de: "CLT Statikrechner",
+        opis: "Oblicz nośność, ugięcia i bezpieczeństwo płyt/ścian/słupów CLT zgodnie z Eurokod 5.",
+        opis_en: "Calculate capacity, deflections, and safety for CLT panels, walls, and columns per Eurocode 5.",
+        opis_de: "Berechnet Tragfähigkeit, Durchbiegung und Sicherheit für CLT-Platten, Wände und Stützen nach Eurocode 5.",
+        link: "https://clthubpl.github.io/kalkulator-szablon/basic/kalkulator-clt.html",
+        podsekcje: [
           {
-            "nazwa": "Instrukcja obsługi",
-            "nazwa_en": "User Guide",
-            "nazwa_de": "Bedienungsanleitung",
-            "link": "instrukcja-statyk.html"
+            nazwa: "Instrukcja obsługi",
+            nazwa_en: "User Guide",
+            nazwa_de: "Bedienungsanleitung",
+            link: "https://clthubpl.github.io/kalkulator-szablon/basic/instrukcja-statyk.html"
           },
           {
-            "nazwa": "Wzory Eurokodu 5",
-            "nazwa_en": "Eurocode 5 Formulas",
-            "nazwa_de": "Eurocode 5 Formeln",
-            "link": "wzory-eurokod5.html"
+            nazwa: "Wzory Eurokodu 5",
+            nazwa_en: "Eurocode 5 Formulas",
+            nazwa_de: "Eurocode 5 Formeln",
+            link: "https://clthubpl.github.io/kalkulator-szablon/basic/wzory-eurokod5.html"
           }
         ]
       },
       {
-        "nazwa": "Kalkulator masy CLT",
-        "nazwa_en": "CLT Mass Calculator",
-        "nazwa_de": "CLT-Massenrechner",
-        "opis": "Szybko policz masę płyty, ściany lub elementu CLT na podstawie wymiarów i gęstości.",
-        "opis_en": "Quickly calculate the mass of CLT panels, walls, or elements based on dimensions and density.",
-        "opis_de": "Berechnet schnell die Masse von CLT-Elementen nach Abmessungen und Dichte.",
-        "link": "kalkulator-masy.html",
-        "podsekcje": [
+        nazwa: "Kalkulator masy CLT",
+        nazwa_en: "CLT Mass Calculator",
+        nazwa_de: "CLT-Massenrechner",
+        opis: "Szybko policz masę płyty, ściany lub elementu CLT na podstawie wymiarów i gęstości.",
+        opis_en: "Quickly calculate the mass of CLT panels, walls, or elements based on dimensions and density.",
+        opis_de: "Berechnet schnell die Masse von CLT-Elementen nach Abmessungen und Dichte.",
+        link: "https://clthubpl.github.io/kalkulator-szablon/basic/kalkulator-masy.html",
+        podsekcje: [
           {
-            "nazwa": "Częste pytania (FAQ)",
-            "nazwa_en": "Frequently Asked Questions (FAQ)",
-            "nazwa_de": "Häufig gestellte Fragen (FAQ)",
-            "link": "faq-masa.html"
+            nazwa: "Częste pytania (FAQ)",
+            nazwa_en: "Frequently Asked Questions (FAQ)",
+            nazwa_de: "Häufig gestellte Fragen (FAQ)",
+            link: "https://clthubpl.github.io/kalkulator-szablon/basic/faq-masa.html"
           }
         ]
       }
     ]
   },
   {
-    "kategoria": "Budowa i tematyka CLT",
-    "kategoria_en": "Construction & CLT Topics",
-    "kategoria_de": "Bau und CLT-Themen",
-    "kalkulatory": [
+    kategoria: "Budowa i tematyka CLT",
+    kategoria_en: "Construction & CLT Topics",
+    kategoria_de: "Bau und CLT-Themen",
+    kalkulatory: [
       {
-        "nazwa": "Rodzaje budowli w technologii CLT",
-        "nazwa_en": "Types of structures in CLT technology",
-        "nazwa_de": "Bauarten in CLT-Technologie",
-        "opis": "Temat: typy obiektów możliwych do wykonania w CLT.",
-        "opis_en": "Topic: types of structures possible in CLT.",
-        "opis_de": "Thema: Arten von Bauwerken in CLT-Technologie.",
-        "link": "#temat-rodzaje-budowli",
-        "podsekcje": [
+        nazwa: "Rodzaje budowli w technologii CLT",
+        nazwa_en: "Types of structures in CLT technology",
+        nazwa_de: "Bauarten in CLT-Technologie",
+        opis: "Temat: typy obiektów możliwych do wykonania w CLT.",
+        opis_en: "Topic: types of structures possible in CLT.",
+        opis_de: "Thema: Arten von Bauwerken in CLT-Technologie.",
+        link: "#temat-rodzaje-budowli",
+        podsekcje: [
           {
-            "nazwa": "Domy jednorodzinne",
-            "nazwa_en": "Single-family houses",
-            "nazwa_de": "Einfamilienhäuser",
-            "link": "#domy-jednorodzinne"
+            nazwa: "Domy jednorodzinne",
+            nazwa_en: "Single-family houses",
+            nazwa_de: "Einfamilienhäuser",
+            link: "#domy-jednorodzinne"
           },
           {
-            "nazwa": "Obiekty użyteczności publicznej",
-            "nazwa_en": "Public utility buildings",
-            "nazwa_de": "Öffentliche Gebäude",
-            "link": "#obiekty-publiczne"
+            nazwa: "Obiekty użyteczności publicznej",
+            nazwa_en: "Public utility buildings",
+            nazwa_de: "Öffentliche Gebäude",
+            link: "#obiekty-publiczne"
           }
         ]
       },
       {
-        "nazwa": "Cross-Laminated Timber (CLT) Drewno Klejone Krzyżowo",
-        "nazwa_en": "Cross-Laminated Timber (CLT)",
-        "nazwa_de": "Cross-Laminated Timber (CLT) Brettsperrholz",
-        "opis": "Czym jest CLT? Definicja, właściwości, zalety.",
-        "opis_en": "What is CLT? Definition, properties, advantages.",
-        "opis_de": "Was ist CLT? Definition, Eigenschaften, Vorteile.",
-        "link": "#temat-co-to-jest-clt",
-        "podsekcje": [
+        nazwa: "Cross-Laminated Timber (CLT) Drewno Klejone Krzyżowo",
+        nazwa_en: "Cross-Laminated Timber (CLT)",
+        nazwa_de: "Cross-Laminated Timber (CLT) Brettsperrholz",
+        opis: "Czym jest CLT? Definicja, właściwości, zalety.",
+        opis_en: "What is CLT? Definition, properties, advantages.",
+        opis_de: "Was ist CLT? Definition, Eigenschaften, Vorteile.",
+        link: "#temat-co-to-jest-clt",
+        podsekcje: [
           {
-            "nazwa": "Parametry materiałowe",
-            "nazwa_en": "Material parameters",
-            "nazwa_de": "Materialparameter",
-            "link": "#parametry-materialowe"
+            nazwa: "Parametry materiałowe",
+            nazwa_en: "Material parameters",
+            nazwa_de: "Materialparameter",
+            link: "#parametry-materialowe"
           },
           {
-            "nazwa": "Normy i certyfikaty",
-            "nazwa_en": "Standards and certificates",
-            "nazwa_de": "Normen und Zertifikate",
-            "link": "#normy-certyfikaty"
+            nazwa: "Normy i certyfikaty",
+            nazwa_en: "Standards and certificates",
+            nazwa_de: "Normen und Zertifikate",
+            link: "#normy-certyfikaty"
           }
         ]
       }
     ]
   }
-]
+];
+
+function generateToc(lang) {
+  // Lang keys
+  const name = {pl:"nazwa", en:"nazwa_en", de:"nazwa_de"};
+  const cat = {pl:"kategoria", en:"kategoria_en", de:"kategoria_de"};
+  let out = "";
+  tocData.forEach(section => {
+    out += `<div style="font-weight:bold;font-size:1.1em;margin:1em 0 0.3em 0;">${section[cat[lang]]}</div><ul style="margin:0 0 0.6em 0.8em;padding:0;">`;
+    section.kalkulatory.forEach(kalk => {
+      // Główna pozycja kalkulatora
+      out += `<li style="margin-bottom:0.25em;">
+        <a href="#" class="kalk-link" data-url="${kalk.link}" title="${kalk[opisKey(lang)]}">${kalk[name[lang]]}</a>`;
+      // Podsekcje (np. instrukcje, FAQ)
+      if (kalk.podsekcje && kalk.podsekcje.length > 0) {
+        out += `<ul style="margin:0.12em 0 0.3em 1.3em;padding:0;">`;
+        kalk.podsekcje.forEach(pod => {
+          out += `<li style="margin-bottom:0.11em;">
+            <a href="#" class="kalk-link" data-url="${pod.link}" title="">${pod[name[lang]]}</a>
+          </li>`;
+        });
+        out += `</ul>`;
+      }
+      out += `</li>`;
+    });
+    out += `</ul>`;
+  });
+  return out;
+}
+function opisKey(lang) {
+  return {pl:"opis",en:"opis_en",de:"opis_de"}[lang];
+}
+
+// Zamiast starego generowania TOC:
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById("mailTitle").innerText = translations[lang].mailTitle;
+  document.getElementById("basicTitle").innerText = translations[lang].basicTitle;
+  document.getElementById("basicDesc").innerText = translations[lang].basicDesc;
+  document.getElementById("regulamin").innerHTML = translations[lang].regulamin;
+  document.getElementById("toc-header").innerText = translations[lang].tocHeader;
+  document.getElementById("toc-list").innerHTML = generateToc(lang);
+  document.getElementById("adText").innerText = translations[lang].adText;
+  document.getElementById("mailIcon").title = translations[lang].mailTitle;
+  // Ukryj kalkulator po zmianie języka
+  document.getElementById('kalkulator-box').style.display = "none";
+  document.getElementById('kalkulator-box').innerHTML = "";
+}
