@@ -1,3 +1,0 @@
-git add netlify/functions/hello.js
-git commit -m "Add test Netlify Function"
-git push
