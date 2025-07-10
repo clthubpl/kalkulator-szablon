@@ -12,19 +12,19 @@ const tocData = [
         opis: "Oblicz nośność, ugięcia i bezpieczeństwo płyt/ścian/słupów CLT zgodnie z Eurokod 5.",
         opis_en: "Calculate capacity, deflections, and safety for CLT panels, walls, and columns per Eurocode 5.",
         opis_de: "Berechnet Tragfähigkeit, Durchbiegung und Sicherheit für CLT-Platten, Wände und Stützen nach Eurocode 5.",
-        link: "https://clthubpl.github.io/kalkulator-szablon/basic/kalkulator-clt.html",
+        link: "https://clthubpl.github.io/clt/cltbaza/kalkulatory/Kalkulator%20statyki.html",
         podsekcje: [
           {
             nazwa: "Instrukcja obsługi",
             nazwa_en: "User Guide",
             nazwa_de: "Bedienungsanleitung",
-            link: "https://clthubpl.github.io/kalkulator-szablon/basic/instrukcja-statyk.html"
+            link: "https://clthubpl.github.io/clt/cltbaza/kalkulatory/instrukcja-statyk.html"
           },
           {
             nazwa: "Wzory Eurokodu 5",
             nazwa_en: "Eurocode 5 Formulas",
             nazwa_de: "Eurocode 5 Formeln",
-            link: "https://clthubpl.github.io/kalkulator-szablon/basic/wzory-eurokod5.html"
+            link: "https://clthubpl.github.io/clt/cltbaza/kalkulatory/wzory-eurokod5.html"
           }
         ]
       },
@@ -35,13 +35,13 @@ const tocData = [
         opis: "Szybko policz masę płyty, ściany lub elementu CLT na podstawie wymiarów i gęstości.",
         opis_en: "Quickly calculate the mass of CLT panels, walls, or elements based on dimensions and density.",
         opis_de: "Berechnet schnell die Masse von CLT-Elementen nach Abmessungen und Dichte.",
-        link: "https://clthubpl.github.io/kalkulator-szablon/basic/kalkulator-masy.html",
+        link: "https://clthubpl.github.io/clt/cltbaza/kalkulatory/Kalkulator%20masy.html",
         podsekcje: [
           {
             nazwa: "Częste pytania (FAQ)",
             nazwa_en: "Frequently Asked Questions (FAQ)",
             nazwa_de: "Häufig gestellte Fragen (FAQ)",
-            link: "https://clthubpl.github.io/kalkulator-szablon/basic/faq-masa.html"
+            link: "https://clthubpl.github.io/clt/cltbaza/kalkulatory/faq-masa.html"
           }
         ]
       }
@@ -101,7 +101,9 @@ const tocData = [
     ]
   }
 ];
-
+function opisKey(lang) {
+  return {pl:"opis",en:"opis_en",de:"opis_de"}[lang];
+}
 function generateToc(lang) {
   // Lang keys
   const name = {pl:"nazwa", en:"nazwa_en", de:"nazwa_de"};
@@ -128,23 +130,4 @@ function generateToc(lang) {
     out += `</ul>`;
   });
   return out;
-}
-function opisKey(lang) {
-  return {pl:"opis",en:"opis_en",de:"opis_de"}[lang];
-}
-
-// Zamiast starego generowania TOC:
-function setLang(lang) {
-  currentLang = lang;
-  document.getElementById("mailTitle").innerText = translations[lang].mailTitle;
-  document.getElementById("basicTitle").innerText = translations[lang].basicTitle;
-  document.getElementById("basicDesc").innerText = translations[lang].basicDesc;
-  document.getElementById("regulamin").innerHTML = translations[lang].regulamin;
-  document.getElementById("toc-header").innerText = translations[lang].tocHeader;
-  document.getElementById("toc-list").innerHTML = generateToc(lang);
-  document.getElementById("adText").innerText = translations[lang].adText;
-  document.getElementById("mailIcon").title = translations[lang].mailTitle;
-  // Ukryj kalkulator po zmianie języka
-  document.getElementById('kalkulator-box').style.display = "none";
-  document.getElementById('kalkulator-box').innerHTML = "";
 }
