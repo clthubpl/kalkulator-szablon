@@ -4,10 +4,8 @@
   <meta charset="UTF-8">
   <title>Baza wiedzy CLT – PRO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Możesz podpiąć własny plik css albo korzystać z tego style -->
   <link rel="stylesheet" href="clthub-style.css">
   <style>
-    /* Skrócona wersja stylu (wstaw jeśli nie używasz oddzielnego CSS) */
     body {
       font-family: 'Arial Narrow', Arial, sans-serif;
       margin: 0;
@@ -340,6 +338,9 @@ Jednorazowy dostęp oznacza dostęp do zasobów udostępnionych w jednostce czas
 <li>Propozycje nowych tematów można zgłaszać na adres e-mail.</li>
 <li>Rozliczenia transakcji e-przelewem przeprowadzane są wyłącznie za pośrednictwem HotPay.</li>
 <li>Serwis nie prezentuje treści zabronionych przez prawo polskie oraz UE.</li>
+</ol>
+Lista dostępnych opracowań będzie sukcesywnie rozszerzana.<br>
+Usługa polega na uzyskaniu jednorazowego dostępu do kalkulatora po dokonaniu płatności za pośrednictwem HotPay. Reklamacje: cltplhub@gmail.com`,
         tocHeader: "Spis treści HUB CLT (PRO)",
         toc: [
           { title: "Kalkulator statyki CLT (PRO)", url: "pro/kalk-stat-pl.html" },
@@ -390,7 +391,6 @@ Jednorazowy dostęp oznacza dostęp do zasobów udostępnionych w jednostce czas
       document.getElementById("proDesc").innerText = translations[lang].proDesc;
       document.getElementById("regulamin").innerHTML = translations[lang].regulamin;
       document.getElementById("toc-header").innerText = translations[lang].tocHeader;
-      // TOC - generowanie listy
       document.getElementById("toc-list").innerHTML = translations[lang].toc.map(e =>
         `<li><a href="${e.url}">${e.title}</a></li>`).join("");
       document.getElementById("adText").innerText = translations[lang].adText;
@@ -401,7 +401,6 @@ Jednorazowy dostęp oznacza dostęp do zasobów udostępnionych w jednostce czas
       setLang(this.value);
     });
 
-    // LOGO: otwiera modal logowania do edytora
     document.getElementById('logoBtn').onclick = function() {
       document.getElementById('loginModal').style.display = "flex";
       setTimeout(()=>{document.getElementById('editorPass').focus();}, 300);
