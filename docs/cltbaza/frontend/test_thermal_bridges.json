@@ -1,0 +1,17 @@
+[
+  {
+    "description": "Bridge sum, length validation",
+    "input": {
+      "area_m2": 120,
+      "u_base": 0.16,
+      "perimeter_m": 48,
+      "linear_bridges": [{"name": "Balkon", "psi": 0.13, "length": 30.0}, {"name": "Okno", "psi": 0.07, "length": 20.0}],
+      "point_bridges": [{"name": "Kotwa", "chi": 0.11, "quantity": 6}]
+    },
+    "expected_output": {
+      "u_total": 0.1926,
+      "u_bridge_addition": 0.0326,
+      "validation_warnings": ["Sum of bridge lengths exceeds perimeter."]
+    }
+  }
+]

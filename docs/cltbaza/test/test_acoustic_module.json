@@ -1,0 +1,22 @@
+[
+  {
+    "description": "CLT 120mm, 1 layer, no finishes",
+    "input": {
+      "layers": [{"material":"CLT","thickness":120,"mass":62,"e_modulus":11000}],
+      "finishes": []
+    },
+    "expected_output": {
+      "rw": 75.6
+    }
+  },
+  {
+    "description": "CLT 120mm + gypboard 2x12mm",
+    "input": {
+      "layers": [{"material":"CLT","thickness":120,"mass":62,"e_modulus":11000}],
+      "finishes": [{"material":"gk","thickness":24,"mass":20,"e_modulus":2500}]
+    },
+    "expected_output": {
+      "rw": 79.6
+    }
+  }
+]
