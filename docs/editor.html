@@ -1,4 +1,16 @@
 <script>
+  // Sprawdź, czy użytkownik jest zalogowany jako admin
+  const isAdmin = localStorage.getItem("adminMode") === "true";
+
+  // Ukryj generator tokenów, jeśli nie jest administratorem
+  window.addEventListener('DOMContentLoaded', () => {
+    const tokenSection = document.querySelector('[data-token-section]');
+    if (tokenSection && !isAdmin) {
+      tokenSection.style.display = 'none';
+    }
+  });
+</script>
+<script>
 async function loadCltStyles(refUrl) {
   try {
     const res = await fetch(refUrl);
@@ -22,4 +34,23 @@ async function loadCltStyles(refUrl) {
 }
 // Automatyczne ładowanie z domyślnego pliku na GitHub
 loadCltStyles("https://raw.githubusercontent.com/clthubpl/clt/main/docs/clt_styles_reference.json");
+</script>
+
+<div data-token-section style="margin: 20px 0; border: 1px solid #ccc; padding: 10px; background: #f9f9f9; font-family: sans-serif;">
+  <h3>🔐 Generuj jednorazowy token dostępu</h3>
+  <label>Czas ważności tokenu (w godzinach): <input type="number" id="token_hours" value="24" min="1" max="168" /></label>
+  <button onclick="generateToken()">🎟️ Wygeneruj token</button>
+  <p><strong>Wygenerowany token:</strong> <span id="token_display" style="font-weight: bold;"></span></p>
+</div>
+
+<script>
+function generateToken() {
+  const hours = parseInt(document.getElementById('token_hours').value) || 24;
+  const now = new Date();
+  const expires = new Date(now.getTime() + hours * 60 * 60 * 1000);
+  const raw = now.toISOString() + '|' + expires.toISOString() + '|' + Math.random().toString(36).substring(2, 10);
+  const token = btoa(raw);
+  document.getElementById('token_display').textContent = token;
+  console.log('Token wygenerowany:', token);
+}
 </script>
